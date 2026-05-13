@@ -1,0 +1,7 @@
+build/
+data/*.csv
+output/*.csv
+!output/benchmark.csv
+output/*.png
+!output/benchmark.png
+*.DS_Store
