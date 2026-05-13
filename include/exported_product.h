@@ -42,12 +42,4 @@ inline bool operator>=(const ExportedProduct& lhs, const ExportedProduct& rhs) {
     return !(lhs < rhs);
 }
 
-inline bool operator==(const ExportedProduct& lhs, const ExportedProduct& rhs) {
-    return comparisonKey(lhs) == comparisonKey(rhs);
-}
-
-inline bool operator!=(const ExportedProduct& lhs, const ExportedProduct& rhs) {
-    return !(lhs == rhs);
-}
-
 }  // namespace sorting_lab
