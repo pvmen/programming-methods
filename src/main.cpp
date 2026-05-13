@@ -22,7 +22,7 @@ using Clock = std::chrono::steady_clock;
 
 const std::vector<std::size_t>& benchmarkSizes() {
     static const std::vector<std::size_t> sizes{
-        100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
+        100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 110000,
     };
     return sizes;
 }
