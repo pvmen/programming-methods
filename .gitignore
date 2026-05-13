@@ -1,4 +1,5 @@
 build/
+Lesson_lab-1.md
 data/*.csv
 output/*.csv
 !output/benchmark.csv
