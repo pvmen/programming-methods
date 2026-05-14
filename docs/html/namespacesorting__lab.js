@@ -5,7 +5,6 @@ var namespacesorting__lab =
     ] ],
     [ "ExportedProduct", "structsorting__lab_1_1_exported_product.html", "structsorting__lab_1_1_exported_product" ],
     [ "bubbleSort", "namespacesorting__lab.html#ad96e79874911811da251a3d3cd82e5a7", null ],
-    [ "comparisonKey", "namespacesorting__lab.html#a193ee67ee5c99d23a91fc57311cb84e6", null ],
     [ "escapeCsvField", "namespacesorting__lab.html#a47a11fd12d9037c1359d58acb52a6337", null ],
     [ "formatDouble", "namespacesorting__lab.html#acd89ea33b651438dfafb26ae808c7d7d", null ],
     [ "isSorted", "namespacesorting__lab.html#a8bf7e18dca69476faa4be71de4308ac1", null ],

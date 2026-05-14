@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mergesort_1',['mergeSort',['../namespacesorting__lab.html#a80c1e02b907a9daffa49aa75bdcfd351',1,'sorting_lab']]],
-  ['mergesortrange_2',['mergeSortRange',['../namespacesorting__lab_1_1detail.html#a08df38f7c2df04625e34d5b5b81834d9',1,'sorting_lab::detail']]]
+  ['operator_3c_0',['operator&lt;',['../namespacesorting__lab.html#ab4535f336988fed06db38e5bb95514bd',1,'sorting_lab']]],
+  ['operator_3c_3d_1',['operator&lt;=',['../namespacesorting__lab.html#a6ae909069b5be9503445e2139ae8fb74',1,'sorting_lab']]],
+  ['operator_3e_2',['operator&gt;',['../namespacesorting__lab.html#a0ad60e7787377294d88db03a85c371d1',1,'sorting_lab']]],
+  ['operator_3e_3d_3',['operator&gt;=',['../namespacesorting__lab.html#a7d6a2aed5864cec5f19683ff8259cb2a',1,'sorting_lab']]]
 ];

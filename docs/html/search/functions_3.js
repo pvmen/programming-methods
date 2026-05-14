@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['formatdouble_0',['formatDouble',['../namespacesorting__lab.html#acd89ea33b651438dfafb26ae808c7d7d',1,'sorting_lab']]]
+  ['issorted_0',['isSorted',['../namespacesorting__lab.html#a8bf7e18dca69476faa4be71de4308ac1',1,'sorting_lab']]]
 ];

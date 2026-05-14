@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parsecsvrow_0',['parseCsvRow',['../namespacesorting__lab.html#a7b4e2e4b3bfae807a26a27f81f111242',1,'sorting_lab']]],
-  ['parsedouble_1',['parseDouble',['../namespacesorting__lab.html#aab16e94383269af27de4aff41fb2ebf0',1,'sorting_lab']]]
+  ['readproductsfromcsv_0',['readProductsFromCsv',['../namespacesorting__lab.html#a15b75708d249460a82e30eee7e71891a',1,'sorting_lab']]]
 ];

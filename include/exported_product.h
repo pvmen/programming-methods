@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <tuple>
 
 namespace sorting_lab {
 
@@ -19,15 +18,14 @@ struct ExportedProduct {
     double amountRubles = 0.0;
 };
 
-/**
- * @brief Builds the lexicographic comparison key required by variant 9.
- */
-inline auto comparisonKey(const ExportedProduct& product) {
-    return std::tie(product.name, product.volume, product.country);
-}
-
 inline bool operator<(const ExportedProduct& lhs, const ExportedProduct& rhs) {
-    return comparisonKey(lhs) < comparisonKey(rhs);
+    if (lhs.name != rhs.name) {
+        return lhs.name < rhs.name;
+    }
+    if (lhs.volume != rhs.volume) {
+        return lhs.volume < rhs.volume;
+    }
+    return lhs.country < rhs.country;
 }
 
 inline bool operator>(const ExportedProduct& lhs, const ExportedProduct& rhs) {
