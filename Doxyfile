@@ -1,0 +1,11 @@
+PROJECT_NAME           = "Sorting Lab"
+PROJECT_BRIEF          = "Variant 9 sorting algorithms lab"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = include src README.md report/README.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO
+JAVADOC_AUTOBRIEF      = YES

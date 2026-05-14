@@ -1,0 +1,11 @@
+build/
+.venv/
+.matplotlib/
+.cache/
+Lesson_lab-1.md
+data/*.csv
+output/*.csv
+!output/benchmark.csv
+output/*.png
+!output/benchmark.png
+*.DS_Store
