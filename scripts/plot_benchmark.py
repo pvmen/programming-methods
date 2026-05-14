@@ -103,11 +103,12 @@ def plot_benchmark(series: dict[str, list[tuple[int, float]]], output_path: Path
         )
 
     ax.set_xscale("log")
+    ax.set_yscale("log")
     ax.set_xticks(all_sizes)
     ax.set_xticklabels([format_size(size) for size in all_sizes], rotation=35, ha="right")
     ax.set_title("Зависимость времени сортировки от размера массива", fontsize=15, pad=14)
     ax.set_xlabel("Ось X: размер массива, количество записей (логарифмическая шкала)", fontsize=12)
-    ax.set_ylabel("Ось Y: время сортировки, миллисекунды", fontsize=12)
+    ax.set_ylabel("Ось Y: время сортировки, миллисекунды (логарифмическая шкала)", fontsize=12)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{value:g}"))
     ax.grid(True, which="major", linestyle="--", linewidth=0.7, alpha=0.45)
     ax.grid(True, which="minor", axis="x", linestyle=":", linewidth=0.5, alpha=0.25)

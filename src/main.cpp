@@ -93,9 +93,12 @@ std::vector<ExportedProduct> generateProducts(std::size_t count) {
         });
     }
 
-    const std::size_t step = std::max<std::size_t>(3, count / 1000);
-    for (std::size_t i = 1; i + 1 < products.size(); i += step) {
-        std::swap(products[i], products[i + 1]);
+    const std::size_t blockSize = std::max<std::size_t>(2, count / 200);
+    for (std::size_t start = 0; start < products.size(); start += blockSize) {
+        const auto first = products.begin() + static_cast<std::ptrdiff_t>(start);
+        const auto last = products.begin()
+                          + static_cast<std::ptrdiff_t>(std::min(start + blockSize, products.size()));
+        std::reverse(first, last);
     }
 
     return products;
