@@ -58,8 +58,15 @@ cmake --build build
 Построить график:
 
 ```bash
-python3 -m pip install -r requirements.txt
-python3 scripts/plot_benchmark.py
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python scripts/plot_benchmark.py
+```
+
+Собрать PDF-отчет:
+
+```bash
+.venv/bin/python scripts/build_report_pdf.py
 ```
 
 Сгенерировать Doxygen-документацию:
