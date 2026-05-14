@@ -68,6 +68,7 @@ def main() -> int:
 
 def plot_benchmark(series: dict[str, list[tuple[int, float]]], output_path: Path) -> None:
     fig, ax = plt.subplots(figsize=(13, 7))
+    all_sizes = sorted({size for points in series.values() for size, _ in points})
 
     for algorithm in ALGORITHM_STYLES:
         points = series.get(algorithm)
@@ -101,24 +102,31 @@ def plot_benchmark(series: dict[str, list[tuple[int, float]]], output_path: Path
             bbox={"boxstyle": "round,pad=0.25", "fc": "white", "ec": style["color"], "alpha": 0.9},
         )
 
+    ax.set_xscale("log")
+    ax.set_xticks(all_sizes)
+    ax.set_xticklabels([format_size(size) for size in all_sizes], rotation=35, ha="right")
     ax.set_title("Зависимость времени сортировки от размера массива", fontsize=15, pad=14)
-    ax.set_xlabel("Ось X: размер массива, количество записей", fontsize=12)
+    ax.set_xlabel("Ось X: размер массива, количество записей (логарифмическая шкала)", fontsize=12)
     ax.set_ylabel("Ось Y: время сортировки, миллисекунды", fontsize=12)
-    ax.xaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{int(value):,}".replace(",", " ")))
     ax.yaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{value:g}"))
     ax.grid(True, which="major", linestyle="--", linewidth=0.7, alpha=0.45)
+    ax.grid(True, which="minor", axis="x", linestyle=":", linewidth=0.5, alpha=0.25)
     ax.legend(title="Алгоритм сортировки", loc="upper left", frameon=True)
     ax.margins(x=0.08, y=0.12)
     fig.text(
         0.5,
         0.01,
-        "Чем ниже линия, тем быстрее алгоритм на данном размере массива.",
+        "Каждая точка соответствует одному размеру из benchmark.csv. Чем ниже линия, тем быстрее алгоритм.",
         ha="center",
         fontsize=10,
     )
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(output_path, dpi=180)
     plt.close(fig)
+
+
+def format_size(size: int) -> str:
+    return f"{size:,}".replace(",", " ")
 
 
 if __name__ == "__main__":
