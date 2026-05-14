@@ -43,6 +43,12 @@ cmake --build build
 ./build/sorting_lab sort data/input_1000.csv output/sorted_merge_1000.csv merge
 ```
 
+Показать первые строки до и после сортировки:
+
+```bash
+./build/sorting_lab preview data/input_1000.csv merge 12
+```
+
 Запустить полный бенчмарк:
 
 ```bash

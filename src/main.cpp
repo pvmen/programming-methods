@@ -49,6 +49,7 @@ void printUsage(const char* executable) {
               << "  " << executable << " generate [size]\n"
               << "  " << executable
               << " sort <input.csv> <output.csv> <bubble|shaker|merge|std>\n"
+              << "  " << executable << " preview <input.csv> <bubble|shaker|merge|std> [rows]\n"
               << "  " << executable << " benchmark\n";
 }
 
@@ -153,6 +154,49 @@ void sortCommand(int argc, char* argv[]) {
     std::cout << "Sorted " << products.size() << " rows into " << argv[3] << '\n';
 }
 
+void printProductsPreview(const std::string& title,
+                          const std::vector<ExportedProduct>& products,
+                          std::size_t rows) {
+    const std::size_t shown = std::min(rows, products.size());
+
+    std::cout << title << " (" << shown << " of " << products.size() << " rows)\n";
+    std::cout << std::left << std::setw(6) << "#"
+              << std::setw(18) << "name"
+              << std::setw(14) << "country"
+              << std::right << std::setw(12) << "volume"
+              << std::setw(16) << "amountRubles" << '\n';
+
+    for (std::size_t i = 0; i < shown; ++i) {
+        const auto& product = products[i];
+        std::cout << std::left << std::setw(6) << i
+                  << std::setw(18) << product.name
+                  << std::setw(14) << product.country
+                  << std::right << std::fixed << std::setprecision(2)
+                  << std::setw(12) << product.volume
+                  << std::setw(16) << product.amountRubles << '\n';
+    }
+}
+
+void previewCommand(int argc, char* argv[]) {
+    if (argc != 4 && argc != 5) {
+        throw std::runtime_error("preview expects input.csv, algorithm and optional row count");
+    }
+
+    const std::size_t rows = argc == 5 ? parseSize(argv[4]) : 10;
+    const auto before = sorting_lab::readProductsFromCsv(argv[2]);
+    auto after = before;
+
+    applySort(after, argv[3]);
+    if (!sorting_lab::isSorted(after)) {
+        throw std::runtime_error("Internal error: preview result is not ordered");
+    }
+
+    printProductsPreview("Before sorting: " + std::string(argv[2]), before, rows);
+    std::cout << '\n';
+    printProductsPreview("After sorting by " + std::string(argv[3]), after, rows);
+    std::cout << "\nSorted correctly: yes\n";
+}
+
 template <typename SortFunction>
 double measureMilliseconds(SortFunction sortFunction) {
     const auto started = Clock::now();
@@ -226,6 +270,8 @@ int main(int argc, char* argv[]) {
             generateCommand(argc, argv);
         } else if (command == "sort") {
             sortCommand(argc, argv);
+        } else if (command == "preview") {
+            previewCommand(argc, argv);
         } else if (command == "benchmark") {
             benchmarkCommand(argc);
         } else {
