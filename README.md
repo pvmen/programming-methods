@@ -52,6 +52,7 @@ cmake --build build
 Построить график:
 
 ```bash
+python3 -m pip install -r requirements.txt
 python3 scripts/plot_benchmark.py
 ```
 
