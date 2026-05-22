@@ -73,6 +73,46 @@ void shekerSort(std::vector<Product>& products){
   }
 }
 
+void merge(std::vector<Product>& products, int left, int middle, int right){
+  std::vector<Product> temp;
+  int i = left;
+  int j = middle + 1;
+  while (i <= middle && j <= right){
+    if (lessProduct(products[j], products[i])){
+    temp.push_back(products[j]);
+    j++;
+    } else {
+    temp.push_back(products[i]);
+    i++;
+    }
+  }
+  while (i <= middle){
+    temp.push_back(products[i]);
+    i++;
+  }
+  while (j <= right){
+    temp.push_back(products[j]);
+    j++;
+  }
+  for (int k = 0; k < temp.size(); k++){
+    products[left + k] = temp[k];
+  }
+}
+
+
+void mergeSort(std::vector<Product>& products, int left, int right){
+  if (left < right){
+
+    int middle = (left + right) / 2;
+
+    mergeSort(products, left, middle);
+    mergeSort(products, middle + 1, right);
+
+    merge(products, left, middle, right);
+  }
+  return;
+}
+
 int main() {
   std::vector<Product> products {
     {"Oil", "China", 300, 150000.0},
@@ -83,7 +123,7 @@ int main() {
    std::cout << "before sort: " << "\n";
    // printProduct(products[0]);
    printProducts(products);
-   shekerSort(products);
+   mergeSort(products, 0, products.size() - 1);
    std::cout << "after sort: " << "\n";
    printProducts(products);
    return 0;
