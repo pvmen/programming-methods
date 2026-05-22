@@ -113,6 +113,13 @@ void mergeSort(std::vector<Product>& products, int left, int right){
   return;
 }
 
+void mergeSort(std::vector<Product>& products){
+  if (products.size() < 2){
+    return;
+  }
+  mergeSort(products, 0, products.size() - 1);
+}
+
 int main() {
   std::vector<Product> products {
     {"Oil", "China", 300, 150000.0},
@@ -123,7 +130,7 @@ int main() {
    std::cout << "before sort: " << "\n";
    // printProduct(products[0]);
    printProducts(products);
-   mergeSort(products, 0, products.size() - 1);
+   mergeSort(products);
    std::cout << "after sort: " << "\n";
    printProducts(products);
    return 0;
