@@ -94,7 +94,7 @@ void merge(std::vector<Product>& products, int left, int middle, int right){
     temp.push_back(products[j]);
     j++;
   }
-  for (int k = 0; k < temp.size(); k++){
+  for (std::size_t k = 0; k < temp.size(); k++){
     products[left + k] = temp[k];
   }
 }
