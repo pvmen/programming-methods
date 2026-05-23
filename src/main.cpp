@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 
 struct Product {
   std::string name;
@@ -33,6 +34,25 @@ bool lessProduct(Product& left, Product& right) {
 
 void printProduct(Product& product) {
   std::cout << product.name << " " << product.country << " " << product.volume << " " << product.rubles << "\n";
+}
+
+void writeProductsToFile(std::string filename, std::vector<Product>& products){
+  std::ofstream file(filename);
+  for (std::size_t i = 0; i < products.size(); i++){
+    file << products[i].name << " " << products[i].country << " " << products[i].volume << " " << products[i].rubles << "\n";
+  }
+  file.close();
+}
+
+std::vector<Product> readProductsFromFile(std::string filename){
+  std::vector<Product> products;
+  std::ifstream file(filename);
+
+  Product product;
+  while(file >> product.name >> product.country >> product.volume >> product.rubles){
+    products.push_back(product);
+  }
+  return products;
 }
 
 void printProducts(std::vector<Product>& products) {
@@ -121,19 +141,37 @@ void mergeSort(std::vector<Product>& products){
 }
 
 int main() {
-  std::vector<Product> products {
-    {"Oil", "China", 300, 150000.0},
-    {"Gas", "Turkey", 100, 90000.0},
-    {"Oil", "Armenia", 200, 100000.0},
-    {"Oil", "Belarus", 200, 120000.0},
-   };
-   std::cout << "before sort: " << "\n";
+  // std::vector<Product> products {
+  //  {"Oil", "China", 300, 150000.0},
+  //  {"Gas", "Turkey", 100, 90000.0},
+  //  {"Oil", "Armenia", 200, 100000.0},
+  //  {"Oil", "Belarus", 200, 120000.0},
+  // };
+  std::vector<Product> products = readProductsFromFile("data/input.txt");
+  
+   //std::cout << "before sort: " << "\n";
    // printProduct(products[0]);
-   printProducts(products);
-   mergeSort(products);
-   std::cout << "after sort: " << "\n";
-   printProducts(products);
-   return 0;
+   //printProducts(products);
+   //mergeSort(products);
+   //writeProductsToFile("data/output.txt", products);
+   //std::cout << "after sort: " << "\n";
+   //printProducts(products);
    
+   std::vector<Product> bubbleProducts = products;
+   std::vector<Product> shakerProducts = products;
+   std::vector<Product> mergeProducts = products;
+   std::vector<Product> stdSortProducts = products;
+
+   bubbleSort(bubbleProducts);
+   shekerSort(shakerProducts);
+   mergeSort(mergeProducts);
+   std::sort(stdSortProducts.begin(), stdSortProducts.end(), lessProduct);
+
+   writeProductsToFile("data/output_bubble.txt", bubbleProducts);
+   writeProductsToFile("data/output_shaker.txt", shakerProducts);
+   writeProductsToFile("data/output_merge.txt", mergeProducts);
+   writeProductsToFile("data/output_stdSort.txt", stdSortProducts);
+
+   return 0;
 }
 
