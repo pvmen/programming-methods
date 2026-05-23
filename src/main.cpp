@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <chrono>
 
 struct Product {
   std::string name;
@@ -161,11 +162,38 @@ int main() {
    std::vector<Product> shakerProducts = products;
    std::vector<Product> mergeProducts = products;
    std::vector<Product> stdSortProducts = products;
+   // времена
+   std::ofstream timeFile("data/times.txt");
 
+   auto start = std::chrono::high_resolution_clock::now();
    bubbleSort(bubbleProducts);
+   auto end = std::chrono::high_resolution_clock::now();
+   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   std::cout << "Bubble sort time: " << duration.count() << " microseconds\n";
+   timeFile << "Bubble sort time: " << duration.count() << "\n";
+
+   start = std::chrono::high_resolution_clock::now();
    shekerSort(shakerProducts);
+   end = std::chrono::high_resolution_clock::now();
+   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   std::cout << "shekerSort sort time: " << duration.count() << " microseconds\n";
+   timeFile << "shekerSort sort time: " << duration.count() << "\n";
+
+
+   start = std::chrono::high_resolution_clock::now();
    mergeSort(mergeProducts);
+   end = std::chrono::high_resolution_clock::now();
+   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   std::cout << "mergeSort sort time: " << duration.count() << " microseconds\n";
+   timeFile << "mergeSort sort time: " << duration.count() << "\n";
+
+   start = std::chrono::high_resolution_clock::now();
    std::sort(stdSortProducts.begin(), stdSortProducts.end(), lessProduct);
+   end = std::chrono::high_resolution_clock::now();
+   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   std::cout << "std::sort sort time: " << duration.count() << " microseconds\n";
+   timeFile << "std::sort sort time: " << duration.count() << "\n";
+
 
    writeProductsToFile("data/output_bubble.txt", bubbleProducts);
    writeProductsToFile("data/output_shaker.txt", shakerProducts);
