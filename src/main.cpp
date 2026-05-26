@@ -6,6 +6,9 @@
 #include <chrono>
 #include <cstdlib>
 
+/**
+ * Запись об экспортируемом товаре.
+ */
 struct Product {
   std::string name;
   std::string country; // куда экспорт
@@ -13,6 +16,10 @@ struct Product {
   double rubles;
 };
 
+/**
+ * Возвращает true, если левый товар должен стоять раньше правого.
+ * Сравнение выполняется по name, затем по volume, затем по country, rubles не трогаем.
+ */
 bool lessProduct(Product& left, Product& right) {
   if (left.name < right.name) {
     return true;
@@ -34,10 +41,17 @@ bool lessProduct(Product& left, Product& right) {
   return false;
 }
 
+/**
+ * Выводит один товар в консоль.
+ */
 void printProduct(Product& product) {
   std::cout << product.name << " " << product.country << " " << product.volume << " " << product.rubles << "\n";
 }
 
+/**
+ * Записывает товары в текстовый файл.
+ * Каждый товар записывается на отдельной строке.
+ */
 void writeProductsToFile(std::string filename, std::vector<Product>& products){
   std::ofstream file(filename);
   for (std::size_t i = 0; i < products.size(); i++){
@@ -46,6 +60,9 @@ void writeProductsToFile(std::string filename, std::vector<Product>& products){
   file.close();
 }
 
+/**
+ * Генерирует случайные товары и записывает их в файл.
+ */
 void generateProductsToFile(std::string filename, int count){
   std::ofstream file(filename);
   std::vector<std::string> names = {"Coal", "Gas", "Oil", "Wood"};
@@ -62,6 +79,10 @@ void generateProductsToFile(std::string filename, int count){
   }
 }
 
+/**
+ * Читает товары из текстового файла.
+ * В каждой строке должны быть name, country, volume и rubles.
+ */
 std::vector<Product> readProductsFromFile(std::string filename){
   std::vector<Product> products;
   std::ifstream file(filename);
@@ -73,12 +94,18 @@ std::vector<Product> readProductsFromFile(std::string filename){
   return products;
 }
 
+/**
+ * Выводит список товаров в консоль.
+ */
 void printProducts(std::vector<Product>& products) {
   for (std::size_t i = 0; i < products.size(); i++){
     printProduct(products[i]);
   }
 }
 
+/**
+ * Сортирует товары пузырьковой сортировкой.
+ */
 void bubbleSort(std::vector<Product>& products) {
   for (std::size_t i = 0; i < products.size(); i++){
     for (std::size_t j = 0; j < products.size() - 1; j++){
@@ -89,6 +116,9 @@ void bubbleSort(std::vector<Product>& products) {
   }
 }
 
+/**
+ * Сортирует товары шейкер сортировкой.
+ */
 void shekerSort(std::vector<Product>& products){
   if (products.size() < 2){
     return;
@@ -111,6 +141,9 @@ void shekerSort(std::vector<Product>& products){
   }
 }
 
+/**
+ * Сливает две отсортированные части вектора в одну отсортированную часть.
+ */
 void merge(std::vector<Product>& products, int left, int middle, int right){
   std::vector<Product> temp;
   int i = left;
@@ -137,7 +170,9 @@ void merge(std::vector<Product>& products, int left, int middle, int right){
   }
 }
 
-
+/**
+ * Рекурсивно сортирует часть вектора сортировкой слиянием.
+ */
 void mergeSort(std::vector<Product>& products, int left, int right){
   if (left < right){
 
@@ -151,6 +186,9 @@ void mergeSort(std::vector<Product>& products, int left, int right){
   return;
 }
 
+/**
+ * Сортирует весь вектор товаров сортировкой слиянием.
+ */
 void mergeSort(std::vector<Product>& products){
   if (products.size() < 2){
     return;
@@ -158,6 +196,9 @@ void mergeSort(std::vector<Product>& products){
   mergeSort(products, 0, products.size() - 1);
 }
 
+/**
+ * Точка входа программы.
+ */
 int main() {
   // std::vector<Product> products {
   //  {"Oil", "China", 300, 150000.0},
