@@ -21,6 +21,7 @@ for algorithm, values in times.items():
 plt.xlabel("Number of products")
 plt.ylabel("Time, microseconds")
 plt.title("Sorting algorithms comparison")
+plt.yscale("log")
 plt.legend()
 plt.grid(True)
 
