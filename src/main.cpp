@@ -41,6 +41,34 @@ bool lessProduct(Product& left, Product& right) {
   return false;
 }
 
+/**  
+ * Перегружает оператор < для сравнения двух товаров. 
+ */
+bool operator<(Product& left, Product& right){
+  return lessProduct(left, right);
+}
+
+/**  
+ * Перегружает оператор > для сравнения двух товаров. 
+ */
+bool operator>(Product& left, Product& right){
+  return lessProduct(right,left);
+}
+
+/**  
+ * Перегружает оператор >= для сравнения двух товаров. 
+ */
+bool operator>=(Product& left, Product& right){
+  return !lessProduct(left, right);
+}
+
+/**  
+ * Перегружает оператор <= для сравнения двух товаров. 
+ */
+bool operator<=(Product& left, Product& right){
+  return !lessProduct(right, left);
+}
+
 /**
  * Выводит один товар в консоль.
  */
@@ -109,7 +137,7 @@ void printProducts(std::vector<Product>& products) {
 void bubbleSort(std::vector<Product>& products) {
   for (std::size_t i = 0; i < products.size(); i++){
     for (std::size_t j = 0; j < products.size() - 1; j++){
-      if (lessProduct(products[j+1], products[j])){
+      if (products[j + 1] < products[j]){
         std::swap(products[j+1], products[j]);
       }
     }
@@ -127,13 +155,13 @@ void shekerSort(std::vector<Product>& products){
   int right = products.size() - 1;
   while (left < right){
     for (int i = left; i < right; i++){    
-      if (lessProduct(products[i+1], products[i])){
+      if (products[i + 1] < products[i]){
         std::swap(products[i+1], products[i]);  
       }
     }
     right--;
     for (int j = right; j > left; j--){
-      if (lessProduct(products[j], products[j-1])){
+      if (products[j] < products[j-1]){
         std::swap(products[j-1], products[j]);  
       }
     }
@@ -149,7 +177,7 @@ void merge(std::vector<Product>& products, int left, int middle, int right){
   int i = left;
   int j = middle + 1;
   while (i <= middle && j <= right){
-    if (lessProduct(products[j], products[i])){
+    if (products[j] < products[i]){
     temp.push_back(products[j]);
     j++;
     } else {

@@ -133,6 +133,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('main_8cpp.html
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:ad9a92735a807a2994e99ce70d111b090" id="r_ad9a92735a807a2994e99ce70d111b090"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad9a92735a807a2994e99ce70d111b090">lessProduct</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a08b065c8eb4a7bc1f2a31296f226bc99" id="r_a08b065c8eb4a7bc1f2a31296f226bc99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a08b065c8eb4a7bc1f2a31296f226bc99">operator&lt;</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a40b98d1c1a2212ed262df4551b834587" id="r_a40b98d1c1a2212ed262df4551b834587"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a40b98d1c1a2212ed262df4551b834587">operator&gt;</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a799a16e7b42a631b9becf8eb7394857f" id="r_a799a16e7b42a631b9becf8eb7394857f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a799a16e7b42a631b9becf8eb7394857f">operator&gt;=</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a02aaae75d676c85bf1186f941fe588cb" id="r_a02aaae75d676c85bf1186f941fe588cb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a02aaae75d676c85bf1186f941fe588cb">operator&lt;=</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
 <tr class="memitem:a9f46eed50bc0a58ceeee510ec79b3a78" id="r_a9f46eed50bc0a58ceeee510ec79b3a78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9f46eed50bc0a58ceeee510ec79b3a78">printProduct</a> (<a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
 <tr class="memitem:a18ae133f514e28744ac4f0dbeb049abb" id="r_a18ae133f514e28744ac4f0dbeb049abb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a18ae133f514e28744ac4f0dbeb049abb">writeProductsToFile</a> (std::string filename, std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
 <tr class="memitem:a3219504ac87d8a4bb22fd41d3f8b85d8" id="r_a3219504ac87d8a4bb22fd41d3f8b85d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3219504ac87d8a4bb22fd41d3f8b85d8">generateProductsToFile</a> (std::string filename, int count)</td></tr>
@@ -300,6 +304,94 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('main_8cpp.html
       </table>
 </div><div class="memdoc">
 <p>Рекурсивно сортирует часть вектора сортировкой слиянием. </p>
+
+</div>
+</div>
+<a id="a08b065c8eb4a7bc1f2a31296f226bc99" name="a08b065c8eb4a7bc1f2a31296f226bc99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b065c8eb4a7bc1f2a31296f226bc99">&#9670;&#160;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &lt; для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a02aaae75d676c85bf1186f941fe588cb" name="a02aaae75d676c85bf1186f941fe588cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02aaae75d676c85bf1186f941fe588cb">&#9670;&#160;</a></span>operator&lt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &lt;= для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a40b98d1c1a2212ed262df4551b834587" name="a40b98d1c1a2212ed262df4551b834587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b98d1c1a2212ed262df4551b834587">&#9670;&#160;</a></span>operator&gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &gt; для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a799a16e7b42a631b9becf8eb7394857f" name="a799a16e7b42a631b9becf8eb7394857f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a799a16e7b42a631b9becf8eb7394857f">&#9670;&#160;</a></span>operator&gt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &gt;= для сравнения двух товаров. </p>
 
 </div>
 </div>

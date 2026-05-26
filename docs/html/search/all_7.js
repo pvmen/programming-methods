@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['readproductsfromfile_0',['readProductsFromFile',['../main_8cpp.html#a9760d0da4c935c890724ae5441753350',1,'main.cpp']]],
-  ['rubles_1',['rubles',['../struct_product.html#ad0f7c4589ed9a466b604d2be69e3962a',1,'Product']]]
+  ['printproduct_0',['printProduct',['../main_8cpp.html#a9f46eed50bc0a58ceeee510ec79b3a78',1,'main.cpp']]],
+  ['printproducts_1',['printProducts',['../main_8cpp.html#ac2f0a2a607564436f45c2179cef5604e',1,'main.cpp']]],
+  ['product_2',['Product',['../struct_product.html',1,'']]]
 ];

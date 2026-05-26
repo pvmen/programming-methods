@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['printproduct_0',['printProduct',['../main_8cpp.html#a9f46eed50bc0a58ceeee510ec79b3a78',1,'main.cpp']]],
-  ['printproducts_1',['printProducts',['../main_8cpp.html#ac2f0a2a607564436f45c2179cef5604e',1,'main.cpp']]],
-  ['product_2',['Product',['../struct_product.html',1,'']]]
+  ['operator_3c_0',['operator&lt;',['../main_8cpp.html#a08b065c8eb4a7bc1f2a31296f226bc99',1,'main.cpp']]],
+  ['operator_3c_3d_1',['operator&lt;=',['../main_8cpp.html#a02aaae75d676c85bf1186f941fe588cb',1,'main.cpp']]],
+  ['operator_3e_2',['operator&gt;',['../main_8cpp.html#a40b98d1c1a2212ed262df4551b834587',1,'main.cpp']]],
+  ['operator_3e_3d_3',['operator&gt;=',['../main_8cpp.html#a799a16e7b42a631b9becf8eb7394857f',1,'main.cpp']]]
 ];

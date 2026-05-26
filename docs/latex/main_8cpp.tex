@@ -17,6 +17,14 @@ struct \doxymbox{\hyperlink{struct_product}{Product}}
 \item 
 bool \doxymbox{\hyperlink{main_8cpp_ad9a92735a807a2994e99ce70d111b090}{less\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
 \item 
+bool \doxymbox{\hyperlink{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99}{operator$<$}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a40b98d1c1a2212ed262df4551b834587}{operator$>$}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a799a16e7b42a631b9becf8eb7394857f}{operator$>$=}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a02aaae75d676c85bf1186f941fe588cb}{operator$<$=}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
 void \doxymbox{\hyperlink{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}{print\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
 \item 
 void \doxymbox{\hyperlink{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}{write\+Products\+To\+File}} (std::\+string filename, std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
@@ -86,7 +94,31 @@ void merge\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyp
 {\footnotesize\ttfamily \label{main_8cpp_a12c8c096b2e198398c82d63a1d114627} 
 void merge\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{int}]{left}{, }\item[{int}]{right}{}\end{DoxyParamCaption})}
 
-Рекурсивно сортирует часть вектора сортировкой слиянием. \Hypertarget{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}\index{main.cpp@{main.cpp}!printProduct@{printProduct}}
+Рекурсивно сортирует часть вектора сортировкой слиянием. \Hypertarget{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99}\index{main.cpp@{main.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99} 
+bool operator$<$ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$<$}{<} для сравнения двух товаров. \Hypertarget{main_8cpp_a02aaae75d676c85bf1186f941fe588cb}\index{main.cpp@{main.cpp}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily \label{main_8cpp_a02aaae75d676c85bf1186f941fe588cb} 
+bool operator$<$= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$<$}{<}= для сравнения двух товаров. \Hypertarget{main_8cpp_a40b98d1c1a2212ed262df4551b834587}\index{main.cpp@{main.cpp}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily \label{main_8cpp_a40b98d1c1a2212ed262df4551b834587} 
+bool operator$>$ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$>$}{>} для сравнения двух товаров. \Hypertarget{main_8cpp_a799a16e7b42a631b9becf8eb7394857f}\index{main.cpp@{main.cpp}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily \label{main_8cpp_a799a16e7b42a631b9becf8eb7394857f} 
+bool operator$>$= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$>$}{>}= для сравнения двух товаров. \Hypertarget{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}\index{main.cpp@{main.cpp}!printProduct@{printProduct}}
 \index{printProduct@{printProduct}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{printProduct()}{printProduct()}}
 {\footnotesize\ttfamily \label{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78} 
