@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <fstream>
 #include <chrono>
+#include <cstdlib>
 
 struct Product {
   std::string name;
@@ -43,6 +44,22 @@ void writeProductsToFile(std::string filename, std::vector<Product>& products){
     file << products[i].name << " " << products[i].country << " " << products[i].volume << " " << products[i].rubles << "\n";
   }
   file.close();
+}
+
+void generateProductsToFile(std::string filename, int count){
+  std::ofstream file(filename);
+  std::vector<std::string> names = {"Coal", "Gas", "Oil", "Wood"};
+  std::vector<std::string> countries = {"China", "Turkey", "Armenia", "Belarus"};
+  for (int i = 0; i < count; i++){
+    std::string name = names[std::rand() % names.size()];
+    std::string country = countries[std::rand() % countries.size()];
+    int volume = std::rand() % 1000 + 100;
+    double rubles = std::rand() % 516600 + 1000;
+    file << name << " "
+    << country << " "
+    << volume << " "
+    << rubles << "\n";
+  }
 }
 
 std::vector<Product> readProductsFromFile(std::string filename){
@@ -148,8 +165,69 @@ int main() {
   //  {"Oil", "Armenia", 200, 100000.0},
   //  {"Oil", "Belarus", 200, 120000.0},
   // };
-  std::vector<Product> products = readProductsFromFile("data/input.txt");
-  
+   // времена
+   std::ofstream timeFile("data/times.txt");
+
+   
+   std::srand(1);
+
+   // generateProductsToFile("data/input100.txt", 100);
+   // std::vector<Product> products = readProductsFromFile("data/input100.txt");
+
+   std::vector<int> sizes = {100, 250, 500, 1000, 2000, 5000};
+
+   for (std::size_t i = 0; i < sizes.size(); i++){
+    int size = sizes[i]; 
+    std::string inputFileName = "data/input" + std::to_string(size) + ".txt";
+
+    generateProductsToFile(inputFileName, size);
+    std::vector<Product> products = readProductsFromFile(inputFileName);
+
+    std::vector<Product> bubbleProducts = products;
+    std::vector<Product> shakerProducts = products;
+    std::vector<Product> mergeProducts = products;
+    std::vector<Product> stdSortProducts = products;
+
+    auto start = std::chrono::high_resolution_clock::now();
+    bubbleSort(bubbleProducts);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    std::cout << size << " Bubble sort time: " << duration.count() << "\n";
+    timeFile << size <<  " bubble " << duration.count() << "\n";
+
+    start = std::chrono::high_resolution_clock::now();
+    shekerSort(shakerProducts);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    std::cout << size << " shekerSort sort time: " << duration.count() << "\n";
+    timeFile << size << " shaker " << duration.count() << "\n";
+
+    start = std::chrono::high_resolution_clock::now();
+    mergeSort(mergeProducts);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    std::cout << size << " mergeSort sort time: " << duration.count() << "\n";
+    timeFile << size << " merge " << duration.count() << "\n";
+
+    start = std::chrono::high_resolution_clock::now();
+    std::sort(stdSortProducts.begin(), stdSortProducts.end(), lessProduct);
+    end = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    std::cout << size << " std::sort sort time: " << duration.count() << "\n";
+    timeFile << size << " std_sort " << duration.count() << "\n";
+
+    std::string bubbleOutputFileName = "data/bubbleOutput" + std::to_string(size) + ".txt";
+    std::string shakerOutputFileName = "data/shakerOutput" + std::to_string(size) + ".txt";
+    std::string mergeOutputFileName = "data/mergeOutput" + std::to_string(size) + ".txt";
+    std::string stdSortOutputFileName = "data/stdSortOutput" + std::to_string(size) + ".txt";
+
+    writeProductsToFile(bubbleOutputFileName, bubbleProducts);
+    writeProductsToFile(shakerOutputFileName, shakerProducts);
+    writeProductsToFile(mergeOutputFileName, mergeProducts);
+    writeProductsToFile(stdSortOutputFileName, stdSortProducts);
+   }
+
+
    //std::cout << "before sort: " << "\n";
    // printProduct(products[0]);
    //printProducts(products);
@@ -158,47 +236,46 @@ int main() {
    //std::cout << "after sort: " << "\n";
    //printProducts(products);
    
-   std::vector<Product> bubbleProducts = products;
-   std::vector<Product> shakerProducts = products;
-   std::vector<Product> mergeProducts = products;
-   std::vector<Product> stdSortProducts = products;
-   // времена
-   std::ofstream timeFile("data/times.txt");
+   //std::vector<Product> bubbleProducts = products;
+   //std::vector<Product> shakerProducts = products;
+   //std::vector<Product> mergeProducts = products;
+   //std::vector<Product> stdSortProducts = products;
 
-   auto start = std::chrono::high_resolution_clock::now();
-   bubbleSort(bubbleProducts);
-   auto end = std::chrono::high_resolution_clock::now();
-   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-   std::cout << "Bubble sort time: " << duration.count() << " microseconds\n";
-   timeFile << "Bubble sort time: " << duration.count() << "\n";
+   
 
-   start = std::chrono::high_resolution_clock::now();
-   shekerSort(shakerProducts);
-   end = std::chrono::high_resolution_clock::now();
-   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-   std::cout << "shekerSort sort time: " << duration.count() << " microseconds\n";
-   timeFile << "shekerSort sort time: " << duration.count() << "\n";
+   // auto start = std::chrono::high_resolution_clock::now();
+   // bubbleSort(bubbleProducts);
+   // auto end = std::chrono::high_resolution_clock::now();
+   // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   // std::cout << "Bubble sort time: " << duration.count() << " microseconds\n";
+   // timeFile << "Bubble sort time: " << duration.count() << "\n";
+
+   // start = std::chrono::high_resolution_clock::now();
+   // shekerSort(shakerProducts);
+   // end = std::chrono::high_resolution_clock::now();
+   // duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   // std::cout << "shekerSort sort time: " << duration.count() << " microseconds\n";
+   // timeFile << "shekerSort sort time: " << duration.count() << "\n";
+
+   // start = std::chrono::high_resolution_clock::now();
+   // mergeSort(mergeProducts);
+   // end = std::chrono::high_resolution_clock::now();
+   // duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   // std::cout << "mergeSort sort time: " << duration.count() << " microseconds\n";
+   // timeFile << "mergeSort sort time: " << duration.count() << "\n";
+
+   // start = std::chrono::high_resolution_clock::now();
+   // std::sort(stdSortProducts.begin(), stdSortProducts.end(), lessProduct);
+   // end = std::chrono::high_resolution_clock::now();
+   // duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+   // std::cout << "std::sort sort time: " << duration.count() << " microseconds\n";
+   // timeFile << "std::sort sort time: " << duration.count() << "\n";
 
 
-   start = std::chrono::high_resolution_clock::now();
-   mergeSort(mergeProducts);
-   end = std::chrono::high_resolution_clock::now();
-   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-   std::cout << "mergeSort sort time: " << duration.count() << " microseconds\n";
-   timeFile << "mergeSort sort time: " << duration.count() << "\n";
-
-   start = std::chrono::high_resolution_clock::now();
-   std::sort(stdSortProducts.begin(), stdSortProducts.end(), lessProduct);
-   end = std::chrono::high_resolution_clock::now();
-   duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-   std::cout << "std::sort sort time: " << duration.count() << " microseconds\n";
-   timeFile << "std::sort sort time: " << duration.count() << "\n";
-
-
-   writeProductsToFile("data/output_bubble.txt", bubbleProducts);
-   writeProductsToFile("data/output_shaker.txt", shakerProducts);
-   writeProductsToFile("data/output_merge.txt", mergeProducts);
-   writeProductsToFile("data/output_stdSort.txt", stdSortProducts);
+   // writeProductsToFile("data/output_bubble.txt", bubbleProducts);
+   // writeProductsToFile("data/output_shaker.txt", shakerProducts);
+   // writeProductsToFile("data/output_merge.txt", mergeProducts);
+   // writeProductsToFile("data/output_stdSort.txt", stdSortProducts);
 
    return 0;
 }
