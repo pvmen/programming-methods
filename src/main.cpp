@@ -174,7 +174,8 @@ int main() {
    // generateProductsToFile("data/input100.txt", 100);
    // std::vector<Product> products = readProductsFromFile("data/input100.txt");
 
-   std::vector<int> sizes = {100, 250, 500, 1000, 2000, 5000};
+   // std::vector<int> sizes = {2000, 5000, 10000, 20000, 101000};
+   std::vector<int> sizes = {200, 500, 1000, 2000, 1010};
 
    for (std::size_t i = 0; i < sizes.size(); i++){
     int size = sizes[i]; 
