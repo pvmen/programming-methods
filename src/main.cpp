@@ -16,6 +16,62 @@ struct Product {
   double rubles;
 };
 
+struct TreeNode{
+  std::string key; // название товара
+  std::vector<Product> products;
+  TreeNode* left;
+  TreeNode* right;
+};
+// короче у узла node есть поле products, это vector<Product>
+// в него добавляем product
+TreeNode* createTreeNode(Product& product){
+  TreeNode* node = new TreeNode();
+
+  node->key = product.name;
+  node->products.push_back(product); // внутрь вектора пушбекаем
+  node->left = nullptr;
+  node->right = nullptr;
+
+  return node;
+}
+
+TreeNode* insertTreeNode(TreeNode* root, Product& product){
+  if (root == nullptr){
+    return createTreeNode(product);
+  }
+  if (product.name == root->key){
+    root->products.push_back(product);
+  } else if (product.name < root->key){
+    root->left = insertTreeNode(root->left, product);
+  } else if (product.name > root->key){
+    root->right = insertTreeNode(root->right, product);
+  }
+
+  return root;
+}
+
+TreeNode* buildTree(std::vector<Product>& products){
+  TreeNode* root = nullptr;
+  for (std::size_t i = 0; i < products.size(); i++){
+    root = insertTreeNode(root, products[i]);
+  }
+  return root;
+}
+
+std::vector<Product> searchTree(TreeNode* root, std::string key){
+  if (root == nullptr){
+    return std::vector<Product>();
+  }
+  if (key == root->key){
+    return root->products;
+  }
+  if (key < root->key){
+    return searchTree(root->left, key);
+  }
+  
+  return searchTree(root->right, key);
+  
+}
 /**
  * Выводит один товар в консоль.
  */
@@ -23,7 +79,18 @@ void printProduct(Product& product) {
   std::cout << product.name << " " << product.country << " " << product.volume << " " << product.rubles << "\n";
 }
 
-
+/**
+ * Выполняет линейный поиск всех товаров по названию.
+ */
+std::vector<Product> linearSearch(std::vector<Product>& products, std::string key){
+  std::vector<Product> result;
+  for (std::size_t i = 0; i < products.size(); i++){
+    if (products[i].name == key){
+      result.push_back(products[i]);
+    }
+  }
+  return result;
+}
 
 /**
  * Записывает товары в текстовый файл.
@@ -89,6 +156,15 @@ int main() {
 
    generateProductsToFile("data/input_laba2.txt", 100);
    std::vector<Product> products = readProductsFromFile("data/input_laba2.txt");
+
+   std::vector<Product> linearFoundProducts = linearSearch(products, "Oil");
+   std::cout << "линейный поиск count of found products is: " << linearFoundProducts.size() << "\n";
+   printProducts(linearFoundProducts);
+
+   TreeNode* root = buildTree(products);
+   std::vector<Product> treeFoundProducts = searchTree(root, "Oil");
+   std::cout << "бинарное дерево count of Oil is  " << treeFoundProducts.size() << "\n";
+   printProducts(treeFoundProducts);
 
    // std::vector<int> sizes = {2000, 5000, 10000, 20000, 101000};
    // std::vector<int> sizes = {100, 500, 1000, 2000, 1010};
