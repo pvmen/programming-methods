@@ -5,6 +5,7 @@
 #include <fstream>
 #include <chrono>
 #include <cstdlib>
+#include <map>
 
 /**
  * Запись об экспортируемом товаре.
@@ -14,6 +15,11 @@ struct Product {
   std::string country; // куда экспорт
   int volume; // объем поставляемой продукции 
   double rubles;
+};
+
+struct HashEntry{
+  std::string key;
+  std::vector<Product> products;
 };
 
 struct TreeNode{
@@ -147,6 +153,88 @@ void printProducts(std::vector<Product>& products) {
   }
 }
 
+std::size_t hashFunction(std::string key, std::size_t tableSize){
+  std::size_t hash = 0;
+
+  for (std::size_t i = 0; i < key.size(); i++){
+    hash = hash + key[i];
+  }
+
+  return hash % tableSize;
+}
+
+
+bool insertHashTable(std::vector<std::vector<HashEntry>>& table, Product& product) {
+  std::size_t index = hashFunction(product.name, table.size());
+
+  for (std::size_t i = 0; i < table[index].size(); i++) {
+    if (table[index][i].key == product.name) {
+      table[index][i].products.push_back(product);
+      return false;
+    }
+  }
+
+  bool hasCollision = table[index].size() > 0;
+
+  HashEntry entry;
+  entry.key = product.name;
+  entry.products.push_back(product);
+
+  table[index].push_back(entry);
+
+  return hasCollision;
+}
+
+std::vector<std::vector<HashEntry>> buildHashTable(std::vector<Product>& products, std::size_t tableSize, int& collisions){
+  std::vector<std::vector<HashEntry>> table(tableSize);
+  collisions = 0;
+
+  for (std::size_t i = 0; i < products.size(); i++){
+    bool hasCollision = insertHashTable(table, products[i]);
+
+    if (hasCollision){
+      collisions++;
+    }
+  }
+
+  return table;
+}
+
+std::vector<Product> searchHashTable(std::vector<std::vector<HashEntry>>& table, std::string key){
+  std::size_t index = hashFunction(key, table.size());
+
+  for (std::size_t i = 0; i < table[index].size(); i++){
+    if (table[index][i].key == key){
+      return table[index][i].products;
+    }
+  }
+
+  return std::vector<Product>();
+}
+
+std::multimap<std::string, Product> buildMap(std::vector<Product>& products){
+  std::multimap<std::string, Product> map;
+
+  for (std::size_t i = 0; i < products.size(); i++){
+    map.insert(std::make_pair(products[i].name, products[i]));
+  }
+
+  return map;
+}
+
+std::vector<Product> searchMap(std::multimap<std::string, Product>& map, std::string key){
+  std::vector<Product> result;
+
+  auto range = map.equal_range(key);
+
+  for (auto it = range.first; it != range.second; it++){
+    result.push_back(it->second);
+  }
+
+  return result;
+
+}
+
 /**
  * Точка входа программы.
  */
@@ -168,7 +256,19 @@ int main() {
 
    // std::vector<int> sizes = {2000, 5000, 10000, 20000, 101000};
    // std::vector<int> sizes = {100, 500, 1000, 2000, 1010};
+   int collisions = 0;
+   std::vector<std::vector<HashEntry>> hashTable = buildHashTable(products, 10, collisions);
 
-   
+   std::vector<Product> hashFoundProducts = searchHashTable(hashTable, "Oil");
+   std::cout << "хеш-таблица count of Oil is  " << hashFoundProducts.size() << "\n";
+   printProducts(hashFoundProducts);
+
+   std::cout << "hash collisions: " << collisions << "\n"; 
+
+
+   std::multimap<std::string, Product> productMap = buildMap(products);
+   std::vector<Product> mapFoundProducts = searchMap(productMap, "Oil");
+   std::cout << "multimap count of Oil is " << mapFoundProducts.size() << "\n";
+
    return 0;
 }
