@@ -1,0 +1,536 @@
+\doxysection{Файл src/\+main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$cstdlib$>$}\newline
+{\ttfamily \+\#include $<$map$>$}\newline
+\doxysubsubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_product}{Product}}
+\begin{DoxyCompactList}\small\item\em Запись об экспортируемом товаре. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}}
+\begin{DoxyCompactList}\small\item\em Элемент хеш-\/таблицы для одного ключа. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}}
+\begin{DoxyCompactList}\small\item\em Узел бинарного дерева поиска. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_r_b_node}{RBNode}}
+\begin{DoxyCompactList}\small\item\em Узел красно-\/черного дерева. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b}{create\+Tree\+Node}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Создает узел бинарного дерева поиска. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3}{insert\+Tree\+Node}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Вставляет товар в бинарное дерево поиска. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a344f9229e353ec41e435d3216945a193}{build\+Tree}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\begin{DoxyCompactList}\small\item\em Строит бинарное дерево поиска по массиву товаров. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be}{search\+Tree}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root, std::\+string key)
+\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в бинарном дереве поиска. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}{print\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Выводит один товар в консоль. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9}{linear\+Search}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, std::\+string key)
+\begin{DoxyCompactList}\small\item\em Выполняет линейный поиск всех товаров по названию. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}{write\+Products\+To\+File}} (std::\+string filename, std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\begin{DoxyCompactList}\small\item\em Записывает товары в текстовый файл. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}{generate\+Products\+To\+File}} (std::\+string filename, int count)
+\begin{DoxyCompactList}\small\item\em Генерирует случайные товары и записывает их в файл. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a9760d0da4c935c890724ae5441753350}{read\+Products\+From\+File}} (std::\+string filename)
+\begin{DoxyCompactList}\small\item\em Читает товары из текстового файла. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}{print\+Products}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\begin{DoxyCompactList}\small\item\em Выводит список товаров в консоль. \end{DoxyCompactList}\item 
+std::\+size\+\_\+t \doxymbox{\hyperlink{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b}{hash\+Function}} (std::\+string key, std::\+size\+\_\+t table\+Size)
+\begin{DoxyCompactList}\small\item\em Вычисляет хеш для строкового ключа. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{main_8cpp_ae384fc86968907593480ae9a32d451b4}{insert\+Hash\+Table}} (std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&table, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Вставляет товар в хеш-\/таблицу с разрешением коллизий цепочками. \end{DoxyCompactList}\item 
+std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \doxymbox{\hyperlink{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b}{build\+Hash\+Table}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, std::\+size\+\_\+t table\+Size, int \&collisions)
+\begin{DoxyCompactList}\small\item\em Строит хеш-\/таблицу по массиву товаров. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6}{search\+Hash\+Table}} (std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&table, std::\+string key)
+\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в хеш-\/таблице. \end{DoxyCompactList}\item 
+std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c}{build\+Map}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\begin{DoxyCompactList}\small\item\em Строит ассоциативный массив multimap по массиву товаров. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063}{search\+Map}} (std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&map, std::\+string key)
+\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в multimap. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a4c213d26720e97287c08daf02d7575a0}{create\+RBNode}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Создает узел красно-\/черного дерева. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e}{insert\+RBNode}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Рекурсивно вставляет товар в обычное бинарное дерево на узлах \doxylink{struct_r_b_node}{RBNode}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2}{insert\+RBTree}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\begin{DoxyCompactList}\small\item\em Вставляет товар в красно-\/черное дерево. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a854271a6e3bd5adbf4414adc72da7514}{build\+RBTree}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\begin{DoxyCompactList}\small\item\em Строит красно-\/черное дерево по массиву товаров. \end{DoxyCompactList}\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb}{search\+RBTree}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}root, std::\+string key)
+\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в красно-\/черном дереве. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6}{rotate\+Left}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Выполняет левый поворот в красно-\/черном дереве. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908}{rotate\+Right}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Выполняет правый поворот в красно-\/черном дереве. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74}{fix\+RBInsert}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Восстанавливает свойства красно-\/черного дерева после вставки. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Точка входа программы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{main_8cpp_doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Функции}
+\Hypertarget{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b}\index{main.cpp@{main.cpp}!buildHashTable@{buildHashTable}}
+\index{buildHashTable@{buildHashTable}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildHashTable()}{buildHashTable()}}
+{\footnotesize\ttfamily \label{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b} 
+std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ build\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{std::\+size\+\_\+t}]{table\+Size}{, }\item[{int \&}]{collisions}{}\end{DoxyParamCaption})}
+
+
+
+Строит хеш-\/таблицу по массиву товаров. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров. \\
+\hline
+{\em table\+Size} & Размер хеш-\/таблицы. \\
+\hline
+{\em collisions} & Счетчик коллизий хеш-\/функции. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Построенная хеш-\/таблица. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c}\index{main.cpp@{main.cpp}!buildMap@{buildMap}}
+\index{buildMap@{buildMap}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildMap()}{buildMap()}}
+{\footnotesize\ttfamily \label{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c} 
+std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ build\+Map (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+
+
+Строит ассоциативный массив multimap по массиву товаров. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Ассоциативный массив, где ключом является наименование товара. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a854271a6e3bd5adbf4414adc72da7514}\index{main.cpp@{main.cpp}!buildRBTree@{buildRBTree}}
+\index{buildRBTree@{buildRBTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildRBTree()}{buildRBTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_a854271a6e3bd5adbf4414adc72da7514} 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} build\+RBTree (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+
+
+Строит красно-\/черное дерево по массиву товаров. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Корень построенного красно-\/черного дерева. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a344f9229e353ec41e435d3216945a193}\index{main.cpp@{main.cpp}!buildTree@{buildTree}}
+\index{buildTree@{buildTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{buildTree()}{buildTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_a344f9229e353ec41e435d3216945a193} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} build\+Tree (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+
+
+Строит бинарное дерево поиска по массиву товаров. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Корень построенного дерева. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a4c213d26720e97287c08daf02d7575a0}\index{main.cpp@{main.cpp}!createRBNode@{createRBNode}}
+\index{createRBNode@{createRBNode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{createRBNode()}{createRBNode()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4c213d26720e97287c08daf02d7575a0} 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} create\+RBNode (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Создает узел красно-\/черного дерева. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em product} & Товар, который будет сохранен в новом узле. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Указатель на созданный узел. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b}\index{main.cpp@{main.cpp}!createTreeNode@{createTreeNode}}
+\index{createTreeNode@{createTreeNode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{createTreeNode()}{createTreeNode()}}
+{\footnotesize\ttfamily \label{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} create\+Tree\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Создает узел бинарного дерева поиска. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em product} & Товар, который будет сохранен в новом узле. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Указатель на созданный узел. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74}\index{main.cpp@{main.cpp}!fixRBInsert@{fixRBInsert}}
+\index{fixRBInsert@{fixRBInsert}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{fixRBInsert()}{fixRBInsert()}}
+{\footnotesize\ttfamily \label{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74} 
+void fix\+RBInsert (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+
+
+Восстанавливает свойства красно-\/черного дерева после вставки. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em node} & Вставленный узел. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}\index{main.cpp@{main.cpp}!generateProductsToFile@{generateProductsToFile}}
+\index{generateProductsToFile@{generateProductsToFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateProductsToFile()}{generateProductsToFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8} 
+void generate\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Генерирует случайные товары и записывает их в файл. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em filename} & Имя файла для записи. \\
+\hline
+{\em count} & Количество генерируемых записей. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b}\index{main.cpp@{main.cpp}!hashFunction@{hashFunction}}
+\index{hashFunction@{hashFunction}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{hashFunction()}{hashFunction()}}
+{\footnotesize\ttfamily \label{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b} 
+std::\+size\+\_\+t hash\+Function (\begin{DoxyParamCaption}\item[{std::\+string}]{key}{, }\item[{std::\+size\+\_\+t}]{table\+Size}{}\end{DoxyParamCaption})}
+
+
+
+Вычисляет хеш для строкового ключа. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em key} & Строковый ключ. \\
+\hline
+{\em table\+Size} & Размер хеш-\/таблицы. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Индекс корзины в хеш-\/таблице. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae384fc86968907593480ae9a32d451b4}\index{main.cpp@{main.cpp}!insertHashTable@{insertHashTable}}
+\index{insertHashTable@{insertHashTable}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{insertHashTable()}{insertHashTable()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae384fc86968907593480ae9a32d451b4} 
+bool insert\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&}]{table}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Вставляет товар в хеш-\/таблицу с разрешением коллизий цепочками. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em table} & Хеш-\/таблица. \\
+\hline
+{\em product} & Вставляемый товар. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true, если вставка попала в уже занятую корзину. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e}\index{main.cpp@{main.cpp}!insertRBNode@{insertRBNode}}
+\index{insertRBNode@{insertRBNode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{insertRBNode()}{insertRBNode()}}
+{\footnotesize\ttfamily \label{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e} 
+\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} insert\+RBNode (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Рекурсивно вставляет товар в обычное бинарное дерево на узлах \doxylink{struct_r_b_node}{RBNode}. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em product} & Вставляемый товар. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Корень дерева после вставки. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2}\index{main.cpp@{main.cpp}!insertRBTree@{insertRBTree}}
+\index{insertRBTree@{insertRBTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{insertRBTree()}{insertRBTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2} 
+void insert\+RBTree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Вставляет товар в красно-\/черное дерево. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em product} & Вставляемый товар. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3}\index{main.cpp@{main.cpp}!insertTreeNode@{insertTreeNode}}
+\index{insertTreeNode@{insertTreeNode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{insertTreeNode()}{insertTreeNode()}}
+{\footnotesize\ttfamily \label{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} insert\+Tree\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Вставляет товар в бинарное дерево поиска. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em product} & Вставляемый товар. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Корень дерева после вставки. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9}\index{main.cpp@{main.cpp}!linearSearch@{linearSearch}}
+\index{linearSearch@{linearSearch}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{linearSearch()}{linearSearch()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ linear\+Search (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет линейный поиск всех товаров по названию. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров. \\
+\hline
+{\em key} & Искомое наименование товара. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив найденных товаров. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Точка входа программы. 
+
+Генерирует входные данные разных размерностей, выполняет поиск заданного ключа всеми методами, записывает времена поиска и число коллизий хеш-\/функции в файл data/\+search\+\_\+times.\+txt.
+
+\begin{DoxyReturn}{Возвращает}
+Код завершения программы. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}\index{main.cpp@{main.cpp}!printProduct@{printProduct}}
+\index{printProduct@{printProduct}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printProduct()}{printProduct()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78} 
+void print\+Product (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+
+
+Выводит один товар в консоль. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em product} & Товар для вывода. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}\index{main.cpp@{main.cpp}!printProducts@{printProducts}}
+\index{printProducts@{printProducts}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printProducts()}{printProducts()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac2f0a2a607564436f45c2179cef5604e} 
+void print\+Products (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+
+
+Выводит список товаров в консоль. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em products} & Массив товаров для вывода. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a9760d0da4c935c890724ae5441753350}\index{main.cpp@{main.cpp}!readProductsFromFile@{readProductsFromFile}}
+\index{readProductsFromFile@{readProductsFromFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{readProductsFromFile()}{readProductsFromFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9760d0da4c935c890724ae5441753350} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ read\+Products\+From\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Читает товары из текстового файла. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em filename} & Имя файла для чтения. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив товаров из файла. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6}\index{main.cpp@{main.cpp}!rotateLeft@{rotateLeft}}
+\index{rotateLeft@{rotateLeft}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{rotateLeft()}{rotateLeft()}}
+{\footnotesize\ttfamily \label{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6} 
+void rotate\+Left (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет левый поворот в красно-\/черном дереве. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em x} & Узел, вокруг которого выполняется поворот. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908}\index{main.cpp@{main.cpp}!rotateRight@{rotateRight}}
+\index{rotateRight@{rotateRight}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{rotateRight()}{rotateRight()}}
+{\footnotesize\ttfamily \label{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908} 
+void rotate\+Right (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет правый поворот в красно-\/черном дереве. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em x} & Узел, вокруг которого выполняется поворот. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6}\index{main.cpp@{main.cpp}!searchHashTable@{searchHashTable}}
+\index{searchHashTable@{searchHashTable}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{searchHashTable()}{searchHashTable()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&}]{table}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Ищет все товары с заданным ключом в хеш-\/таблице. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em table} & Хеш-\/таблица. \\
+\hline
+{\em key} & Искомое наименование товара. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив найденных товаров. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063}\index{main.cpp@{main.cpp}!searchMap@{searchMap}}
+\index{searchMap@{searchMap}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{searchMap()}{searchMap()}}
+{\footnotesize\ttfamily \label{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Map (\begin{DoxyParamCaption}\item[{std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{map}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Ищет все товары с заданным ключом в multimap. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em map} & Ассоциативный массив товаров. \\
+\hline
+{\em key} & Искомое наименование товара. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив найденных товаров. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb}\index{main.cpp@{main.cpp}!searchRBTree@{searchRBTree}}
+\index{searchRBTree@{searchRBTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{searchRBTree()}{searchRBTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+RBTree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Ищет все товары с заданным ключом в красно-\/черном дереве. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень красно-\/черного дерева. \\
+\hline
+{\em key} & Искомое наименование товара. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив найденных товаров. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be}\index{main.cpp@{main.cpp}!searchTree@{searchTree}}
+\index{searchTree@{searchTree}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{searchTree()}{searchTree()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Tree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Ищет все товары с заданным ключом в бинарном дереве поиска. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em root} & Корень дерева. \\
+\hline
+{\em key} & Искомое наименование товара. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Массив найденных товаров. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}\index{main.cpp@{main.cpp}!writeProductsToFile@{writeProductsToFile}}
+\index{writeProductsToFile@{writeProductsToFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{writeProductsToFile()}{writeProductsToFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb} 
+void write\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+
+
+Записывает товары в текстовый файл. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em filename} & Имя файла для записи. \\
+\hline
+{\em products} & Массив товаров. \\
+\hline
+\end{DoxyParams}
