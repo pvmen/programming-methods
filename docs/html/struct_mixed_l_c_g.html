@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Programming Methods Lab 1: Структура Product</title>
+<title>Programming Methods Lab 3: Структура MixedLCG</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -30,7 +30,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Programming Methods Lab 1
+   <div id="projectname">Programming Methods Lab 3
    </div>
   </td>
  </tr>
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_product.html','','struct_product-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_mixed_l_c_g.html','','struct_mixed_l_c_g-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -115,88 +115,88 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_product
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Структура Product</div></div>
+  <div class="headertitle"><div class="title">Структура MixedLCG</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Запись об экспортируемом товаре.  
+<p>Генератор LCG с дополнительным перемешиванием битов.  
  <a href="#details">Подробнее...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a7bb5b9ff6430db095b3df6da82e6ad5c" id="r_a7bb5b9ff6430db095b3df6da82e6ad5c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7bb5b9ff6430db095b3df6da82e6ad5c">MixedLCG</a> (uint32_t seed)</td></tr>
+<tr class="memitem:ad40f55de012488a36f55ce8e5edf941c" id="r_ad40f55de012488a36f55ce8e5edf941c"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#ad40f55de012488a36f55ce8e5edf941c">next</a> ()</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Открытые атрибуты</h2></td></tr>
-<tr class="memitem:a6f88e6ff8cb26b1cce49a41e72e4fcb8" id="r_a6f88e6ff8cb26b1cce49a41e72e4fcb8"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6f88e6ff8cb26b1cce49a41e72e4fcb8">name</a></td></tr>
-<tr class="memdesc:a6f88e6ff8cb26b1cce49a41e72e4fcb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Наименование товара.  <br /></td></tr>
-<tr class="memitem:a5ea601a1707f267bce4ff1547b26a7bf" id="r_a5ea601a1707f267bce4ff1547b26a7bf"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5ea601a1707f267bce4ff1547b26a7bf">country</a></td></tr>
-<tr class="memdesc:a5ea601a1707f267bce4ff1547b26a7bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Страна экспорта.  <br /></td></tr>
-<tr class="memitem:afa8c9c45dada6dd87d6ccd200d1d92b9" id="r_afa8c9c45dada6dd87d6ccd200d1d92b9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#afa8c9c45dada6dd87d6ccd200d1d92b9">volume</a></td></tr>
-<tr class="memdesc:afa8c9c45dada6dd87d6ccd200d1d92b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Объем поставляемой продукции.  <br /></td></tr>
-<tr class="memitem:ad0f7c4589ed9a466b604d2be69e3962a" id="r_ad0f7c4589ed9a466b604d2be69e3962a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ad0f7c4589ed9a466b604d2be69e3962a">rubles</a></td></tr>
-<tr class="memdesc:ad0f7c4589ed9a466b604d2be69e3962a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сумма поставки в рублях.  <br /></td></tr>
+<tr class="memitem:a6534d7cc9651d26f445e3b79c3000e3f" id="r_a6534d7cc9651d26f445e3b79c3000e3f"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a6534d7cc9651d26f445e3b79c3000e3f">state</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Запись об экспортируемом товаре. </p>
-</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
-<a id="a5ea601a1707f267bce4ff1547b26a7bf" name="a5ea601a1707f267bce4ff1547b26a7bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ea601a1707f267bce4ff1547b26a7bf">&#9670;&#160;</a></span>country</h2>
+<div class="textblock"><p>Генератор LCG с дополнительным перемешиванием битов. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Конструктор(ы)</h2>
+<a id="a7bb5b9ff6430db095b3df6da82e6ad5c" name="a7bb5b9ff6430db095b3df6da82e6ad5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bb5b9ff6430db095b3df6da82e6ad5c">&#9670;&#160;</a></span>MixedLCG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MixedLCG::MixedLCG </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>seed</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Методы</h2>
+<a id="ad40f55de012488a36f55ce8e5edf941c" name="ad40f55de012488a36f55ce8e5edf941c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad40f55de012488a36f55ce8e5edf941c">&#9670;&#160;</a></span>next()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t MixedLCG::next </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="a6534d7cc9651d26f445e3b79c3000e3f" name="a6534d7cc9651d26f445e3b79c3000e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6534d7cc9651d26f445e3b79c3000e3f">&#9670;&#160;</a></span>state</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Product::country</td>
+          <td class="memname">uint32_t MixedLCG::state</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Страна экспорта. </p>
-
-</div>
-</div>
-<a id="a6f88e6ff8cb26b1cce49a41e72e4fcb8" name="a6f88e6ff8cb26b1cce49a41e72e4fcb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f88e6ff8cb26b1cce49a41e72e4fcb8">&#9670;&#160;</a></span>name</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Product::name</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Наименование товара. </p>
-
-</div>
-</div>
-<a id="ad0f7c4589ed9a466b604d2be69e3962a" name="ad0f7c4589ed9a466b604d2be69e3962a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0f7c4589ed9a466b604d2be69e3962a">&#9670;&#160;</a></span>rubles</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Product::rubles</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Сумма поставки в рублях. </p>
-
-</div>
-</div>
-<a id="afa8c9c45dada6dd87d6ccd200d1d92b9" name="afa8c9c45dada6dd87d6ccd200d1d92b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa8c9c45dada6dd87d6ccd200d1d92b9">&#9670;&#160;</a></span>volume</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Product::volume</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Объем поставляемой продукции. </p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_product
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="struct_product.html">Product</a></li>
+    <li class="navelem"><a href="struct_mixed_l_c_g.html">MixedLCG</a></li>
     <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

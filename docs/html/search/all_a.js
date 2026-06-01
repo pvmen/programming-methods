@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['parent_0',['parent',['../struct_r_b_node.html#a131e0d1a4f73d55e6b5ad282c6846612',1,'RBNode']]],
-  ['printproduct_1',['printProduct',['../main_8cpp.html#a9f46eed50bc0a58ceeee510ec79b3a78',1,'main.cpp']]],
-  ['printproducts_2',['printProducts',['../main_8cpp.html#ac2f0a2a607564436f45c2179cef5604e',1,'main.cpp']]],
-  ['product_3',['Product',['../struct_product.html',1,'']]],
-  ['products_4',['products',['../struct_hash_entry.html#aa21063f57ea606e4f97215e0dafe8dc5',1,'HashEntry::products'],['../struct_tree_node.html#a82cb1e71c4ac46a2953df5958e9a2bcf',1,'TreeNode::products'],['../struct_r_b_node.html#a135eb5089beebc9ab5f5f868c73eb851',1,'RBNode::products']]]
+  ['sample_5fcount_0',['SAMPLE_COUNT',['../main_8cpp.html#a191736070a43725b355e77d1f5aca17c',1,'main.cpp']]],
+  ['sample_5fsize_1',['SAMPLE_SIZE',['../main_8cpp.html#abb438dd06eaa3add6a90ac8aae07eb3a',1,'main.cpp']]],
+  ['samplenumber_2',['sampleNumber',['../struct_sample_stats.html#adb5fbf105862bb399f45b04072c72647',1,'SampleStats']]],
+  ['samplestats_3',['SampleStats',['../struct_sample_stats.html',1,'']]],
+  ['serialtest_4',['serialTest',['../main_8cpp.html#adb50595071d7d54937a96bf61b6e737c',1,'main.cpp']]],
+  ['standardgenerator_5',['StandardGenerator',['../struct_standard_generator.html',1,'StandardGenerator'],['../struct_standard_generator.html#ae46167ba1bd5e3b471e104e47fd48668',1,'StandardGenerator::StandardGenerator()']]],
+  ['state_6',['state',['../struct_mixed_l_c_g.html#a6534d7cc9651d26f445e3b79c3000e3f',1,'MixedLCG::state'],['../struct_xorshift_weyl.html#af08878614d967fece93d1ecffc8e342f',1,'XorshiftWeyl::state'],['../struct_lagged_fibonacci.html#a464d0cbf8f18882f459fefd4c80e2c6e',1,'LaggedFibonacci::state']]],
+  ['statistic_7',['statistic',['../struct_random_test_result.html#a7aebb5700fc135ac12d1ce47d989e8cb',1,'RandomTestResult']]]
 ];

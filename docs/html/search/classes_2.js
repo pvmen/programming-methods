@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rbnode_0',['RBNode',['../struct_r_b_node.html',1,'']]]
+  ['randomtestresult_0',['RandomTestResult',['../struct_random_test_result.html',1,'']]]
 ];

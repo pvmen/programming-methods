@@ -102,3 +102,5 @@ NIST/Diehard-like тесты показали более устойчивый р
 
 ## Ссылка на репозиторий
 https://github.com/pvmen/programming-methods/tree/feature/laba-3
+
+Doxygen-документация: `docs/html/index.html`

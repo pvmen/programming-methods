@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['inserthashtable_0',['insertHashTable',['../main_8cpp.html#ae384fc86968907593480ae9a32d451b4',1,'main.cpp']]],
-  ['insertrbnode_1',['insertRBNode',['../main_8cpp.html#a57cfcadba881e1b3a5bcf5a39d609c2e',1,'main.cpp']]],
-  ['insertrbtree_2',['insertRBTree',['../main_8cpp.html#ac6971ef9e5aef9f475f46266508db7e2',1,'main.cpp']]],
-  ['inserttreenode_3',['insertTreeNode',['../main_8cpp.html#abaa059bf8d8b3f4d1b9077763fab63d3',1,'main.cpp']]]
+  ['laggedfibonacci_0',['LaggedFibonacci',['../struct_lagged_fibonacci.html',1,'LaggedFibonacci'],['../struct_lagged_fibonacci.html#a2c2f146ea51b4c5891baa60edfe9b795',1,'LaggedFibonacci::LaggedFibonacci()']]],
+  ['limit_1',['limit',['../struct_random_test_result.html#a47dece6af3eafe248f8b010c7b5f1c70',1,'RandomTestResult']]],
+  ['longestrunofonestest_2',['longestRunOfOnesTest',['../main_8cpp.html#ac35d5f881e0075061cb9897e0af23aa0',1,'main.cpp']]]
 ];

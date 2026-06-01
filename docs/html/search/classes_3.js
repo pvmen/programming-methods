@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['treenode_0',['TreeNode',['../struct_tree_node.html',1,'']]]
+  ['samplestats_0',['SampleStats',['../struct_sample_stats.html',1,'']]],
+  ['standardgenerator_1',['StandardGenerator',['../struct_standard_generator.html',1,'']]]
 ];

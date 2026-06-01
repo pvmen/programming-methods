@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Programming Methods Lab 1: Файл src/main.cpp</title>
+<title>Programming Methods Lab 3: Файл src/main.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -30,7 +30,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Programming Methods Lab 1
+   <div id="projectname">Programming Methods Lab 3
    </div>
   </td>
  </tr>
@@ -118,489 +118,380 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('main_8cpp.html
   <div class="headertitle"><div class="title">Файл main.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;random&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
-<code>#include &lt;chrono&gt;</code><br />
-<code>#include &lt;cstdlib&gt;</code><br />
-<code>#include &lt;map&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:Product" id="r_Product"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_product.html">Product</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запись об экспортируемом товаре.  <a href="struct_product.html#details">Подробнее...</a><br /></td></tr>
-<tr class="memitem:HashEntry" id="r_HashEntry"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_hash_entry.html">HashEntry</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Элемент хеш-таблицы для одного ключа.  <a href="struct_hash_entry.html#details">Подробнее...</a><br /></td></tr>
-<tr class="memitem:TreeNode" id="r_TreeNode"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_tree_node.html">TreeNode</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Узел бинарного дерева поиска.  <a href="struct_tree_node.html#details">Подробнее...</a><br /></td></tr>
-<tr class="memitem:RBNode" id="r_RBNode"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_r_b_node.html">RBNode</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Узел красно-черного дерева.  <a href="struct_r_b_node.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:SampleStats" id="r_SampleStats"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_sample_stats.html">SampleStats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Статистика одной выборки.  <a href="struct_sample_stats.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:RandomTestResult" id="r_RandomTestResult"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_random_test_result.html">RandomTestResult</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Результат одного теста случайности.  <a href="struct_random_test_result.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:MixedLCG" id="r_MixedLCG"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_mixed_l_c_g.html">MixedLCG</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генератор LCG с дополнительным перемешиванием битов.  <a href="struct_mixed_l_c_g.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:XorshiftWeyl" id="r_XorshiftWeyl"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_xorshift_weyl.html">XorshiftWeyl</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генератор Xorshift с последовательностью Вейля.  <a href="struct_xorshift_weyl.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:LaggedFibonacci" id="r_LaggedFibonacci"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_lagged_fibonacci.html">LaggedFibonacci</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Аддитивный генератор Фибоначчи с запаздываниями 24 и 55.  <a href="struct_lagged_fibonacci.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:StandardGenerator" id="r_StandardGenerator"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_standard_generator.html">StandardGenerator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обертка над стандартным генератором языка C++.  <a href="struct_standard_generator.html#details">Подробнее...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:a8d67f64154a9744d2fcdb8e784ae370b" id="r_a8d67f64154a9744d2fcdb8e784ae370b"><td class="memItemLeft"><a class="el" href="struct_tree_node.html">TreeNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a8d67f64154a9744d2fcdb8e784ae370b">createTreeNode</a> (<a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:a8d67f64154a9744d2fcdb8e784ae370b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает узел бинарного дерева поиска.  <br /></td></tr>
-<tr class="memitem:abaa059bf8d8b3f4d1b9077763fab63d3" id="r_abaa059bf8d8b3f4d1b9077763fab63d3"><td class="memItemLeft"><a class="el" href="struct_tree_node.html">TreeNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#abaa059bf8d8b3f4d1b9077763fab63d3">insertTreeNode</a> (<a class="el" href="struct_tree_node.html">TreeNode</a> *root, <a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:abaa059bf8d8b3f4d1b9077763fab63d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вставляет товар в бинарное дерево поиска.  <br /></td></tr>
-<tr class="memitem:a344f9229e353ec41e435d3216945a193" id="r_a344f9229e353ec41e435d3216945a193"><td class="memItemLeft"><a class="el" href="struct_tree_node.html">TreeNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a344f9229e353ec41e435d3216945a193">buildTree</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
-<tr class="memdesc:a344f9229e353ec41e435d3216945a193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Строит бинарное дерево поиска по массиву товаров.  <br /></td></tr>
-<tr class="memitem:ae9cb62d75e3aec39641ca19cf6a391be" id="r_ae9cb62d75e3aec39641ca19cf6a391be"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae9cb62d75e3aec39641ca19cf6a391be">searchTree</a> (<a class="el" href="struct_tree_node.html">TreeNode</a> *root, std::string key)</td></tr>
-<tr class="memdesc:ae9cb62d75e3aec39641ca19cf6a391be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ищет все товары с заданным ключом в бинарном дереве поиска.  <br /></td></tr>
-<tr class="memitem:a9f46eed50bc0a58ceeee510ec79b3a78" id="r_a9f46eed50bc0a58ceeee510ec79b3a78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9f46eed50bc0a58ceeee510ec79b3a78">printProduct</a> (<a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:a9f46eed50bc0a58ceeee510ec79b3a78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выводит один товар в консоль.  <br /></td></tr>
-<tr class="memitem:ae850e24b2ccd461c5edc4c7a60a4b1c9" id="r_ae850e24b2ccd461c5edc4c7a60a4b1c9"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ae850e24b2ccd461c5edc4c7a60a4b1c9">linearSearch</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products, std::string key)</td></tr>
-<tr class="memdesc:ae850e24b2ccd461c5edc4c7a60a4b1c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет линейный поиск всех товаров по названию.  <br /></td></tr>
-<tr class="memitem:a18ae133f514e28744ac4f0dbeb049abb" id="r_a18ae133f514e28744ac4f0dbeb049abb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a18ae133f514e28744ac4f0dbeb049abb">writeProductsToFile</a> (std::string filename, std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
-<tr class="memdesc:a18ae133f514e28744ac4f0dbeb049abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записывает товары в текстовый файл.  <br /></td></tr>
-<tr class="memitem:a3219504ac87d8a4bb22fd41d3f8b85d8" id="r_a3219504ac87d8a4bb22fd41d3f8b85d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3219504ac87d8a4bb22fd41d3f8b85d8">generateProductsToFile</a> (std::string filename, int count)</td></tr>
-<tr class="memdesc:a3219504ac87d8a4bb22fd41d3f8b85d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерирует случайные товары и записывает их в файл.  <br /></td></tr>
-<tr class="memitem:a9760d0da4c935c890724ae5441753350" id="r_a9760d0da4c935c890724ae5441753350"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9760d0da4c935c890724ae5441753350">readProductsFromFile</a> (std::string filename)</td></tr>
-<tr class="memdesc:a9760d0da4c935c890724ae5441753350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Читает товары из текстового файла.  <br /></td></tr>
-<tr class="memitem:ac2f0a2a607564436f45c2179cef5604e" id="r_ac2f0a2a607564436f45c2179cef5604e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac2f0a2a607564436f45c2179cef5604e">printProducts</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
-<tr class="memdesc:ac2f0a2a607564436f45c2179cef5604e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выводит список товаров в консоль.  <br /></td></tr>
-<tr class="memitem:abfde166f01a4b7b8ad5e9fc1b268380b" id="r_abfde166f01a4b7b8ad5e9fc1b268380b"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#abfde166f01a4b7b8ad5e9fc1b268380b">hashFunction</a> (std::string key, std::size_t tableSize)</td></tr>
-<tr class="memdesc:abfde166f01a4b7b8ad5e9fc1b268380b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет хеш для строкового ключа.  <br /></td></tr>
-<tr class="memitem:ae384fc86968907593480ae9a32d451b4" id="r_ae384fc86968907593480ae9a32d451b4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae384fc86968907593480ae9a32d451b4">insertHashTable</a> (std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt; &amp;table, <a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:ae384fc86968907593480ae9a32d451b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вставляет товар в хеш-таблицу с разрешением коллизий цепочками.  <br /></td></tr>
-<tr class="memitem:aac2465ac1849b08d637e153fd2b2f18b" id="r_aac2465ac1849b08d637e153fd2b2f18b"><td class="memItemLeft">std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aac2465ac1849b08d637e153fd2b2f18b">buildHashTable</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products, std::size_t tableSize, int &amp;collisions)</td></tr>
-<tr class="memdesc:aac2465ac1849b08d637e153fd2b2f18b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Строит хеш-таблицу по массиву товаров.  <br /></td></tr>
-<tr class="memitem:a9b69eeb383d994fa7f83cc3224b22ce6" id="r_a9b69eeb383d994fa7f83cc3224b22ce6"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9b69eeb383d994fa7f83cc3224b22ce6">searchHashTable</a> (std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt; &amp;table, std::string key)</td></tr>
-<tr class="memdesc:a9b69eeb383d994fa7f83cc3224b22ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ищет все товары с заданным ключом в хеш-таблице.  <br /></td></tr>
-<tr class="memitem:a6f136d88d1725ec7b9df8c996624d90c" id="r_a6f136d88d1725ec7b9df8c996624d90c"><td class="memItemLeft">std::multimap&lt; std::string, <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a6f136d88d1725ec7b9df8c996624d90c">buildMap</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
-<tr class="memdesc:a6f136d88d1725ec7b9df8c996624d90c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Строит ассоциативный массив multimap по массиву товаров.  <br /></td></tr>
-<tr class="memitem:a41bbf7029c45b17e0a2575f3e6850063" id="r_a41bbf7029c45b17e0a2575f3e6850063"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a41bbf7029c45b17e0a2575f3e6850063">searchMap</a> (std::multimap&lt; std::string, <a class="el" href="struct_product.html">Product</a> &gt; &amp;map, std::string key)</td></tr>
-<tr class="memdesc:a41bbf7029c45b17e0a2575f3e6850063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ищет все товары с заданным ключом в multimap.  <br /></td></tr>
-<tr class="memitem:a4c213d26720e97287c08daf02d7575a0" id="r_a4c213d26720e97287c08daf02d7575a0"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4c213d26720e97287c08daf02d7575a0">createRBNode</a> (<a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:a4c213d26720e97287c08daf02d7575a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создает узел красно-черного дерева.  <br /></td></tr>
-<tr class="memitem:a57cfcadba881e1b3a5bcf5a39d609c2e" id="r_a57cfcadba881e1b3a5bcf5a39d609c2e"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a57cfcadba881e1b3a5bcf5a39d609c2e">insertRBNode</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *root, <a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:a57cfcadba881e1b3a5bcf5a39d609c2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Рекурсивно вставляет товар в обычное бинарное дерево на узлах <a class="el" href="struct_r_b_node.html" title="Узел красно-черного дерева.">RBNode</a>.  <br /></td></tr>
-<tr class="memitem:ac6971ef9e5aef9f475f46266508db7e2" id="r_ac6971ef9e5aef9f475f46266508db7e2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac6971ef9e5aef9f475f46266508db7e2">insertRBTree</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;root, <a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
-<tr class="memdesc:ac6971ef9e5aef9f475f46266508db7e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вставляет товар в красно-черное дерево.  <br /></td></tr>
-<tr class="memitem:a854271a6e3bd5adbf4414adc72da7514" id="r_a854271a6e3bd5adbf4414adc72da7514"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a854271a6e3bd5adbf4414adc72da7514">buildRBTree</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
-<tr class="memdesc:a854271a6e3bd5adbf4414adc72da7514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Строит красно-черное дерево по массиву товаров.  <br /></td></tr>
-<tr class="memitem:ad090c4e664da045dbae6f31aa85ffbdb" id="r_ad090c4e664da045dbae6f31aa85ffbdb"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad090c4e664da045dbae6f31aa85ffbdb">searchRBTree</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *root, std::string key)</td></tr>
-<tr class="memdesc:ad090c4e664da045dbae6f31aa85ffbdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ищет все товары с заданным ключом в красно-черном дереве.  <br /></td></tr>
-<tr class="memitem:a2d537701e6c1a21412c0199a5f083dd6" id="r_a2d537701e6c1a21412c0199a5f083dd6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2d537701e6c1a21412c0199a5f083dd6">rotateLeft</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;root, <a class="el" href="struct_r_b_node.html">RBNode</a> *x)</td></tr>
-<tr class="memdesc:a2d537701e6c1a21412c0199a5f083dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет левый поворот в красно-черном дереве.  <br /></td></tr>
-<tr class="memitem:a1dbf10ab3302818ac86c5935be3a2908" id="r_a1dbf10ab3302818ac86c5935be3a2908"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a1dbf10ab3302818ac86c5935be3a2908">rotateRight</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;root, <a class="el" href="struct_r_b_node.html">RBNode</a> *x)</td></tr>
-<tr class="memdesc:a1dbf10ab3302818ac86c5935be3a2908"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет правый поворот в красно-черном дереве.  <br /></td></tr>
-<tr class="memitem:a5c47a7211ce7659460635e35ad4b8d74" id="r_a5c47a7211ce7659460635e35ad4b8d74"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5c47a7211ce7659460635e35ad4b8d74">fixRBInsert</a> (<a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;root, <a class="el" href="struct_r_b_node.html">RBNode</a> *node)</td></tr>
-<tr class="memdesc:a5c47a7211ce7659460635e35ad4b8d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Восстанавливает свойства красно-черного дерева после вставки.  <br /></td></tr>
+<tr class="memitem:a26e286c80189e11d7571be5907e348dc" id="r_a26e286c80189e11d7571be5907e348dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a26e286c80189e11d7571be5907e348dc">toRange</a> (uint32_t value, int minValue, int maxValue)</td></tr>
+<tr class="memdesc:a26e286c80189e11d7571be5907e348dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возвращает число из заданного диапазона.  <br /></td></tr>
+<tr class="memitem:a1b9258707dc972418b68703ba3a974f6" id="r_a1b9258707dc972418b68703ba3a974f6"><td class="memTemplParams" colspan="2">template&lt;typename Generator&gt; </td></tr>
+<tr class="memitem:a1b9258707dc972418b68703ba3a974f6 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1b9258707dc972418b68703ba3a974f6">generateSample</a> (Generator &amp;generator, int size)</td></tr>
+<tr class="memdesc:a1b9258707dc972418b68703ba3a974f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Формирует выборку заданного размера.  <br /></td></tr>
+<tr class="memitem:ab4a18560cce6ef1776dd7bf756c1bd4c" id="r_ab4a18560cce6ef1776dd7bf756c1bd4c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab4a18560cce6ef1776dd7bf756c1bd4c">calculateMean</a> (const std::vector&lt; int &gt; &amp;sample)</td></tr>
+<tr class="memdesc:ab4a18560cce6ef1776dd7bf756c1bd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет среднее значение выборки.  <br /></td></tr>
+<tr class="memitem:a18c2828d05d127dccbfbccfc507be134" id="r_a18c2828d05d127dccbfbccfc507be134"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a18c2828d05d127dccbfbccfc507be134">calculateDeviation</a> (const std::vector&lt; int &gt; &amp;sample, double mean)</td></tr>
+<tr class="memdesc:a18c2828d05d127dccbfbccfc507be134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет среднеквадратичное отклонение.  <br /></td></tr>
+<tr class="memitem:a047bbab6dc807157c68ae162f4e2ba8f" id="r_a047bbab6dc807157c68ae162f4e2ba8f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a047bbab6dc807157c68ae162f4e2ba8f">chiSquareUniformity</a> (const std::vector&lt; int &gt; &amp;sample, int bins)</td></tr>
+<tr class="memdesc:a047bbab6dc807157c68ae162f4e2ba8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет равномерность распределения по критерию Хи-квадрат.  <br /></td></tr>
+<tr class="memitem:a247f8d2577ee2535eeeebda9d51ed798" id="r_a247f8d2577ee2535eeeebda9d51ed798"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a247f8d2577ee2535eeeebda9d51ed798">chiSquareRandomness</a> (const std::vector&lt; int &gt; &amp;sample, int bins)</td></tr>
+<tr class="memdesc:a247f8d2577ee2535eeeebda9d51ed798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверяет частоту пар соседних значений по критерию Хи-квадрат.  <br /></td></tr>
+<tr class="memitem:ae9238f3c28c1dfbc6ba12ce24897ca44" id="r_ae9238f3c28c1dfbc6ba12ce24897ca44"><td class="memItemLeft"><a class="el" href="struct_sample_stats.html">SampleStats</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae9238f3c28c1dfbc6ba12ce24897ca44">calculateStats</a> (std::string generatorName, int sampleNumber, const std::vector&lt; int &gt; &amp;sample)</td></tr>
+<tr class="memdesc:ae9238f3c28c1dfbc6ba12ce24897ca44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Собирает статистику по выборке.  <br /></td></tr>
+<tr class="memitem:a071efc959d94a287ea949cf2959f2fe2" id="r_a071efc959d94a287ea949cf2959f2fe2"><td class="memTemplParams" colspan="2">template&lt;typename Generator&gt; </td></tr>
+<tr class="memitem:a071efc959d94a287ea949cf2959f2fe2 template"><td class="memItemLeft">std::vector&lt; int &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a071efc959d94a287ea949cf2959f2fe2">generateBits</a> (Generator &amp;generator, int bitCount)</td></tr>
+<tr class="memdesc:a071efc959d94a287ea949cf2959f2fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует поток чисел генератора в поток битов.  <br /></td></tr>
+<tr class="memitem:ab9b4aca64e46574d74e138f2a0ea6e72" id="r_ab9b4aca64e46574d74e138f2a0ea6e72"><td class="memItemLeft"><a class="el" href="struct_random_test_result.html">RandomTestResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab9b4aca64e46574d74e138f2a0ea6e72">monobitTest</a> (std::string generatorName, const std::vector&lt; int &gt; &amp;bits)</td></tr>
+<tr class="memdesc:ab9b4aca64e46574d74e138f2a0ea6e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет частотный тест NIST.  <br /></td></tr>
+<tr class="memitem:a6a225b16217da70acd1c32ed0bcd01e3" id="r_a6a225b16217da70acd1c32ed0bcd01e3"><td class="memItemLeft"><a class="el" href="struct_random_test_result.html">RandomTestResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6a225b16217da70acd1c32ed0bcd01e3">runsTest</a> (std::string generatorName, const std::vector&lt; int &gt; &amp;bits)</td></tr>
+<tr class="memdesc:a6a225b16217da70acd1c32ed0bcd01e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет тест серий NIST.  <br /></td></tr>
+<tr class="memitem:a317717ad2f153ab2d432863a093e994c" id="r_a317717ad2f153ab2d432863a093e994c"><td class="memItemLeft"><a class="el" href="struct_random_test_result.html">RandomTestResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#a317717ad2f153ab2d432863a093e994c">blockFrequencyTest</a> (std::string generatorName, const std::vector&lt; int &gt; &amp;bits, int blockSize)</td></tr>
+<tr class="memdesc:a317717ad2f153ab2d432863a093e994c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет блочный частотный тест NIST.  <br /></td></tr>
+<tr class="memitem:adb50595071d7d54937a96bf61b6e737c" id="r_adb50595071d7d54937a96bf61b6e737c"><td class="memItemLeft"><a class="el" href="struct_random_test_result.html">RandomTestResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#adb50595071d7d54937a96bf61b6e737c">serialTest</a> (std::string generatorName, const std::vector&lt; int &gt; &amp;bits)</td></tr>
+<tr class="memdesc:adb50595071d7d54937a96bf61b6e737c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет serial test для пар битов.  <br /></td></tr>
+<tr class="memitem:ac35d5f881e0075061cb9897e0af23aa0" id="r_ac35d5f881e0075061cb9897e0af23aa0"><td class="memItemLeft"><a class="el" href="struct_random_test_result.html">RandomTestResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac35d5f881e0075061cb9897e0af23aa0">longestRunOfOnesTest</a> (std::string generatorName, const std::vector&lt; int &gt; &amp;bits)</td></tr>
+<tr class="memdesc:ac35d5f881e0075061cb9897e0af23aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет NIST-тест максимальной длины серии единиц в блоке.  <br /></td></tr>
+<tr class="memitem:a741286ccfc1ad9ab856e75e6a567662b" id="r_a741286ccfc1ad9ab856e75e6a567662b"><td class="memTemplParams" colspan="2">template&lt;typename Generator&gt; </td></tr>
+<tr class="memitem:a741286ccfc1ad9ab856e75e6a567662b template"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_random_test_result.html">RandomTestResult</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a741286ccfc1ad9ab856e75e6a567662b">runRandomTests</a> (std::string generatorName, Generator &amp;generator)</td></tr>
+<tr class="memdesc:a741286ccfc1ad9ab856e75e6a567662b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет набор тестов NIST/Diehard-like для генератора.  <br /></td></tr>
+<tr class="memitem:aff5904236f0cf0c13b9ef1528f4372b4" id="r_aff5904236f0cf0c13b9ef1528f4372b4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aff5904236f0cf0c13b9ef1528f4372b4">writeSampleStats</a> (const std::vector&lt; <a class="el" href="struct_sample_stats.html">SampleStats</a> &gt; &amp;stats)</td></tr>
+<tr class="memdesc:aff5904236f0cf0c13b9ef1528f4372b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записывает статистику выборок в файл.  <br /></td></tr>
+<tr class="memitem:a13bf683da46123c2106d50e984fa165e" id="r_a13bf683da46123c2106d50e984fa165e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a13bf683da46123c2106d50e984fa165e">writeRandomTests</a> (const std::vector&lt; <a class="el" href="struct_random_test_result.html">RandomTestResult</a> &gt; &amp;results)</td></tr>
+<tr class="memdesc:a13bf683da46123c2106d50e984fa165e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Записывает результаты тестов случайности в файл.  <br /></td></tr>
+<tr class="memitem:a17b8f38a1fa5aedc76f493220334af1d" id="r_a17b8f38a1fa5aedc76f493220334af1d"><td class="memTemplParams" colspan="2">template&lt;typename Generator&gt; </td></tr>
+<tr class="memitem:a17b8f38a1fa5aedc76f493220334af1d template"><td class="memItemLeft">auto&#160;</td><td class="memItemRight"><a class="el" href="#a17b8f38a1fa5aedc76f493220334af1d">measureGenerationTime</a> (Generator &amp;generator, int size)</td></tr>
+<tr class="memdesc:a17b8f38a1fa5aedc76f493220334af1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Измеряет время генерации чисел.  <br /></td></tr>
+<tr class="memitem:a8cd02c6ba4cda91e7d3e9b791ba2b2e7" id="r_a8cd02c6ba4cda91e7d3e9b791ba2b2e7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8cd02c6ba4cda91e7d3e9b791ba2b2e7">measureAllGenerators</a> ()</td></tr>
+<tr class="memdesc:a8cd02c6ba4cda91e7d3e9b791ba2b2e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет замеры скорости генераторов.  <br /></td></tr>
+<tr class="memitem:a82c1f5767622649da551d68b6b95875d" id="r_a82c1f5767622649da551d68b6b95875d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a82c1f5767622649da551d68b6b95875d">printGeneratorSummary</a> (const std::vector&lt; <a class="el" href="struct_sample_stats.html">SampleStats</a> &gt; &amp;stats, std::string generatorName)</td></tr>
+<tr class="memdesc:a82c1f5767622649da551d68b6b95875d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выводит краткий итог по выборкам одного генератора.  <br /></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="memdesc:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Точка входа программы.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a191736070a43725b355e77d1f5aca17c" id="r_a191736070a43725b355e77d1f5aca17c"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a191736070a43725b355e77d1f5aca17c">SAMPLE_COUNT</a> = 20</td></tr>
+<tr class="memitem:abb438dd06eaa3add6a90ac8aae07eb3a" id="r_abb438dd06eaa3add6a90ac8aae07eb3a"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#abb438dd06eaa3add6a90ac8aae07eb3a">SAMPLE_SIZE</a> = 1000</td></tr>
+<tr class="memitem:af9a21ad1eb2b0ff8f4f307687ef650ce" id="r_af9a21ad1eb2b0ff8f4f307687ef650ce"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#af9a21ad1eb2b0ff8f4f307687ef650ce">MIN_VALUE</a> = 0</td></tr>
+<tr class="memitem:ac7e2839c2be6cbf646ff5ede1d2ec5d3" id="r_ac7e2839c2be6cbf646ff5ede1d2ec5d3"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#ac7e2839c2be6cbf646ff5ede1d2ec5d3">MAX_VALUE</a> = 9999</td></tr>
+<tr class="memitem:ace228de3e37f3b55d995df8b07b72ed8" id="r_ace228de3e37f3b55d995df8b07b72ed8"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#ace228de3e37f3b55d995df8b07b72ed8">UNIFORM_BINS</a> = 20</td></tr>
+<tr class="memitem:a2a3cab95a99130416b061a114b2dbc93" id="r_a2a3cab95a99130416b061a114b2dbc93"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a2a3cab95a99130416b061a114b2dbc93">INDEPENDENCE_BINS</a> = 10</td></tr>
+<tr class="memitem:a11c528a02a0df53162a3f00f96030289" id="r_a11c528a02a0df53162a3f00f96030289"><td class="memItemLeft">const int&#160;</td><td class="memItemRight"><a class="el" href="#a11c528a02a0df53162a3f00f96030289">TIME_REPEAT_COUNT</a> = 100</td></tr>
+<tr class="memitem:ab17efda59834d66be1c133f52dfb6b70" id="r_ab17efda59834d66be1c133f52dfb6b70"><td class="memItemLeft">const double&#160;</td><td class="memItemRight"><a class="el" href="#ab17efda59834d66be1c133f52dfb6b70">CHI_SQUARE_UNIFORM_CRITICAL</a> = 30.144</td></tr>
+<tr class="memitem:a7db4efd9685444bcb5ba8acb69980541" id="r_a7db4efd9685444bcb5ba8acb69980541"><td class="memItemLeft">const double&#160;</td><td class="memItemRight"><a class="el" href="#a7db4efd9685444bcb5ba8acb69980541">CHI_SQUARE_RANDOM_CRITICAL</a> = 123.225</td></tr>
+<tr class="memitem:a27e0bc979a59ba140864f0c98a5b65ae" id="r_a27e0bc979a59ba140864f0c98a5b65ae"><td class="memItemLeft">const double&#160;</td><td class="memItemRight"><a class="el" href="#a27e0bc979a59ba140864f0c98a5b65ae">RANDOMNESS_Z_CRITICAL</a> = 1.96</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Функции</h2>
-<a id="aac2465ac1849b08d637e153fd2b2f18b" name="aac2465ac1849b08d637e153fd2b2f18b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac2465ac1849b08d637e153fd2b2f18b">&#9670;&#160;</a></span>buildHashTable()</h2>
+<a id="a317717ad2f153ab2d432863a093e994c" name="a317717ad2f153ab2d432863a093e994c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317717ad2f153ab2d432863a093e994c">&#9670;&#160;</a></span>blockFrequencyTest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt; buildHashTable </td>
+          <td class="memname"><a class="el" href="struct_random_test_result.html">RandomTestResult</a> blockFrequencyTest </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>tableSize</em></span>, </td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>collisions</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>blockSize</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Строит хеш-таблицу по массиву товаров. </p>
+<p>Выполняет блочный частотный тест NIST. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
-    <tr><td class="paramname">tableSize</td><td>Размер хеш-таблицы. </td></tr>
-    <tr><td class="paramname">collisions</td><td>Счетчик коллизий хеш-функции. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">bits</td><td>Массив битов. </td></tr>
+    <tr><td class="paramname">blockSize</td><td>Размер блока. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Построенная хеш-таблица. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат теста. </dd></dl>
 
 </div>
 </div>
-<a id="a6f136d88d1725ec7b9df8c996624d90c" name="a6f136d88d1725ec7b9df8c996624d90c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f136d88d1725ec7b9df8c996624d90c">&#9670;&#160;</a></span>buildMap()</h2>
+<a id="a18c2828d05d127dccbfbccfc507be134" name="a18c2828d05d127dccbfbccfc507be134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18c2828d05d127dccbfbccfc507be134">&#9670;&#160;</a></span>calculateDeviation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::multimap&lt; std::string, <a class="el" href="struct_product.html">Product</a> &gt; buildMap </td>
+          <td class="memname">double calculateDeviation </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Строит ассоциативный массив multimap по массиву товаров. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Ассоциативный массив, где ключом является наименование товара. </dd></dl>
-
-</div>
-</div>
-<a id="a854271a6e3bd5adbf4414adc72da7514" name="a854271a6e3bd5adbf4414adc72da7514"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a854271a6e3bd5adbf4414adc72da7514">&#9670;&#160;</a></span>buildRBTree()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a> * buildRBTree </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Строит красно-черное дерево по массиву товаров. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Корень построенного красно-черного дерева. </dd></dl>
-
-</div>
-</div>
-<a id="a344f9229e353ec41e435d3216945a193" name="a344f9229e353ec41e435d3216945a193"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a344f9229e353ec41e435d3216945a193">&#9670;&#160;</a></span>buildTree()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_tree_node.html">TreeNode</a> * buildTree </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Строит бинарное дерево поиска по массиву товаров. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Корень построенного дерева. </dd></dl>
-
-</div>
-</div>
-<a id="a4c213d26720e97287c08daf02d7575a0" name="a4c213d26720e97287c08daf02d7575a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c213d26720e97287c08daf02d7575a0">&#9670;&#160;</a></span>createRBNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a> * createRBNode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Создает узел красно-черного дерева. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">product</td><td>Товар, который будет сохранен в новом узле. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Указатель на созданный узел. </dd></dl>
-
-</div>
-</div>
-<a id="a8d67f64154a9744d2fcdb8e784ae370b" name="a8d67f64154a9744d2fcdb8e784ae370b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d67f64154a9744d2fcdb8e784ae370b">&#9670;&#160;</a></span>createTreeNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_tree_node.html">TreeNode</a> * createTreeNode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Создает узел бинарного дерева поиска. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">product</td><td>Товар, который будет сохранен в новом узле. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Указатель на созданный узел. </dd></dl>
-
-</div>
-</div>
-<a id="a5c47a7211ce7659460635e35ad4b8d74" name="a5c47a7211ce7659460635e35ad4b8d74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c47a7211ce7659460635e35ad4b8d74">&#9670;&#160;</a></span>fixRBInsert()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void fixRBInsert </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *</td>          <td class="paramname"><span class="paramname"><em>node</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>mean</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Восстанавливает свойства красно-черного дерева после вставки. </p>
+<p>Вычисляет среднеквадратичное отклонение. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">node</td><td>Вставленный узел. </td></tr>
+    <tr><td class="paramname">sample</td><td>Выборка чисел. </td></tr>
+    <tr><td class="paramname">mean</td><td>Среднее значение выборки. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Среднеквадратичное отклонение. </dd></dl>
 
 </div>
 </div>
-<a id="a3219504ac87d8a4bb22fd41d3f8b85d8" name="a3219504ac87d8a4bb22fd41d3f8b85d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3219504ac87d8a4bb22fd41d3f8b85d8">&#9670;&#160;</a></span>generateProductsToFile()</h2>
+<a id="ab4a18560cce6ef1776dd7bf756c1bd4c" name="ab4a18560cce6ef1776dd7bf756c1bd4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a18560cce6ef1776dd7bf756c1bd4c">&#9670;&#160;</a></span>calculateMean()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void generateProductsToFile </td>
+          <td class="memname">double calculateMean </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Генерирует случайные товары и записывает их в файл. </p>
+<p>Вычисляет среднее значение выборки. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Имя файла для записи. </td></tr>
-    <tr><td class="paramname">count</td><td>Количество генерируемых записей. </td></tr>
+    <tr><td class="paramname">sample</td><td>Выборка чисел. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Среднее значение. </dd></dl>
 
 </div>
 </div>
-<a id="abfde166f01a4b7b8ad5e9fc1b268380b" name="abfde166f01a4b7b8ad5e9fc1b268380b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfde166f01a4b7b8ad5e9fc1b268380b">&#9670;&#160;</a></span>hashFunction()</h2>
+<a id="ae9238f3c28c1dfbc6ba12ce24897ca44" name="ae9238f3c28c1dfbc6ba12ce24897ca44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9238f3c28c1dfbc6ba12ce24897ca44">&#9670;&#160;</a></span>calculateStats()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t hashFunction </td>
+          <td class="memname"><a class="el" href="struct_sample_stats.html">SampleStats</a> calculateStats </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::size_t</td>          <td class="paramname"><span class="paramname"><em>tableSize</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>sampleNumber</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вычисляет хеш для строкового ключа. </p>
+<p>Собирает статистику по выборке. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">key</td><td>Строковый ключ. </td></tr>
-    <tr><td class="paramname">tableSize</td><td>Размер хеш-таблицы. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">sampleNumber</td><td>Номер выборки. </td></tr>
+    <tr><td class="paramname">sample</td><td>Выборка чисел. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Индекс корзины в хеш-таблице. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Статистика выборки. </dd></dl>
 
 </div>
 </div>
-<a id="ae384fc86968907593480ae9a32d451b4" name="ae384fc86968907593480ae9a32d451b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae384fc86968907593480ae9a32d451b4">&#9670;&#160;</a></span>insertHashTable()</h2>
+<a id="a247f8d2577ee2535eeeebda9d51ed798" name="a247f8d2577ee2535eeeebda9d51ed798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a247f8d2577ee2535eeeebda9d51ed798">&#9670;&#160;</a></span>chiSquareRandomness()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool insertHashTable </td>
+          <td class="memname">double chiSquareRandomness </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>table</em></span>, </td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>bins</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вставляет товар в хеш-таблицу с разрешением коллизий цепочками. </p>
+<p>Проверяет частоту пар соседних значений по критерию Хи-квадрат. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">table</td><td>Хеш-таблица. </td></tr>
-    <tr><td class="paramname">product</td><td>Вставляемый товар. </td></tr>
+    <tr><td class="paramname">sample</td><td>Выборка чисел. </td></tr>
+    <tr><td class="paramname">bins</td><td>Количество интервалов по каждой оси. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true, если вставка попала в уже занятую корзину. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Значение статистики Хи-квадрат. </dd></dl>
 
 </div>
 </div>
-<a id="a57cfcadba881e1b3a5bcf5a39d609c2e" name="a57cfcadba881e1b3a5bcf5a39d609c2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57cfcadba881e1b3a5bcf5a39d609c2e">&#9670;&#160;</a></span>insertRBNode()</h2>
+<a id="a047bbab6dc807157c68ae162f4e2ba8f" name="a047bbab6dc807157c68ae162f4e2ba8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a047bbab6dc807157c68ae162f4e2ba8f">&#9670;&#160;</a></span>chiSquareUniformity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a> * insertRBNode </td>
+          <td class="memname">double chiSquareUniformity </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>sample</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>bins</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Рекурсивно вставляет товар в обычное бинарное дерево на узлах <a class="el" href="struct_r_b_node.html" title="Узел красно-черного дерева.">RBNode</a>. </p>
+<p>Проверяет равномерность распределения по критерию Хи-квадрат. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">product</td><td>Вставляемый товар. </td></tr>
+    <tr><td class="paramname">sample</td><td>Выборка чисел. </td></tr>
+    <tr><td class="paramname">bins</td><td>Количество интервалов. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Корень дерева после вставки. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Значение статистики Хи-квадрат. </dd></dl>
 
 </div>
 </div>
-<a id="ac6971ef9e5aef9f475f46266508db7e2" name="ac6971ef9e5aef9f475f46266508db7e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6971ef9e5aef9f475f46266508db7e2">&#9670;&#160;</a></span>insertRBTree()</h2>
+<a id="a071efc959d94a287ea949cf2959f2fe2" name="a071efc959d94a287ea949cf2959f2fe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071efc959d94a287ea949cf2959f2fe2">&#9670;&#160;</a></span>generateBits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Generator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; generateBits </td>
+          <td>(</td>
+          <td class="paramtype">Generator &amp;</td>          <td class="paramname"><span class="paramname"><em>generator</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>bitCount</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразует поток чисел генератора в поток битов. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">generator</td><td>Генератор псевдослучайных чисел. </td></tr>
+    <tr><td class="paramname">bitCount</td><td>Количество битов. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Массив битов. </dd></dl>
+
+</div>
+</div>
+<a id="a1b9258707dc972418b68703ba3a974f6" name="a1b9258707dc972418b68703ba3a974f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b9258707dc972418b68703ba3a974f6">&#9670;&#160;</a></span>generateSample()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Generator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; generateSample </td>
+          <td>(</td>
+          <td class="paramtype">Generator &amp;</td>          <td class="paramname"><span class="paramname"><em>generator</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Формирует выборку заданного размера. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">generator</td><td>Генератор псевдослучайных чисел. </td></tr>
+    <tr><td class="paramname">size</td><td>Размер выборки. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Массив значений выборки. </dd></dl>
+
+</div>
+</div>
+<a id="ac35d5f881e0075061cb9897e0af23aa0" name="ac35d5f881e0075061cb9897e0af23aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac35d5f881e0075061cb9897e0af23aa0">&#9670;&#160;</a></span>longestRunOfOnesTest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void insertRBTree </td>
+          <td class="memname"><a class="el" href="struct_random_test_result.html">RandomTestResult</a> longestRunOfOnesTest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span>&#160;)</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Вставляет товар в красно-черное дерево. </p>
+<p>Выполняет NIST-тест максимальной длины серии единиц в блоке. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">product</td><td>Вставляемый товар. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">bits</td><td>Массив битов. </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="abaa059bf8d8b3f4d1b9077763fab63d3" name="abaa059bf8d8b3f4d1b9077763fab63d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaa059bf8d8b3f4d1b9077763fab63d3">&#9670;&#160;</a></span>insertTreeNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_tree_node.html">TreeNode</a> * insertTreeNode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_tree_node.html">TreeNode</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Вставляет товар в бинарное дерево поиска. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">product</td><td>Вставляемый товар. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Корень дерева после вставки. </dd></dl>
-
-</div>
-</div>
-<a id="ae850e24b2ccd461c5edc4c7a60a4b1c9" name="ae850e24b2ccd461c5edc4c7a60a4b1c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae850e24b2ccd461c5edc4c7a60a4b1c9">&#9670;&#160;</a></span>linearSearch()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; linearSearch </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Выполняет линейный поиск всех товаров по названию. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
-    <tr><td class="paramname">key</td><td>Искомое наименование товара. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив найденных товаров. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат теста. </dd></dl>
 
 </div>
 </div>
@@ -620,298 +511,444 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('main_8cpp.html
 </div><div class="memdoc">
 
 <p>Точка входа программы. </p>
-<p>Генерирует входные данные разных размерностей, выполняет поиск заданного ключа всеми методами, записывает времена поиска и число коллизий хеш-функции в файл data/search_times.txt.</p>
+<p>Генерирует по 20 выборок тремя методами ГПСЧ, считает статистики, проверяет равномерность и случайность критерием Хи-квадрат, выполняет пять тестов NIST/Diehard-like и замеряет скорость генерации.</p>
 <dl class="section return"><dt>Возвращает</dt><dd>Код завершения программы. </dd></dl>
 
 </div>
 </div>
-<a id="a9f46eed50bc0a58ceeee510ec79b3a78" name="a9f46eed50bc0a58ceeee510ec79b3a78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f46eed50bc0a58ceeee510ec79b3a78">&#9670;&#160;</a></span>printProduct()</h2>
+<a id="a8cd02c6ba4cda91e7d3e9b791ba2b2e7" name="a8cd02c6ba4cda91e7d3e9b791ba2b2e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cd02c6ba4cda91e7d3e9b791ba2b2e7">&#9670;&#160;</a></span>measureAllGenerators()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void printProduct </td>
+          <td class="memname">void measureAllGenerators </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Выводит один товар в консоль. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">product</td><td>Товар для вывода. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Выполняет замеры скорости генераторов. </p>
 
 </div>
 </div>
-<a id="ac2f0a2a607564436f45c2179cef5604e" name="ac2f0a2a607564436f45c2179cef5604e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2f0a2a607564436f45c2179cef5604e">&#9670;&#160;</a></span>printProducts()</h2>
+<a id="a17b8f38a1fa5aedc76f493220334af1d" name="a17b8f38a1fa5aedc76f493220334af1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17b8f38a1fa5aedc76f493220334af1d">&#9670;&#160;</a></span>measureGenerationTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Generator&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void printProducts </td>
+          <td class="memname">auto measureGenerationTime </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Выводит список товаров в консоль. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">products</td><td>Массив товаров для вывода. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a9760d0da4c935c890724ae5441753350" name="a9760d0da4c935c890724ae5441753350"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9760d0da4c935c890724ae5441753350">&#9670;&#160;</a></span>readProductsFromFile()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; readProductsFromFile </td>
-          <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Читает товары из текстового файла. </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Имя файла для чтения. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив товаров из файла. </dd></dl>
-
-</div>
-</div>
-<a id="a2d537701e6c1a21412c0199a5f083dd6" name="a2d537701e6c1a21412c0199a5f083dd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d537701e6c1a21412c0199a5f083dd6">&#9670;&#160;</a></span>rotateLeft()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rotateLeft </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">Generator &amp;</td>          <td class="paramname"><span class="paramname"><em>generator</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Выполняет левый поворот в красно-черном дереве. </p>
+<p>Измеряет время генерации чисел. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">x</td><td>Узел, вокруг которого выполняется поворот. </td></tr>
+    <tr><td class="paramname">generator</td><td>Генератор псевдослучайных чисел. </td></tr>
+    <tr><td class="paramname">size</td><td>Количество чисел. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Время генерации в наносекундах. </dd></dl>
 
 </div>
 </div>
-<a id="a1dbf10ab3302818ac86c5935be3a2908" name="a1dbf10ab3302818ac86c5935be3a2908"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dbf10ab3302818ac86c5935be3a2908">&#9670;&#160;</a></span>rotateRight()</h2>
+<a id="ab9b4aca64e46574d74e138f2a0ea6e72" name="ab9b4aca64e46574d74e138f2a0ea6e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9b4aca64e46574d74e138f2a0ea6e72">&#9670;&#160;</a></span>monobitTest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void rotateRight </td>
+          <td class="memname"><a class="el" href="struct_random_test_result.html">RandomTestResult</a> monobitTest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *&amp;</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *</td>          <td class="paramname"><span class="paramname"><em>x</em></span>&#160;)</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Выполняет правый поворот в красно-черном дереве. </p>
+<p>Выполняет частотный тест NIST. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">x</td><td>Узел, вокруг которого выполняется поворот. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">bits</td><td>Массив битов. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат теста. </dd></dl>
 
 </div>
 </div>
-<a id="a9b69eeb383d994fa7f83cc3224b22ce6" name="a9b69eeb383d994fa7f83cc3224b22ce6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b69eeb383d994fa7f83cc3224b22ce6">&#9670;&#160;</a></span>searchHashTable()</h2>
+<a id="a82c1f5767622649da551d68b6b95875d" name="a82c1f5767622649da551d68b6b95875d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82c1f5767622649da551d68b6b95875d">&#9670;&#160;</a></span>printGeneratorSummary()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; searchHashTable </td>
+          <td class="memname">void printGeneratorSummary </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; <a class="el" href="struct_hash_entry.html">HashEntry</a> &gt; &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>table</em></span>, </td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_sample_stats.html">SampleStats</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stats</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ищет все товары с заданным ключом в хеш-таблице. </p>
+<p>Выводит краткий итог по выборкам одного генератора. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">table</td><td>Хеш-таблица. </td></tr>
-    <tr><td class="paramname">key</td><td>Искомое наименование товара. </td></tr>
+    <tr><td class="paramname">stats</td><td>Статистика всех выборок. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив найденных товаров. </dd></dl>
 
 </div>
 </div>
-<a id="a41bbf7029c45b17e0a2575f3e6850063" name="a41bbf7029c45b17e0a2575f3e6850063"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41bbf7029c45b17e0a2575f3e6850063">&#9670;&#160;</a></span>searchMap()</h2>
+<a id="a741286ccfc1ad9ab856e75e6a567662b" name="a741286ccfc1ad9ab856e75e6a567662b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741286ccfc1ad9ab856e75e6a567662b">&#9670;&#160;</a></span>runRandomTests()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Generator&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_random_test_result.html">RandomTestResult</a> &gt; runRandomTests </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Generator &amp;</td>          <td class="paramname"><span class="paramname"><em>generator</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполняет набор тестов NIST/Diehard-like для генератора. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">generator</td><td>Генератор псевдослучайных чисел. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Массив результатов тестов. </dd></dl>
+
+</div>
+</div>
+<a id="a6a225b16217da70acd1c32ed0bcd01e3" name="a6a225b16217da70acd1c32ed0bcd01e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a225b16217da70acd1c32ed0bcd01e3">&#9670;&#160;</a></span>runsTest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; searchMap </td>
+          <td class="memname"><a class="el" href="struct_random_test_result.html">RandomTestResult</a> runsTest </td>
           <td>(</td>
-          <td class="paramtype">std::multimap&lt; std::string, <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>map</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ищет все товары с заданным ключом в multimap. </p>
+<p>Выполняет тест серий NIST. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">map</td><td>Ассоциативный массив товаров. </td></tr>
-    <tr><td class="paramname">key</td><td>Искомое наименование товара. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">bits</td><td>Массив битов. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив найденных товаров. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат теста. </dd></dl>
 
 </div>
 </div>
-<a id="ad090c4e664da045dbae6f31aa85ffbdb" name="ad090c4e664da045dbae6f31aa85ffbdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad090c4e664da045dbae6f31aa85ffbdb">&#9670;&#160;</a></span>searchRBTree()</h2>
+<a id="adb50595071d7d54937a96bf61b6e737c" name="adb50595071d7d54937a96bf61b6e737c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb50595071d7d54937a96bf61b6e737c">&#9670;&#160;</a></span>serialTest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; searchRBTree </td>
+          <td class="memname"><a class="el" href="struct_random_test_result.html">RandomTestResult</a> serialTest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_r_b_node.html">RBNode</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>generatorName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>bits</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ищет все товары с заданным ключом в красно-черном дереве. </p>
+<p>Выполняет serial test для пар битов. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень красно-черного дерева. </td></tr>
-    <tr><td class="paramname">key</td><td>Искомое наименование товара. </td></tr>
+    <tr><td class="paramname">generatorName</td><td>Название генератора. </td></tr>
+    <tr><td class="paramname">bits</td><td>Массив битов. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив найденных товаров. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат теста. </dd></dl>
 
 </div>
 </div>
-<a id="ae9cb62d75e3aec39641ca19cf6a391be" name="ae9cb62d75e3aec39641ca19cf6a391be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9cb62d75e3aec39641ca19cf6a391be">&#9670;&#160;</a></span>searchTree()</h2>
+<a id="a26e286c80189e11d7571be5907e348dc" name="a26e286c80189e11d7571be5907e348dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26e286c80189e11d7571be5907e348dc">&#9670;&#160;</a></span>toRange()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; searchTree </td>
+          <td class="memname">int toRange </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_tree_node.html">TreeNode</a> *</td>          <td class="paramname"><span class="paramname"><em>root</em></span>, </td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>maxValue</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ищет все товары с заданным ключом в бинарном дереве поиска. </p>
+<p>Возвращает число из заданного диапазона. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">root</td><td>Корень дерева. </td></tr>
-    <tr><td class="paramname">key</td><td>Искомое наименование товара. </td></tr>
+    <tr><td class="paramname">value</td><td>Сырое значение генератора. </td></tr>
+    <tr><td class="paramname">minValue</td><td>Нижняя граница диапазона. </td></tr>
+    <tr><td class="paramname">maxValue</td><td>Верхняя граница диапазона. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Массив найденных товаров. </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Число в диапазоне [minValue; maxValue]. </dd></dl>
 
 </div>
 </div>
-<a id="a18ae133f514e28744ac4f0dbeb049abb" name="a18ae133f514e28744ac4f0dbeb049abb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18ae133f514e28744ac4f0dbeb049abb">&#9670;&#160;</a></span>writeProductsToFile()</h2>
+<a id="a13bf683da46123c2106d50e984fa165e" name="a13bf683da46123c2106d50e984fa165e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13bf683da46123c2106d50e984fa165e">&#9670;&#160;</a></span>writeRandomTests()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void writeProductsToFile </td>
+          <td class="memname">void writeRandomTests </td>
           <td>(</td>
-          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_random_test_result.html">RandomTestResult</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>results</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Записывает товары в текстовый файл. </p>
+<p>Записывает результаты тестов случайности в файл. </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Имя файла для записи. </td></tr>
-    <tr><td class="paramname">products</td><td>Массив товаров. </td></tr>
+    <tr><td class="paramname">results</td><td>Массив результатов. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aff5904236f0cf0c13b9ef1528f4372b4" name="aff5904236f0cf0c13b9ef1528f4372b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff5904236f0cf0c13b9ef1528f4372b4">&#9670;&#160;</a></span>writeSampleStats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeSampleStats </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="struct_sample_stats.html">SampleStats</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>stats</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Записывает статистику выборок в файл. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stats</td><td>Массив статистик. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Переменные</h2>
+<a id="a7db4efd9685444bcb5ba8acb69980541" name="a7db4efd9685444bcb5ba8acb69980541"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7db4efd9685444bcb5ba8acb69980541">&#9670;&#160;</a></span>CHI_SQUARE_RANDOM_CRITICAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double CHI_SQUARE_RANDOM_CRITICAL = 123.225</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab17efda59834d66be1c133f52dfb6b70" name="ab17efda59834d66be1c133f52dfb6b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17efda59834d66be1c133f52dfb6b70">&#9670;&#160;</a></span>CHI_SQUARE_UNIFORM_CRITICAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double CHI_SQUARE_UNIFORM_CRITICAL = 30.144</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a3cab95a99130416b061a114b2dbc93" name="a2a3cab95a99130416b061a114b2dbc93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a3cab95a99130416b061a114b2dbc93">&#9670;&#160;</a></span>INDEPENDENCE_BINS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int INDEPENDENCE_BINS = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7e2839c2be6cbf646ff5ede1d2ec5d3" name="ac7e2839c2be6cbf646ff5ede1d2ec5d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e2839c2be6cbf646ff5ede1d2ec5d3">&#9670;&#160;</a></span>MAX_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int MAX_VALUE = 9999</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af9a21ad1eb2b0ff8f4f307687ef650ce" name="af9a21ad1eb2b0ff8f4f307687ef650ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9a21ad1eb2b0ff8f4f307687ef650ce">&#9670;&#160;</a></span>MIN_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int MIN_VALUE = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27e0bc979a59ba140864f0c98a5b65ae" name="a27e0bc979a59ba140864f0c98a5b65ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e0bc979a59ba140864f0c98a5b65ae">&#9670;&#160;</a></span>RANDOMNESS_Z_CRITICAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double RANDOMNESS_Z_CRITICAL = 1.96</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a191736070a43725b355e77d1f5aca17c" name="a191736070a43725b355e77d1f5aca17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a191736070a43725b355e77d1f5aca17c">&#9670;&#160;</a></span>SAMPLE_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SAMPLE_COUNT = 20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb438dd06eaa3add6a90ac8aae07eb3a" name="abb438dd06eaa3add6a90ac8aae07eb3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb438dd06eaa3add6a90ac8aae07eb3a">&#9670;&#160;</a></span>SAMPLE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int SAMPLE_SIZE = 1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a11c528a02a0df53162a3f00f96030289" name="a11c528a02a0df53162a3f00f96030289"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c528a02a0df53162a3f00f96030289">&#9670;&#160;</a></span>TIME_REPEAT_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int TIME_REPEAT_COUNT = 100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ace228de3e37f3b55d995df8b07b72ed8" name="ace228de3e37f3b55d995df8b07b72ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace228de3e37f3b55d995df8b07b72ed8">&#9670;&#160;</a></span>UNIFORM_BINS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int UNIFORM_BINS = 20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

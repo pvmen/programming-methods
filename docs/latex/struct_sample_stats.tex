@@ -1,0 +1,131 @@
+\doxysection{Структура Sample\+Stats}
+\hypertarget{struct_sample_stats}{}\label{struct_sample_stats}\index{SampleStats@{SampleStats}}
+
+
+Статистика одной выборки.  
+
+
+\doxysubsubsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+std::\+string \doxymbox{\hyperlink{struct_sample_stats_a5b56c84722d614dc405f019c68147818}{generator\+Name}}
+\begin{DoxyCompactList}\small\item\em Название генератора. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{struct_sample_stats_adb5fbf105862bb399f45b04072c72647}{sample\+Number}}
+\begin{DoxyCompactList}\small\item\em Номер выборки. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{struct_sample_stats_a9039820794284e51f5256bdaa1f64505}{mean}}
+\begin{DoxyCompactList}\small\item\em Среднее значение. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{struct_sample_stats_a2e807366d56e1ea14ba4a8db11ed4381}{deviation}}
+\begin{DoxyCompactList}\small\item\em Среднеквадратичное отклонение. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{struct_sample_stats_a78912f7c93c7ebd2020259090c52a125}{variation}}
+\begin{DoxyCompactList}\small\item\em Коэффициент вариации. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{struct_sample_stats_aeab1cc8e4caee1a6c8edc402bef40716}{uniform\+Chi\+Square}}
+\begin{DoxyCompactList}\small\item\em Значение критерия Хи-\/квадрат для равномерности. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{struct_sample_stats_a6e2a6b79f65c10e1b0976f3a23f784ea}{uniform\+Accepted}}
+\begin{DoxyCompactList}\small\item\em true, если гипотеза о равномерности не отвергается. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{struct_sample_stats_a7770d7c004acc7c99a6bf8056d28e965}{random\+Chi\+Square}}
+\begin{DoxyCompactList}\small\item\em Значение критерия Хи-\/квадрат для пар соседних чисел. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{struct_sample_stats_aa39383c8b9a46c00f3765de40e3b41e5}{random\+Accepted}}
+\begin{DoxyCompactList}\small\item\em true, если гипотеза о случайности не отвергается. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Подробное описание}
+Статистика одной выборки. 
+
+\label{struct_sample_stats_doc-variable-members}
+\Hypertarget{struct_sample_stats_doc-variable-members}
+\doxysubsection{Данные класса}
+\Hypertarget{struct_sample_stats_a2e807366d56e1ea14ba4a8db11ed4381}\index{SampleStats@{SampleStats}!deviation@{deviation}}
+\index{deviation@{deviation}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{deviation}{deviation}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a2e807366d56e1ea14ba4a8db11ed4381} 
+double Sample\+Stats::\+deviation}
+
+
+
+Среднеквадратичное отклонение. 
+
+\Hypertarget{struct_sample_stats_a5b56c84722d614dc405f019c68147818}\index{SampleStats@{SampleStats}!generatorName@{generatorName}}
+\index{generatorName@{generatorName}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{generatorName}{generatorName}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a5b56c84722d614dc405f019c68147818} 
+std::\+string Sample\+Stats::\+generator\+Name}
+
+
+
+Название генератора. 
+
+\Hypertarget{struct_sample_stats_a9039820794284e51f5256bdaa1f64505}\index{SampleStats@{SampleStats}!mean@{mean}}
+\index{mean@{mean}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{mean}{mean}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a9039820794284e51f5256bdaa1f64505} 
+double Sample\+Stats::\+mean}
+
+
+
+Среднее значение. 
+
+\Hypertarget{struct_sample_stats_aa39383c8b9a46c00f3765de40e3b41e5}\index{SampleStats@{SampleStats}!randomAccepted@{randomAccepted}}
+\index{randomAccepted@{randomAccepted}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{randomAccepted}{randomAccepted}}
+{\footnotesize\ttfamily \label{struct_sample_stats_aa39383c8b9a46c00f3765de40e3b41e5} 
+bool Sample\+Stats::\+random\+Accepted}
+
+
+
+true, если гипотеза о случайности не отвергается. 
+
+\Hypertarget{struct_sample_stats_a7770d7c004acc7c99a6bf8056d28e965}\index{SampleStats@{SampleStats}!randomChiSquare@{randomChiSquare}}
+\index{randomChiSquare@{randomChiSquare}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{randomChiSquare}{randomChiSquare}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a7770d7c004acc7c99a6bf8056d28e965} 
+double Sample\+Stats::\+random\+Chi\+Square}
+
+
+
+Значение критерия Хи-\/квадрат для пар соседних чисел. 
+
+\Hypertarget{struct_sample_stats_adb5fbf105862bb399f45b04072c72647}\index{SampleStats@{SampleStats}!sampleNumber@{sampleNumber}}
+\index{sampleNumber@{sampleNumber}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{sampleNumber}{sampleNumber}}
+{\footnotesize\ttfamily \label{struct_sample_stats_adb5fbf105862bb399f45b04072c72647} 
+int Sample\+Stats::\+sample\+Number}
+
+
+
+Номер выборки. 
+
+\Hypertarget{struct_sample_stats_a6e2a6b79f65c10e1b0976f3a23f784ea}\index{SampleStats@{SampleStats}!uniformAccepted@{uniformAccepted}}
+\index{uniformAccepted@{uniformAccepted}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{uniformAccepted}{uniformAccepted}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a6e2a6b79f65c10e1b0976f3a23f784ea} 
+bool Sample\+Stats::\+uniform\+Accepted}
+
+
+
+true, если гипотеза о равномерности не отвергается. 
+
+\Hypertarget{struct_sample_stats_aeab1cc8e4caee1a6c8edc402bef40716}\index{SampleStats@{SampleStats}!uniformChiSquare@{uniformChiSquare}}
+\index{uniformChiSquare@{uniformChiSquare}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{uniformChiSquare}{uniformChiSquare}}
+{\footnotesize\ttfamily \label{struct_sample_stats_aeab1cc8e4caee1a6c8edc402bef40716} 
+double Sample\+Stats::\+uniform\+Chi\+Square}
+
+
+
+Значение критерия Хи-\/квадрат для равномерности. 
+
+\Hypertarget{struct_sample_stats_a78912f7c93c7ebd2020259090c52a125}\index{SampleStats@{SampleStats}!variation@{variation}}
+\index{variation@{variation}!SampleStats@{SampleStats}}
+\doxysubsubsection{\texorpdfstring{variation}{variation}}
+{\footnotesize\ttfamily \label{struct_sample_stats_a78912f7c93c7ebd2020259090c52a125} 
+double Sample\+Stats::\+variation}
+
+
+
+Коэффициент вариации. 
+
+
+
+Объявления и описания членов структуры находятся в файле:\+\begin{DoxyCompactItemize}
+\item 
+src/\+\doxymbox{\hyperlink{main_8cpp}{main.\+cpp}}\end{DoxyCompactItemize}

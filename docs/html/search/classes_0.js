@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hashentry_0',['HashEntry',['../struct_hash_entry.html',1,'']]]
+  ['laggedfibonacci_0',['LaggedFibonacci',['../struct_lagged_fibonacci.html',1,'']]]
 ];
