@@ -1,683 +1,699 @@
+#include <algorithm>
+#include <chrono>
+#include <cmath>
+#include <cstdint>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
+#include <random>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <fstream>
-#include <chrono>
-#include <cstdlib>
-#include <map>
+
+const int SAMPLE_COUNT = 20;
+const int SAMPLE_SIZE = 1000;
+const int MIN_VALUE = 0;
+const int MAX_VALUE = 9999;
+const int UNIFORM_BINS = 20;
+const int INDEPENDENCE_BINS = 10;
+const int TIME_REPEAT_COUNT = 100;
+const double CHI_SQUARE_UNIFORM_CRITICAL = 30.144;
+const double CHI_SQUARE_RANDOM_CRITICAL = 123.225;
+const double RANDOMNESS_Z_CRITICAL = 1.96;
 
 /**
- * @brief Запись об экспортируемом товаре.
+ * @brief Статистика одной выборки.
  */
-struct Product {
-  std::string name;     ///< Наименование товара.
-  std::string country;  ///< Страна экспорта.
-  int volume;           ///< Объем поставляемой продукции.
-  double rubles;        ///< Сумма поставки в рублях.
+struct SampleStats {
+  std::string generatorName; ///< Название генератора.
+  int sampleNumber;          ///< Номер выборки.
+  double mean;               ///< Среднее значение.
+  double deviation;          ///< Среднеквадратичное отклонение.
+  double variation;          ///< Коэффициент вариации.
+  double uniformChiSquare;   ///< Значение критерия Хи-квадрат для равномерности.
+  bool uniformAccepted;      ///< true, если гипотеза о равномерности не отвергается.
+  double randomChiSquare;    ///< Значение критерия Хи-квадрат для пар соседних чисел.
+  bool randomAccepted;       ///< true, если гипотеза о случайности не отвергается.
 };
 
 /**
- * @brief Элемент хеш-таблицы для одного ключа.
+ * @brief Результат одного теста случайности.
  */
-struct HashEntry{
-  std::string key;                 ///< Ключ поиска.
-  std::vector<Product> products;   ///< Все товары с данным ключом.
+struct RandomTestResult {
+  std::string generatorName; ///< Название генератора.
+  std::string testName;      ///< Название теста.
+  double statistic;          ///< Значение статистики теста.
+  double limit;              ///< Критическое значение.
+  bool passed;               ///< true, если тест пройден.
 };
 
 /**
- * @brief Узел бинарного дерева поиска.
+ * @brief Генератор LCG с дополнительным перемешиванием битов.
  */
-struct TreeNode{
-  std::string key;               ///< Ключ узла.
-  std::vector<Product> products; ///< Все товары с данным ключом.
-  TreeNode* left;                ///< Левый потомок.
-  TreeNode* right;               ///< Правый потомок.
+struct MixedLCG {
+  uint32_t state;
+
+  MixedLCG(uint32_t seed) {
+    state = seed;
+  }
+
+  uint32_t next() {
+    state = 1664525u * state + 1013904223u;
+
+    uint32_t value = state;
+    value ^= value >> 16;
+    value *= 2246822519u;
+    value ^= value >> 13;
+    value *= 3266489917u;
+    value ^= value >> 16;
+
+    return value;
+  }
 };
 
 /**
- * @brief Узел красно-черного дерева.
+ * @brief Генератор Xorshift с последовательностью Вейля.
  */
-struct RBNode {
-  std::string key;               ///< Ключ узла.
-  std::vector<Product> products; ///< Все товары с данным ключом.
+struct XorshiftWeyl {
+  uint32_t state;
+  uint32_t weyl;
 
-  RBNode* left;                  ///< Левый потомок.
-  RBNode* right;                 ///< Правый потомок.
-  RBNode* parent;                ///< Родительский узел.
+  XorshiftWeyl(uint32_t seed) {
+    state = seed;
+    weyl = seed ^ 0x61c88647u;
+  }
 
-  bool red;                      ///< Цвет узла: true - красный, false - черный.
+  uint32_t next() {
+    state ^= state << 13;
+    state ^= state >> 17;
+    state ^= state << 5;
+    weyl += 0x61c88647u;
+
+    return state + weyl;
+  }
 };
 
 /**
- * @brief Создает узел бинарного дерева поиска.
- * @param product Товар, который будет сохранен в новом узле.
- * @return Указатель на созданный узел.
+ * @brief Аддитивный генератор Фибоначчи с запаздываниями 24 и 55.
  */
-TreeNode* createTreeNode(Product& product){
-  TreeNode* node = new TreeNode();
+struct LaggedFibonacci {
+  std::vector<uint32_t> state;
+  int index;
 
-  node->key = product.name;
-  node->products.push_back(product);
-  node->left = nullptr;
-  node->right = nullptr;
+  LaggedFibonacci(uint32_t seed) {
+    state.resize(55);
+    index = 0;
 
-  return node;
-}
-
-/**
- * @brief Вставляет товар в бинарное дерево поиска.
- * @param root Корень дерева.
- * @param product Вставляемый товар.
- * @return Корень дерева после вставки.
- */
-TreeNode* insertTreeNode(TreeNode* root, Product& product){
-  if (root == nullptr){
-    return createTreeNode(product);
-  }
-  if (product.name == root->key){
-    root->products.push_back(product);
-  } else if (product.name < root->key){
-    root->left = insertTreeNode(root->left, product);
-  } else if (product.name > root->key){
-    root->right = insertTreeNode(root->right, product);
-  }
-
-  return root;
-}
-
-/**
- * @brief Строит бинарное дерево поиска по массиву товаров.
- * @param products Массив товаров.
- * @return Корень построенного дерева.
- */
-TreeNode* buildTree(std::vector<Product>& products){
-  TreeNode* root = nullptr;
-  for (std::size_t i = 0; i < products.size(); i++){
-    root = insertTreeNode(root, products[i]);
-  }
-  return root;
-}
-
-/**
- * @brief Ищет все товары с заданным ключом в бинарном дереве поиска.
- * @param root Корень дерева.
- * @param key Искомое наименование товара.
- * @return Массив найденных товаров.
- */
-std::vector<Product> searchTree(TreeNode* root, std::string key){
-  if (root == nullptr){
-    return std::vector<Product>();
-  }
-  if (key == root->key){
-    return root->products;
-  }
-  if (key < root->key){
-    return searchTree(root->left, key);
-  }
-  
-  return searchTree(root->right, key);
-  
-}
-/**
- * @brief Выводит один товар в консоль.
- * @param product Товар для вывода.
- */
-void printProduct(Product& product) {
-  std::cout << product.name << " " << product.country << " " << product.volume << " " << product.rubles << "\n";
-}
-
-/**
- * @brief Выполняет линейный поиск всех товаров по названию.
- * @param products Массив товаров.
- * @param key Искомое наименование товара.
- * @return Массив найденных товаров.
- */
-std::vector<Product> linearSearch(std::vector<Product>& products, std::string key){
-  std::vector<Product> result;
-  for (std::size_t i = 0; i < products.size(); i++){
-    if (products[i].name == key){
-      result.push_back(products[i]);
+    uint32_t value = seed;
+    for (std::size_t i = 0; i < state.size(); i++) {
+      value = 1664525u * value + 1013904223u;
+      state[i] = value;
     }
   }
+
+  uint32_t next() {
+    int j = (index + 31) % 55;
+    uint32_t value = state[index] + state[j];
+    state[index] = value;
+    index = (index + 1) % 55;
+
+    return value;
+  }
+};
+
+/**
+ * @brief Обертка над стандартным генератором языка C++.
+ */
+struct StandardGenerator {
+  std::mt19937 generator;
+
+  StandardGenerator(uint32_t seed) {
+    generator.seed(seed);
+  }
+
+  uint32_t next() {
+    return generator();
+  }
+};
+
+/**
+ * @brief Возвращает число из заданного диапазона.
+ * @param value Сырое значение генератора.
+ * @param minValue Нижняя граница диапазона.
+ * @param maxValue Верхняя граница диапазона.
+ * @return Число в диапазоне [minValue; maxValue].
+ */
+int toRange(uint32_t value, int minValue, int maxValue) {
+  return minValue + static_cast<int>(value % static_cast<uint32_t>(maxValue - minValue + 1));
+}
+
+/**
+ * @brief Формирует выборку заданного размера.
+ * @param generator Генератор псевдослучайных чисел.
+ * @param size Размер выборки.
+ * @return Массив значений выборки.
+ */
+template <typename Generator>
+std::vector<int> generateSample(Generator& generator, int size) {
+  std::vector<int> sample;
+  sample.reserve(size);
+
+  for (int i = 0; i < size; i++) {
+    sample.push_back(toRange(generator.next(), MIN_VALUE, MAX_VALUE));
+  }
+
+  return sample;
+}
+
+/**
+ * @brief Вычисляет среднее значение выборки.
+ * @param sample Выборка чисел.
+ * @return Среднее значение.
+ */
+double calculateMean(const std::vector<int>& sample) {
+  double sum = 0.0;
+
+  for (std::size_t i = 0; i < sample.size(); i++) {
+    sum += sample[i];
+  }
+
+  return sum / static_cast<double>(sample.size());
+}
+
+/**
+ * @brief Вычисляет среднеквадратичное отклонение.
+ * @param sample Выборка чисел.
+ * @param mean Среднее значение выборки.
+ * @return Среднеквадратичное отклонение.
+ */
+double calculateDeviation(const std::vector<int>& sample, double mean) {
+  double sum = 0.0;
+
+  for (std::size_t i = 0; i < sample.size(); i++) {
+    double difference = sample[i] - mean;
+    sum += difference * difference;
+  }
+
+  return std::sqrt(sum / static_cast<double>(sample.size()));
+}
+
+/**
+ * @brief Проверяет равномерность распределения по критерию Хи-квадрат.
+ * @param sample Выборка чисел.
+ * @param bins Количество интервалов.
+ * @return Значение статистики Хи-квадрат.
+ */
+double chiSquareUniformity(const std::vector<int>& sample, int bins) {
+  std::vector<int> frequencies(bins, 0);
+  int range = MAX_VALUE - MIN_VALUE + 1;
+
+  for (std::size_t i = 0; i < sample.size(); i++) {
+    int bin = (sample[i] - MIN_VALUE) * bins / range;
+
+    if (bin == bins) {
+      bin--;
+    }
+
+    frequencies[bin]++;
+  }
+
+  double expected = static_cast<double>(sample.size()) / bins;
+  double chiSquare = 0.0;
+
+  for (int i = 0; i < bins; i++) {
+    double difference = frequencies[i] - expected;
+    chiSquare += difference * difference / expected;
+  }
+
+  return chiSquare;
+}
+
+/**
+ * @brief Проверяет частоту пар соседних значений по критерию Хи-квадрат.
+ * @param sample Выборка чисел.
+ * @param bins Количество интервалов по каждой оси.
+ * @return Значение статистики Хи-квадрат.
+ */
+double chiSquareRandomness(const std::vector<int>& sample, int bins) {
+  std::vector<std::vector<int>> frequencies(bins, std::vector<int>(bins, 0));
+  int range = MAX_VALUE - MIN_VALUE + 1;
+
+  for (std::size_t i = 1; i < sample.size(); i++) {
+    int previousBin = (sample[i - 1] - MIN_VALUE) * bins / range;
+    int currentBin = (sample[i] - MIN_VALUE) * bins / range;
+
+    if (previousBin == bins) {
+      previousBin--;
+    }
+
+    if (currentBin == bins) {
+      currentBin--;
+    }
+
+    frequencies[previousBin][currentBin]++;
+  }
+
+  double expected = static_cast<double>(sample.size() - 1) / (bins * bins);
+  double chiSquare = 0.0;
+
+  for (int i = 0; i < bins; i++) {
+    for (int j = 0; j < bins; j++) {
+      double difference = frequencies[i][j] - expected;
+      chiSquare += difference * difference / expected;
+    }
+  }
+
+  return chiSquare;
+}
+
+/**
+ * @brief Собирает статистику по выборке.
+ * @param generatorName Название генератора.
+ * @param sampleNumber Номер выборки.
+ * @param sample Выборка чисел.
+ * @return Статистика выборки.
+ */
+SampleStats calculateStats(std::string generatorName, int sampleNumber, const std::vector<int>& sample) {
+  SampleStats stats;
+  stats.generatorName = generatorName;
+  stats.sampleNumber = sampleNumber;
+  stats.mean = calculateMean(sample);
+  stats.deviation = calculateDeviation(sample, stats.mean);
+  stats.variation = stats.deviation / stats.mean;
+  stats.uniformChiSquare = chiSquareUniformity(sample, UNIFORM_BINS);
+  stats.uniformAccepted = stats.uniformChiSquare < CHI_SQUARE_UNIFORM_CRITICAL;
+  stats.randomChiSquare = chiSquareRandomness(sample, INDEPENDENCE_BINS);
+  stats.randomAccepted = stats.randomChiSquare < CHI_SQUARE_RANDOM_CRITICAL;
+
+  return stats;
+}
+
+/**
+ * @brief Преобразует поток чисел генератора в поток битов.
+ * @param generator Генератор псевдослучайных чисел.
+ * @param bitCount Количество битов.
+ * @return Массив битов.
+ */
+template <typename Generator>
+std::vector<int> generateBits(Generator& generator, int bitCount) {
+  std::vector<int> bits;
+  bits.reserve(bitCount);
+
+  while (static_cast<int>(bits.size()) < bitCount) {
+    uint32_t value = generator.next();
+
+    for (int i = 0; i < 32 && static_cast<int>(bits.size()) < bitCount; i++) {
+      bits.push_back(static_cast<int>((value >> i) & 1u));
+    }
+  }
+
+  return bits;
+}
+
+/**
+ * @brief Выполняет частотный тест NIST.
+ * @param generatorName Название генератора.
+ * @param bits Массив битов.
+ * @return Результат теста.
+ */
+RandomTestResult monobitTest(std::string generatorName, const std::vector<int>& bits) {
+  int sum = 0;
+
+  for (std::size_t i = 0; i < bits.size(); i++) {
+    sum += bits[i] == 1 ? 1 : -1;
+  }
+
+  double statistic = std::abs(sum) / std::sqrt(static_cast<double>(bits.size()));
+
+  RandomTestResult result;
+  result.generatorName = generatorName;
+  result.testName = "monobit_frequency";
+  result.statistic = statistic;
+  result.limit = RANDOMNESS_Z_CRITICAL;
+  result.passed = statistic < result.limit;
+
   return result;
 }
 
 /**
- * @brief Записывает товары в текстовый файл.
- * @param filename Имя файла для записи.
- * @param products Массив товаров.
+ * @brief Выполняет тест серий NIST.
+ * @param generatorName Название генератора.
+ * @param bits Массив битов.
+ * @return Результат теста.
  */
-void writeProductsToFile(std::string filename, std::vector<Product>& products){
-  std::ofstream file(filename);
-  for (std::size_t i = 0; i < products.size(); i++){
-    file << products[i].name << " " << products[i].country << " " << products[i].volume << " " << products[i].rubles << "\n";
-  }
-  file.close();
-}
+RandomTestResult runsTest(std::string generatorName, const std::vector<int>& bits) {
+  int ones = 0;
 
-/**
- * @brief Генерирует случайные товары и записывает их в файл.
- * @param filename Имя файла для записи.
- * @param count Количество генерируемых записей.
- */
-void generateProductsToFile(std::string filename, int count){
-  std::ofstream file(filename);
-  std::vector<std::string> names = {"Coal", "Gas", "Oil", "Wood"};
-  std::vector<std::string> countries = {"China", "Turkey", "Armenia", "Belarus"};
-  for (int i = 0; i < count; i++){
-    std::string name = names[std::rand() % names.size()];
-    std::string country = countries[std::rand() % countries.size()];
-    int volume = std::rand() % 1000 + 100;
-    double rubles = std::rand() % 516600 + 1000;
-    file << name << " "
-    << country << " "
-    << volume << " "
-    << rubles << "\n";
-  }
-}
-
-/**
- * @brief Читает товары из текстового файла.
- * @param filename Имя файла для чтения.
- * @return Массив товаров из файла.
- */
-std::vector<Product> readProductsFromFile(std::string filename){
-  std::vector<Product> products;
-  std::ifstream file(filename);
-
-  Product product;
-  while(file >> product.name >> product.country >> product.volume >> product.rubles){
-    products.push_back(product);
-  }
-  return products;
-}
-
-/**
- * @brief Выводит список товаров в консоль.
- * @param products Массив товаров для вывода.
- */
-void printProducts(std::vector<Product>& products) {
-  for (std::size_t i = 0; i < products.size(); i++){
-    printProduct(products[i]);
-  }
-}
-
-/**
- * @brief Вычисляет хеш для строкового ключа.
- * @param key Строковый ключ.
- * @param tableSize Размер хеш-таблицы.
- * @return Индекс корзины в хеш-таблице.
- */
-std::size_t hashFunction(std::string key, std::size_t tableSize){
-  std::size_t hash = 0;
-
-  for (std::size_t i = 0; i < key.size(); i++){
-    hash = hash + key[i];
-  }
-
-  return hash % tableSize;
-}
-
-
-/**
- * @brief Вставляет товар в хеш-таблицу с разрешением коллизий цепочками.
- * @param table Хеш-таблица.
- * @param product Вставляемый товар.
- * @return true, если вставка попала в уже занятую корзину.
- */
-bool insertHashTable(std::vector<std::vector<HashEntry>>& table, Product& product) {
-  std::size_t index = hashFunction(product.name, table.size());
-  bool hasCollision = table[index].size() > 0;
-
-  for (std::size_t i = 0; i < table[index].size(); i++) {
-    if (table[index][i].key == product.name) {
-      table[index][i].products.push_back(product);
-      return hasCollision;
+  for (std::size_t i = 0; i < bits.size(); i++) {
+    if (bits[i] == 1) {
+      ones++;
     }
   }
 
-  HashEntry entry;
-  entry.key = product.name;
-  entry.products.push_back(product);
+  double proportion = static_cast<double>(ones) / bits.size();
+  int runs = 1;
 
-  table[index].push_back(entry);
-
-  return hasCollision;
-}
-
-
-/**
- * @brief Строит хеш-таблицу по массиву товаров.
- * @param products Массив товаров.
- * @param tableSize Размер хеш-таблицы.
- * @param collisions Счетчик коллизий хеш-функции.
- * @return Построенная хеш-таблица.
- */
-std::vector<std::vector<HashEntry>> buildHashTable(std::vector<Product>& products, std::size_t tableSize, int& collisions){
-  std::vector<std::vector<HashEntry>> table(tableSize);
-  collisions = 0;
-
-  for (std::size_t i = 0; i < products.size(); i++){
-    bool hasCollision = insertHashTable(table, products[i]);
-
-    if (hasCollision){
-      collisions++;
+  for (std::size_t i = 1; i < bits.size(); i++) {
+    if (bits[i] != bits[i - 1]) {
+      runs++;
     }
   }
 
-  return table;
-}
+  double expected = 2.0 * bits.size() * proportion * (1.0 - proportion);
+  double dispersion = 2.0 * bits.size() * proportion * (1.0 - proportion)
+      * (2.0 * bits.size() * proportion * (1.0 - proportion) - 1.0)
+      / (bits.size() - 1.0);
+  double statistic = std::abs(runs - expected) / std::sqrt(dispersion);
 
-/**
- * @brief Ищет все товары с заданным ключом в хеш-таблице.
- * @param table Хеш-таблица.
- * @param key Искомое наименование товара.
- * @return Массив найденных товаров.
- */
-std::vector<Product> searchHashTable(std::vector<std::vector<HashEntry>>& table, std::string key){
-  std::size_t index = hashFunction(key, table.size());
-
-  for (std::size_t i = 0; i < table[index].size(); i++){
-    if (table[index][i].key == key){
-      return table[index][i].products;
-    }
-  }
-
-  return std::vector<Product>();
-}
-
-/**
- * @brief Строит ассоциативный массив multimap по массиву товаров.
- * @param products Массив товаров.
- * @return Ассоциативный массив, где ключом является наименование товара.
- */
-std::multimap<std::string, Product> buildMap(std::vector<Product>& products){
-  std::multimap<std::string, Product> map;
-
-  for (std::size_t i = 0; i < products.size(); i++){
-    map.insert(std::make_pair(products[i].name, products[i]));
-  }
-
-  return map;
-}
-
-/**
- * @brief Ищет все товары с заданным ключом в multimap.
- * @param map Ассоциативный массив товаров.
- * @param key Искомое наименование товара.
- * @return Массив найденных товаров.
- */
-std::vector<Product> searchMap(std::multimap<std::string, Product>& map, std::string key){
-  std::vector<Product> result;
-
-  auto range = map.equal_range(key);
-
-  for (auto it = range.first; it != range.second; it++){
-    result.push_back(it->second);
-  }
+  RandomTestResult result;
+  result.generatorName = generatorName;
+  result.testName = "runs";
+  result.statistic = statistic;
+  result.limit = RANDOMNESS_Z_CRITICAL;
+  result.passed = statistic < result.limit;
 
   return result;
-
 }
 
 /**
- * @brief Создает узел красно-черного дерева.
- * @param product Товар, который будет сохранен в новом узле.
- * @return Указатель на созданный узел.
+ * @brief Выполняет блочный частотный тест NIST.
+ * @param generatorName Название генератора.
+ * @param bits Массив битов.
+ * @param blockSize Размер блока.
+ * @return Результат теста.
  */
-RBNode* createRBNode(Product& product) {
-  RBNode* node = new RBNode();
+RandomTestResult blockFrequencyTest(std::string generatorName, const std::vector<int>& bits, int blockSize) {
+  int blockCount = static_cast<int>(bits.size()) / blockSize;
+  double chiSquare = 0.0;
 
-  node->key = product.name;
-  node->products.push_back(product);
+  for (int block = 0; block < blockCount; block++) {
+    int ones = 0;
 
-  node->left = nullptr;
-  node->right = nullptr;
-  node->parent = nullptr;
+    for (int i = 0; i < blockSize; i++) {
+      ones += bits[block * blockSize + i];
+    }
 
-  node->red = true;
+    double proportion = static_cast<double>(ones) / blockSize;
+    double difference = proportion - 0.5;
+    chiSquare += 4.0 * blockSize * difference * difference;
+  }
 
-  return node;
+  double expected = blockCount;
+  double deviation = std::sqrt(2.0 * blockCount);
+  double statistic = std::abs(chiSquare - expected) / deviation;
+
+  RandomTestResult result;
+  result.generatorName = generatorName;
+  result.testName = "block_frequency";
+  result.statistic = statistic;
+  result.limit = RANDOMNESS_Z_CRITICAL;
+  result.passed = statistic < result.limit;
+
+  return result;
 }
 
 /**
- * @brief Рекурсивно вставляет товар в обычное бинарное дерево на узлах RBNode.
- * @param root Корень дерева.
- * @param product Вставляемый товар.
- * @return Корень дерева после вставки.
+ * @brief Выполняет serial test для пар битов.
+ * @param generatorName Название генератора.
+ * @param bits Массив битов.
+ * @return Результат теста.
  */
-RBNode* insertRBNode(RBNode* root, Product& product) {
-  if (root == nullptr) {
-    return createRBNode(product);
+RandomTestResult serialTest(std::string generatorName, const std::vector<int>& bits) {
+  std::vector<int> frequencies(4, 0);
+
+  for (std::size_t i = 1; i < bits.size(); i++) {
+    int value = bits[i - 1] * 2 + bits[i];
+    frequencies[value]++;
   }
 
-  if (product.name == root->key) {
-    root->products.push_back(product);
-  } else if (product.name < root->key) {
-    root->left = insertRBNode(root->left, product);
-    root->left->parent = root;
-  } else {
-    root->right = insertRBNode(root->right, product);
-    root->right->parent = root;
+  double expected = static_cast<double>(bits.size() - 1) / 4.0;
+  double chiSquare = 0.0;
+
+  for (int i = 0; i < 4; i++) {
+    double difference = frequencies[i] - expected;
+    chiSquare += difference * difference / expected;
   }
 
-  return root;
-}
+  RandomTestResult result;
+  result.generatorName = generatorName;
+  result.testName = "serial";
+  result.statistic = chiSquare;
+  result.limit = 7.815;
+  result.passed = chiSquare < result.limit;
 
-void insertRBTree(RBNode*& root, Product& product);
-
-/**
- * @brief Строит красно-черное дерево по массиву товаров.
- * @param products Массив товаров.
- * @return Корень построенного красно-черного дерева.
- */
-RBNode* buildRBTree(std::vector<Product>& products) {
-  RBNode* root = nullptr;
-
-  for (std::size_t i = 0; i < products.size(); i++) {
-    insertRBTree(root, products[i]);
-  }
-
-  return root;
+  return result;
 }
 
 /**
- * @brief Ищет все товары с заданным ключом в красно-черном дереве.
- * @param root Корень красно-черного дерева.
- * @param key Искомое наименование товара.
- * @return Массив найденных товаров.
+ * @brief Выполняет NIST-тест максимальной длины серии единиц в блоке.
+ * @param generatorName Название генератора.
+ * @param bits Массив битов.
+ * @return Результат теста.
  */
-std::vector<Product> searchRBTree(RBNode* root, std::string key) {
-  if (root == nullptr) {
-    return std::vector<Product>();
-  }
+RandomTestResult longestRunOfOnesTest(std::string generatorName, const std::vector<int>& bits) {
+  const int blockSize = 128;
+  const int categoryCount = 6;
+  int blockCount = static_cast<int>(bits.size()) / blockSize;
+  std::vector<int> frequencies(categoryCount, 0);
+  std::vector<double> probabilities = {
+    0.1174035788,
+    0.2429559590,
+    0.2493634830,
+    0.1751770600,
+    0.1027010710,
+    0.1123988470
+  };
 
-  if (key == root->key) {
-    return root->products;
-  }
+  for (int block = 0; block < blockCount; block++) {
+    int longestRun = 0;
+    int currentRun = 0;
 
-  if (key < root->key) {
-    return searchRBTree(root->left, key);
-  }
-
-  return searchRBTree(root->right, key);
-}
-
-/**
- * @brief Выполняет левый поворот в красно-черном дереве.
- * @param root Корень дерева.
- * @param x Узел, вокруг которого выполняется поворот.
- */
-void rotateLeft(RBNode*& root, RBNode* x) {
-  RBNode* y = x->right;
-
-  x->right = y->left;
-
-  if (y->left != nullptr) {
-    y->left->parent = x;
-  }
-
-  y->parent = x->parent;
-
-  if (x->parent == nullptr) {
-    root = y;
-  } else if (x == x->parent->left) {
-    x->parent->left = y;
-  } else {
-    x->parent->right = y;
-  }
-
-  y->left = x;
-  x->parent = y;
-}
-
-/**
- * @brief Выполняет правый поворот в красно-черном дереве.
- * @param root Корень дерева.
- * @param x Узел, вокруг которого выполняется поворот.
- */
-void rotateRight(RBNode*& root, RBNode* x) {
-  RBNode* y = x->left;
-
-  x->left = y->right;
-
-  if (y->right != nullptr) {
-    y->right->parent = x;
-  }
-
-  y->parent = x->parent;
-
-  if (x->parent == nullptr) {
-    root = y;
-  } else if (x == x->parent->right) {
-    x->parent->right = y;
-  } else {
-    x->parent->left = y;
-  }
-
-  y->right = x;
-  x->parent = y;
-}
-
-/**
- * @brief Восстанавливает свойства красно-черного дерева после вставки.
- * @param root Корень дерева.
- * @param node Вставленный узел.
- */
-void fixRBInsert(RBNode*& root, RBNode* node) {
-  while (node != root && node->parent->red) {
-    RBNode* parent = node->parent;
-    RBNode* grandparent = parent->parent;
-
-    if (parent == grandparent->left) {
-      RBNode* uncle = grandparent->right;
-
-      if (uncle != nullptr && uncle->red) {
-        parent->red = false;
-        uncle->red = false;
-        grandparent->red = true;
-        node = grandparent;
+    for (int i = 0; i < blockSize; i++) {
+      if (bits[block * blockSize + i] == 1) {
+        currentRun++;
+        longestRun = std::max(longestRun, currentRun);
       } else {
-        if (node == parent->right) {
-          node = parent;
-          rotateLeft(root, node);
-          parent = node->parent;
-          grandparent = parent->parent;
-        }
-
-        parent->red = false;
-        grandparent->red = true;
-        rotateRight(root, grandparent);
-      }
-    } else {
-      RBNode* uncle = grandparent->left;
-
-      if (uncle != nullptr && uncle->red) {
-        parent->red = false;
-        uncle->red = false;
-        grandparent->red = true;
-        node = grandparent;
-      } else {
-        if (node == parent->left) {
-          node = parent;
-          rotateRight(root, node);
-          parent = node->parent;
-          grandparent = parent->parent;
-        }
-
-        parent->red = false;
-        grandparent->red = true;
-        rotateLeft(root, grandparent);
+        currentRun = 0;
       }
     }
+
+    if (longestRun <= 4) {
+      frequencies[0]++;
+    } else if (longestRun == 5) {
+      frequencies[1]++;
+    } else if (longestRun == 6) {
+      frequencies[2]++;
+    } else if (longestRun == 7) {
+      frequencies[3]++;
+    } else if (longestRun == 8) {
+      frequencies[4]++;
+    } else {
+      frequencies[5]++;
+    }
   }
 
-  root->red = false;
+  double chiSquare = 0.0;
+
+  for (int i = 0; i < categoryCount; i++) {
+    double expected = blockCount * probabilities[i];
+    double difference = frequencies[i] - expected;
+    chiSquare += difference * difference / expected;
+  }
+
+  RandomTestResult result;
+  result.generatorName = generatorName;
+  result.testName = "longest_run_of_ones";
+  result.statistic = chiSquare;
+  result.limit = 11.070;
+  result.passed = chiSquare < result.limit;
+
+  return result;
 }
 
 /**
- * @brief Вставляет товар в красно-черное дерево.
- * @param root Корень дерева.
- * @param product Вставляемый товар.
+ * @brief Выполняет набор тестов NIST/Diehard-like для генератора.
+ * @param generatorName Название генератора.
+ * @param generator Генератор псевдослучайных чисел.
+ * @return Массив результатов тестов.
  */
-void insertRBTree(RBNode*& root, Product& product) {
-  RBNode* parent = nullptr;
-  RBNode* current = root;
+template <typename Generator>
+std::vector<RandomTestResult> runRandomTests(std::string generatorName, Generator& generator) {
+  std::vector<int> bits = generateBits(generator, 100000);
+  std::vector<RandomTestResult> results;
 
-  while (current != nullptr) {
-    parent = current;
+  results.push_back(monobitTest(generatorName, bits));
+  results.push_back(runsTest(generatorName, bits));
+  results.push_back(blockFrequencyTest(generatorName, bits, 1000));
+  results.push_back(serialTest(generatorName, bits));
+  results.push_back(longestRunOfOnesTest(generatorName, bits));
 
-    if (product.name == current->key) {
-      current->products.push_back(product);
-      return;
-    }
+  return results;
+}
 
-    if (product.name < current->key) {
-      current = current->left;
-    } else {
-      current = current->right;
+/**
+ * @brief Записывает статистику выборок в файл.
+ * @param stats Массив статистик.
+ */
+void writeSampleStats(const std::vector<SampleStats>& stats) {
+  std::ofstream file("data/sample_stats.txt");
+  file << "generator sample mean deviation variation uniform_chi uniform_ok random_chi random_ok\n";
+  file << std::fixed << std::setprecision(6);
+
+  for (std::size_t i = 0; i < stats.size(); i++) {
+    file << stats[i].generatorName << " "
+         << stats[i].sampleNumber << " "
+         << stats[i].mean << " "
+         << stats[i].deviation << " "
+         << stats[i].variation << " "
+         << stats[i].uniformChiSquare << " "
+         << (stats[i].uniformAccepted ? "yes" : "no") << " "
+         << stats[i].randomChiSquare << " "
+         << (stats[i].randomAccepted ? "yes" : "no") << "\n";
+  }
+}
+
+/**
+ * @brief Записывает результаты тестов случайности в файл.
+ * @param results Массив результатов.
+ */
+void writeRandomTests(const std::vector<RandomTestResult>& results) {
+  std::ofstream file("data/random_tests.txt");
+  file << "generator test statistic limit passed\n";
+  file << std::fixed << std::setprecision(6);
+
+  for (std::size_t i = 0; i < results.size(); i++) {
+    file << results[i].generatorName << " "
+         << results[i].testName << " "
+         << results[i].statistic << " "
+         << results[i].limit << " "
+         << (results[i].passed ? "yes" : "no") << "\n";
+  }
+}
+
+/**
+ * @brief Измеряет время генерации чисел.
+ * @param generator Генератор псевдослучайных чисел.
+ * @param size Количество чисел.
+ * @return Время генерации в наносекундах.
+ */
+template <typename Generator>
+auto measureGenerationTime(Generator& generator, int size) {
+  volatile uint32_t sink = 0;
+  auto start = std::chrono::high_resolution_clock::now();
+
+  for (int i = 0; i < size; i++) {
+    sink ^= generator.next();
+  }
+
+  auto end = std::chrono::high_resolution_clock::now();
+  return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+}
+
+/**
+ * @brief Выполняет замеры скорости генераторов.
+ */
+void measureAllGenerators() {
+  std::vector<int> sizes = {
+    1000, 5000, 10000, 50000, 100000, 250000, 500000, 1000000
+  };
+
+  std::ofstream file("data/generation_times.txt");
+  file << "generator size nanoseconds\n";
+
+  for (std::size_t i = 0; i < sizes.size(); i++) {
+    int size = sizes[i];
+
+    MixedLCG lcg(101u);
+    XorshiftWeyl xorshift(202u);
+    LaggedFibonacci fibonacci(303u);
+    StandardGenerator standard(404u);
+
+    auto lcgTime = measureGenerationTime(lcg, size * TIME_REPEAT_COUNT) / TIME_REPEAT_COUNT;
+    auto xorshiftTime = measureGenerationTime(xorshift, size * TIME_REPEAT_COUNT) / TIME_REPEAT_COUNT;
+    auto fibonacciTime = measureGenerationTime(fibonacci, size * TIME_REPEAT_COUNT) / TIME_REPEAT_COUNT;
+    auto standardTime = measureGenerationTime(standard, size * TIME_REPEAT_COUNT) / TIME_REPEAT_COUNT;
+
+    file << "mixed_lcg" << " " << size << " " << lcgTime << "\n";
+    file << "xorshift_weyl" << " " << size << " " << xorshiftTime << "\n";
+    file << "lagged_fibonacci" << " " << size << " " << fibonacciTime << "\n";
+    file << "std_mt19937" << " " << size << " " << standardTime << "\n";
+  }
+}
+
+/**
+ * @brief Выводит краткий итог по выборкам одного генератора.
+ * @param stats Статистика всех выборок.
+ * @param generatorName Название генератора.
+ */
+void printGeneratorSummary(const std::vector<SampleStats>& stats, std::string generatorName) {
+  int uniformPassed = 0;
+  int randomPassed = 0;
+
+  for (std::size_t i = 0; i < stats.size(); i++) {
+    if (stats[i].generatorName == generatorName) {
+      if (stats[i].uniformAccepted) {
+        uniformPassed++;
+      }
+
+      if (stats[i].randomAccepted) {
+        randomPassed++;
+      }
     }
   }
 
-  RBNode* newNode = createRBNode(product);
-  newNode->parent = parent;
-
-  if (parent == nullptr) {
-    root = newNode;
-  } else if (product.name < parent->key) {
-    parent->left = newNode;
-  } else {
-    parent->right = newNode;
-  }
-
-  fixRBInsert(root, newNode);
+  std::cout << generatorName << ": uniform "
+            << uniformPassed << "/" << SAMPLE_COUNT
+            << ", random "
+            << randomPassed << "/" << SAMPLE_COUNT << "\n";
 }
 
 /**
  * @brief Точка входа программы.
  *
- * Генерирует входные данные разных размерностей, выполняет поиск
- * заданного ключа всеми методами, записывает времена поиска и число
- * коллизий хеш-функции в файл data/search_times.txt.
+ * Генерирует по 20 выборок тремя методами ГПСЧ, считает статистики,
+ * проверяет равномерность и случайность критерием Хи-квадрат, выполняет
+ * пять тестов NIST/Diehard-like и замеряет скорость генерации.
  *
  * @return Код завершения программы.
  */
 int main() {
+  std::vector<SampleStats> allStats;
+  std::vector<RandomTestResult> allRandomTests;
 
-  std::vector<int> sizes = {
-    100, 500, 1000, 5000, 10000,
-    50000, 100000, 250000, 500000, 1000000
-  };
-   
-   std::srand(1);
+  for (int sampleNumber = 1; sampleNumber <= SAMPLE_COUNT; sampleNumber++) {
+    MixedLCG lcg(1000u + sampleNumber);
+    XorshiftWeyl xorshift(2000u + sampleNumber);
+    LaggedFibonacci fibonacci(3000u + sampleNumber);
 
-   std::ofstream timeFile("data/search_times.txt");
-   timeFile << "size linear tree hash multimap red_black collisions\n";
+    std::vector<int> lcgSample = generateSample(lcg, SAMPLE_SIZE);
+    std::vector<int> xorshiftSample = generateSample(xorshift, SAMPLE_SIZE);
+    std::vector<int> fibonacciSample = generateSample(fibonacci, SAMPLE_SIZE);
 
-   for (std::size_t i = 0; i < sizes.size(); i++) {
-    int size = sizes[i];
-    
-    std::string inputFileName = "data/search_input" + std::to_string(size) + ".txt";
-    
-    generateProductsToFile(inputFileName, size);
-    std::vector<Product> products = readProductsFromFile(inputFileName);
-
-    std::string key = "Oil";
-
-    auto linearStart = std::chrono::high_resolution_clock::now();
-    std::vector<Product> linearFoundProducts = linearSearch(products, key);
-    auto linearEnd = std::chrono::high_resolution_clock::now();
-
-    auto linearTime = std::chrono::duration_cast<std::chrono::nanoseconds>(linearEnd - linearStart).count();
-
-    TreeNode* root = buildTree(products);
-
-    auto treeStart = std::chrono::high_resolution_clock::now();
-    std::vector<Product> treeFoundProducts = searchTree(root, key);
-    auto treeEnd = std::chrono::high_resolution_clock::now();
-
-    auto treeTime = std::chrono::duration_cast<std::chrono::nanoseconds>(treeEnd - treeStart).count();
-
-    int collisions = 0;
-    std::vector<std::vector<HashEntry>> hashTable = buildHashTable(products, 10, collisions);
-
-    auto hashStart = std::chrono::high_resolution_clock::now();
-    std::vector<Product> hashFoundProducts = searchHashTable(hashTable, key);
-    auto hashEnd = std::chrono::high_resolution_clock::now();
-
-    auto hashTime = std::chrono::duration_cast<std::chrono::nanoseconds>(hashEnd - hashStart).count();
-
-    std::multimap<std::string, Product> productMap = buildMap(products);
-
-    auto mapStart = std::chrono::high_resolution_clock::now();
-    std::vector<Product> mapFoundProducts = searchMap(productMap, key);
-    auto mapEnd = std::chrono::high_resolution_clock::now();
-
-    auto mapTime = std::chrono::duration_cast<std::chrono::nanoseconds>(mapEnd - mapStart).count();
-
-    RBNode* rbRoot = buildRBTree(products);
-
-    auto rbStart = std::chrono::high_resolution_clock::now();
-    std::vector<Product> rbFoundProducts = searchRBTree(rbRoot, key);
-    auto rbEnd = std::chrono::high_resolution_clock::now();
-
-    auto rbTime = std::chrono::duration_cast<std::chrono::nanoseconds>(rbEnd - rbStart).count();
-
-    timeFile << size << " "
-         << linearTime << " "
-         << treeTime << " "
-         << hashTime << " "
-         << mapTime << " "
-         << rbTime << " "
-         << collisions << "\n";
-
-    std::cout << "size: " << size << "\n";
-    std::cout << "linear: " << linearFoundProducts.size() << "\n";
-    std::cout << "linear time: " << linearTime << " nanoseconds\n";
-    std::cout << "binary tree: " << treeFoundProducts.size() << "\n";
-    std::cout << "binary tree time: " << treeTime << " nanoseconds\n";
-    std::cout << "hash table: " << hashFoundProducts.size() << "\n";
-    std::cout << "hash table time: " << hashTime << " nanoseconds\n";
-    std::cout << "hash collisions: " << collisions << "\n";
-    std::cout << "multimap: " << mapFoundProducts.size() << "\n";
-    std::cout << "multimap time: " << mapTime << " nanoseconds\n";
-    std::cout << "red-black tree: " << rbFoundProducts.size() << "\n";
-    std::cout << "red-black tree time: " << rbTime << " nanoseconds\n";
-    std::cout << "\n";  
+    allStats.push_back(calculateStats("mixed_lcg", sampleNumber, lcgSample));
+    allStats.push_back(calculateStats("xorshift_weyl", sampleNumber, xorshiftSample));
+    allStats.push_back(calculateStats("lagged_fibonacci", sampleNumber, fibonacciSample));
   }
 
-   // // generateProductsToFile("data/input_laba2.txt", 100);
-   // std::vector<Product> products = readProductsFromFile("data/input_laba2.txt");
-// 
-   // std::vector<Product> linearFoundProducts = linearSearch(products, "Oil");
-   // // std::cout << "линейный поиск count of found products is: " << linearFoundProducts.size() << "\n";
-   // // printProducts(linearFoundProducts);
-// 
-   // TreeNode* root = buildTree(products);
-   // std::vector<Product> treeFoundProducts = searchTree(root, "Oil");
-   // std::cout << "бинарное дерево count of Oil is  " << treeFoundProducts.size() << "\n";
-   // // printProducts(treeFoundProducts);
-// 
-   // // std::vector<int> sizes = {2000, 5000, 10000, 20000, 101000};
-   // // std::vector<int> sizes = {100, 500, 1000, 2000, 1010};
-   // int collisions = 0;
-   // std::vector<std::vector<HashEntry>> hashTable = buildHashTable(products, 10, collisions);
-// 
-   // std::vector<Product> hashFoundProducts = searchHashTable(hashTable, "Oil");
-   // std::cout << "хеш-таблица count of Oil is  " << hashFoundProducts.size() << "\n";
-   // // printProducts(hashFoundProducts);
-// 
-   // std::cout << "hash collisions: " << collisions << "\n"; 
-// 
-// 
-   // std::multimap<std::string, Product> productMap = buildMap(products);
-   // std::vector<Product> mapFoundProducts = searchMap(productMap, "Oil");
-   // std::cout << "multimap count of Oil is " << mapFoundProducts.size() << "\n";
-// 
-   // RBNode* rbRoot = buildRBTree(products);
-   // std::vector<Product> rbFoundProducts = searchRBTree(rbRoot, "Oil");
-   // std::cout << "красно-черное дерево count of Oil is " << rbFoundProducts.size() << "\n";
+  MixedLCG lcgForTests(12345u);
+  XorshiftWeyl xorshiftForTests(23456u);
+  LaggedFibonacci fibonacciForTests(34567u);
 
-   return 0;
+  std::vector<RandomTestResult> lcgTests = runRandomTests("mixed_lcg", lcgForTests);
+  std::vector<RandomTestResult> xorshiftTests = runRandomTests("xorshift_weyl", xorshiftForTests);
+  std::vector<RandomTestResult> fibonacciTests = runRandomTests("lagged_fibonacci", fibonacciForTests);
+
+  allRandomTests.insert(allRandomTests.end(), lcgTests.begin(), lcgTests.end());
+  allRandomTests.insert(allRandomTests.end(), xorshiftTests.begin(), xorshiftTests.end());
+  allRandomTests.insert(allRandomTests.end(), fibonacciTests.begin(), fibonacciTests.end());
+
+  writeSampleStats(allStats);
+  writeRandomTests(allRandomTests);
+  measureAllGenerators();
+
+  printGeneratorSummary(allStats, "mixed_lcg");
+  printGeneratorSummary(allStats, "xorshift_weyl");
+  printGeneratorSummary(allStats, "lagged_fibonacci");
+
+  std::cout << "results saved to data/sample_stats.txt, data/random_tests.txt, data/generation_times.txt\n";
+
+  return 0;
 }
