@@ -1,344 +1,284 @@
 \doxysection{Файл src/\+main.cpp}
 \hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$cmath$>$}\newline
+{\ttfamily \+\#include $<$cstdint$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
 {\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$random$>$}\newline
 {\ttfamily \+\#include $<$string$>$}\newline
 {\ttfamily \+\#include $<$vector$>$}\newline
-{\ttfamily \+\#include $<$algorithm$>$}\newline
-{\ttfamily \+\#include $<$fstream$>$}\newline
-{\ttfamily \+\#include $<$chrono$>$}\newline
-{\ttfamily \+\#include $<$cstdlib$>$}\newline
-{\ttfamily \+\#include $<$map$>$}\newline
 \doxysubsubsection*{Классы}
 \begin{DoxyCompactItemize}
 \item 
-struct \doxymbox{\hyperlink{struct_product}{Product}}
-\begin{DoxyCompactList}\small\item\em Запись об экспортируемом товаре. \end{DoxyCompactList}\item 
-struct \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}}
-\begin{DoxyCompactList}\small\item\em Элемент хеш-\/таблицы для одного ключа. \end{DoxyCompactList}\item 
-struct \doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}}
-\begin{DoxyCompactList}\small\item\em Узел бинарного дерева поиска. \end{DoxyCompactList}\item 
-struct \doxymbox{\hyperlink{struct_r_b_node}{RBNode}}
-\begin{DoxyCompactList}\small\item\em Узел красно-\/черного дерева. \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}}
+\begin{DoxyCompactList}\small\item\em Статистика одной выборки. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}}
+\begin{DoxyCompactList}\small\item\em Результат одного теста случайности. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_mixed_l_c_g}{Mixed\+LCG}}
+\begin{DoxyCompactList}\small\item\em Генератор LCG с дополнительным перемешиванием битов. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_xorshift_weyl}{Xorshift\+Weyl}}
+\begin{DoxyCompactList}\small\item\em Генератор Xorshift с последовательностью Вейля. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_lagged_fibonacci}{Lagged\+Fibonacci}}
+\begin{DoxyCompactList}\small\item\em Аддитивный генератор Фибоначчи с запаздываниями 24 и 55. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_standard_generator}{Standard\+Generator}}
+\begin{DoxyCompactList}\small\item\em Обертка над стандартным генератором языка C++. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Функции}
 \begin{DoxyCompactItemize}
 \item 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b}{create\+Tree\+Node}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Создает узел бинарного дерева поиска. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3}{insert\+Tree\+Node}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Вставляет товар в бинарное дерево поиска. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a344f9229e353ec41e435d3216945a193}{build\+Tree}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
-\begin{DoxyCompactList}\small\item\em Строит бинарное дерево поиска по массиву товаров. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be}{search\+Tree}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root, std::\+string key)
-\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в бинарном дереве поиска. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}{print\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Выводит один товар в консоль. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9}{linear\+Search}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, std::\+string key)
-\begin{DoxyCompactList}\small\item\em Выполняет линейный поиск всех товаров по названию. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}{write\+Products\+To\+File}} (std::\+string filename, std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
-\begin{DoxyCompactList}\small\item\em Записывает товары в текстовый файл. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}{generate\+Products\+To\+File}} (std::\+string filename, int count)
-\begin{DoxyCompactList}\small\item\em Генерирует случайные товары и записывает их в файл. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a9760d0da4c935c890724ae5441753350}{read\+Products\+From\+File}} (std::\+string filename)
-\begin{DoxyCompactList}\small\item\em Читает товары из текстового файла. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}{print\+Products}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
-\begin{DoxyCompactList}\small\item\em Выводит список товаров в консоль. \end{DoxyCompactList}\item 
-std::\+size\+\_\+t \doxymbox{\hyperlink{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b}{hash\+Function}} (std::\+string key, std::\+size\+\_\+t table\+Size)
-\begin{DoxyCompactList}\small\item\em Вычисляет хеш для строкового ключа. \end{DoxyCompactList}\item 
-bool \doxymbox{\hyperlink{main_8cpp_ae384fc86968907593480ae9a32d451b4}{insert\+Hash\+Table}} (std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&table, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Вставляет товар в хеш-\/таблицу с разрешением коллизий цепочками. \end{DoxyCompactList}\item 
-std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \doxymbox{\hyperlink{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b}{build\+Hash\+Table}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, std::\+size\+\_\+t table\+Size, int \&collisions)
-\begin{DoxyCompactList}\small\item\em Строит хеш-\/таблицу по массиву товаров. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6}{search\+Hash\+Table}} (std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&table, std::\+string key)
-\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в хеш-\/таблице. \end{DoxyCompactList}\item 
-std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c}{build\+Map}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
-\begin{DoxyCompactList}\small\item\em Строит ассоциативный массив multimap по массиву товаров. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063}{search\+Map}} (std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&map, std::\+string key)
-\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в multimap. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a4c213d26720e97287c08daf02d7575a0}{create\+RBNode}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Создает узел красно-\/черного дерева. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e}{insert\+RBNode}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Рекурсивно вставляет товар в обычное бинарное дерево на узлах \doxylink{struct_r_b_node}{RBNode}. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2}{insert\+RBTree}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_product}{Product}} \&product)
-\begin{DoxyCompactList}\small\item\em Вставляет товар в красно-\/черное дерево. \end{DoxyCompactList}\item 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{main_8cpp_a854271a6e3bd5adbf4414adc72da7514}{build\+RBTree}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
-\begin{DoxyCompactList}\small\item\em Строит красно-\/черное дерево по массиву товаров. \end{DoxyCompactList}\item 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb}{search\+RBTree}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}root, std::\+string key)
-\begin{DoxyCompactList}\small\item\em Ищет все товары с заданным ключом в красно-\/черном дереве. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6}{rotate\+Left}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}x)
-\begin{DoxyCompactList}\small\item\em Выполняет левый поворот в красно-\/черном дереве. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908}{rotate\+Right}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}x)
-\begin{DoxyCompactList}\small\item\em Выполняет правый поворот в красно-\/черном дереве. \end{DoxyCompactList}\item 
-void \doxymbox{\hyperlink{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74}{fix\+RBInsert}} (\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&root, \doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}node)
-\begin{DoxyCompactList}\small\item\em Восстанавливает свойства красно-\/черного дерева после вставки. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{main_8cpp_a26e286c80189e11d7571be5907e348dc}{to\+Range}} (uint32\+\_\+t value, int min\+Value, int max\+Value)
+\begin{DoxyCompactList}\small\item\em Возвращает число из заданного диапазона. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Generator$>$ }\\std::\+vector$<$ int $>$ \doxymbox{\hyperlink{main_8cpp_a1b9258707dc972418b68703ba3a974f6}{generate\+Sample}} (Generator \&generator, int size)
+\begin{DoxyCompactList}\small\item\em Формирует выборку заданного размера. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8cpp_ab4a18560cce6ef1776dd7bf756c1bd4c}{calculate\+Mean}} (const std::\+vector$<$ int $>$ \&sample)
+\begin{DoxyCompactList}\small\item\em Вычисляет среднее значение выборки. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8cpp_a18c2828d05d127dccbfbccfc507be134}{calculate\+Deviation}} (const std::\+vector$<$ int $>$ \&sample, double mean)
+\begin{DoxyCompactList}\small\item\em Вычисляет среднеквадратичное отклонение. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8cpp_a047bbab6dc807157c68ae162f4e2ba8f}{chi\+Square\+Uniformity}} (const std::\+vector$<$ int $>$ \&sample, int bins)
+\begin{DoxyCompactList}\small\item\em Проверяет равномерность распределения по критерию Хи-\/квадрат. \end{DoxyCompactList}\item 
+double \doxymbox{\hyperlink{main_8cpp_a247f8d2577ee2535eeeebda9d51ed798}{chi\+Square\+Randomness}} (const std::\+vector$<$ int $>$ \&sample, int bins)
+\begin{DoxyCompactList}\small\item\em Проверяет частоту пар соседних значений по критерию Хи-\/квадрат. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} \doxymbox{\hyperlink{main_8cpp_ae9238f3c28c1dfbc6ba12ce24897ca44}{calculate\+Stats}} (std::\+string generator\+Name, int sample\+Number, const std::\+vector$<$ int $>$ \&sample)
+\begin{DoxyCompactList}\small\item\em Собирает статистику по выборке. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Generator$>$ }\\std::\+vector$<$ int $>$ \doxymbox{\hyperlink{main_8cpp_a071efc959d94a287ea949cf2959f2fe2}{generate\+Bits}} (Generator \&generator, int bit\+Count)
+\begin{DoxyCompactList}\small\item\em Преобразует поток чисел генератора в поток битов. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} \doxymbox{\hyperlink{main_8cpp_ab9b4aca64e46574d74e138f2a0ea6e72}{monobit\+Test}} (std::\+string generator\+Name, const std::\+vector$<$ int $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em Выполняет частотный тест NIST. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} \doxymbox{\hyperlink{main_8cpp_a6a225b16217da70acd1c32ed0bcd01e3}{runs\+Test}} (std::\+string generator\+Name, const std::\+vector$<$ int $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em Выполняет тест серий NIST. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} \doxymbox{\hyperlink{main_8cpp_a317717ad2f153ab2d432863a093e994c}{block\+Frequency\+Test}} (std::\+string generator\+Name, const std::\+vector$<$ int $>$ \&bits, int block\+Size)
+\begin{DoxyCompactList}\small\item\em Выполняет блочный частотный тест NIST. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} \doxymbox{\hyperlink{main_8cpp_adb50595071d7d54937a96bf61b6e737c}{serial\+Test}} (std::\+string generator\+Name, const std::\+vector$<$ int $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em Выполняет serial test для пар битов. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} \doxymbox{\hyperlink{main_8cpp_ac35d5f881e0075061cb9897e0af23aa0}{longest\+Run\+Of\+Ones\+Test}} (std::\+string generator\+Name, const std::\+vector$<$ int $>$ \&bits)
+\begin{DoxyCompactList}\small\item\em Выполняет NIST-\/тест максимальной длины серии единиц в блоке. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Generator$>$ }\\std::\+vector$<$ \doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} $>$ \doxymbox{\hyperlink{main_8cpp_a741286ccfc1ad9ab856e75e6a567662b}{run\+Random\+Tests}} (std::\+string generator\+Name, Generator \&generator)
+\begin{DoxyCompactList}\small\item\em Выполняет набор тестов NIST/\+\+Diehard-\/like для генератора. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_aff5904236f0cf0c13b9ef1528f4372b4}{write\+Sample\+Stats}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} $>$ \&stats)
+\begin{DoxyCompactList}\small\item\em Записывает статистику выборок в файл. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a13bf683da46123c2106d50e984fa165e}{write\+Random\+Tests}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} $>$ \&results)
+\begin{DoxyCompactList}\small\item\em Записывает результаты тестов случайности в файл. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Generator$>$ }\\auto \doxymbox{\hyperlink{main_8cpp_a17b8f38a1fa5aedc76f493220334af1d}{measure\+Generation\+Time}} (Generator \&generator, int size)
+\begin{DoxyCompactList}\small\item\em Измеряет время генерации чисел. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a8cd02c6ba4cda91e7d3e9b791ba2b2e7}{measure\+All\+Generators}} ()
+\begin{DoxyCompactList}\small\item\em Выполняет замеры скорости генераторов. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{main_8cpp_a82c1f5767622649da551d68b6b95875d}{print\+Generator\+Summary}} (const std::\+vector$<$ \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} $>$ \&stats, std::\+string generator\+Name)
+\begin{DoxyCompactList}\small\item\em Выводит краткий итог по выборкам одного генератора. \end{DoxyCompactList}\item 
 int \doxymbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \begin{DoxyCompactList}\small\item\em Точка входа программы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Переменные}
+\begin{DoxyCompactItemize}
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_a191736070a43725b355e77d1f5aca17c}{SAMPLE\+\_\+\+COUNT}} = 20
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}{SAMPLE\+\_\+\+SIZE}} = 1000
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_af9a21ad1eb2b0ff8f4f307687ef650ce}{MIN\+\_\+\+VALUE}} = 0
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_ac7e2839c2be6cbf646ff5ede1d2ec5d3}{MAX\+\_\+\+VALUE}} = 9999
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_ace228de3e37f3b55d995df8b07b72ed8}{UNIFORM\+\_\+\+BINS}} = 20
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_a2a3cab95a99130416b061a114b2dbc93}{INDEPENDENCE\+\_\+\+BINS}} = 10
+\item 
+const int \doxymbox{\hyperlink{main_8cpp_a11c528a02a0df53162a3f00f96030289}{TIME\+\_\+\+REPEAT\+\_\+\+COUNT}} = 100
+\item 
+const double \doxymbox{\hyperlink{main_8cpp_ab17efda59834d66be1c133f52dfb6b70}{CHI\+\_\+\+SQUARE\+\_\+\+UNIFORM\+\_\+\+CRITICAL}} = 30.\+144
+\item 
+const double \doxymbox{\hyperlink{main_8cpp_a7db4efd9685444bcb5ba8acb69980541}{CHI\+\_\+\+SQUARE\+\_\+\+RANDOM\+\_\+\+CRITICAL}} = 123.\+225
+\item 
+const double \doxymbox{\hyperlink{main_8cpp_a27e0bc979a59ba140864f0c98a5b65ae}{RANDOMNESS\+\_\+\+Z\+\_\+\+CRITICAL}} = 1.\+96
+\end{DoxyCompactItemize}
 
 
 \label{main_8cpp_doc-func-members}
 \Hypertarget{main_8cpp_doc-func-members}
 \doxysubsection{Функции}
-\Hypertarget{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b}\index{main.cpp@{main.cpp}!buildHashTable@{buildHashTable}}
-\index{buildHashTable@{buildHashTable}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{buildHashTable()}{buildHashTable()}}
-{\footnotesize\ttfamily \label{main_8cpp_aac2465ac1849b08d637e153fd2b2f18b} 
-std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ build\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{std::\+size\+\_\+t}]{table\+Size}{, }\item[{int \&}]{collisions}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a317717ad2f153ab2d432863a093e994c}\index{main.cpp@{main.cpp}!blockFrequencyTest@{blockFrequencyTest}}
+\index{blockFrequencyTest@{blockFrequencyTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{blockFrequencyTest()}{blockFrequencyTest()}}
+{\footnotesize\ttfamily \label{main_8cpp_a317717ad2f153ab2d432863a093e994c} 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} block\+Frequency\+Test (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{const std::\+vector$<$ int $>$ \&}]{bits}{, }\item[{int}]{block\+Size}{}\end{DoxyParamCaption})}
 
 
 
-Строит хеш-\/таблицу по массиву товаров. 
+Выполняет блочный частотный тест NIST. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров. \\
+{\em generator\+Name} & Название генератора. \\
 \hline
-{\em table\+Size} & Размер хеш-\/таблицы. \\
+{\em bits} & Массив битов. \\
 \hline
-{\em collisions} & Счетчик коллизий хеш-\/функции. \\
+{\em block\+Size} & Размер блока. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Построенная хеш-\/таблица. 
+Результат теста. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c}\index{main.cpp@{main.cpp}!buildMap@{buildMap}}
-\index{buildMap@{buildMap}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{buildMap()}{buildMap()}}
-{\footnotesize\ttfamily \label{main_8cpp_a6f136d88d1725ec7b9df8c996624d90c} 
-std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ build\+Map (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a18c2828d05d127dccbfbccfc507be134}\index{main.cpp@{main.cpp}!calculateDeviation@{calculateDeviation}}
+\index{calculateDeviation@{calculateDeviation}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateDeviation()}{calculateDeviation()}}
+{\footnotesize\ttfamily \label{main_8cpp_a18c2828d05d127dccbfbccfc507be134} 
+double calculate\+Deviation (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{sample}{, }\item[{double}]{mean}{}\end{DoxyParamCaption})}
 
 
 
-Строит ассоциативный массив multimap по массиву товаров. 
+Вычисляет среднеквадратичное отклонение. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров. \\
+{\em sample} & Выборка чисел. \\
+\hline
+{\em mean} & Среднее значение выборки. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Ассоциативный массив, где ключом является наименование товара. 
+Среднеквадратичное отклонение. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a854271a6e3bd5adbf4414adc72da7514}\index{main.cpp@{main.cpp}!buildRBTree@{buildRBTree}}
-\index{buildRBTree@{buildRBTree}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{buildRBTree()}{buildRBTree()}}
-{\footnotesize\ttfamily \label{main_8cpp_a854271a6e3bd5adbf4414adc72da7514} 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} build\+RBTree (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_ab4a18560cce6ef1776dd7bf756c1bd4c}\index{main.cpp@{main.cpp}!calculateMean@{calculateMean}}
+\index{calculateMean@{calculateMean}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateMean()}{calculateMean()}}
+{\footnotesize\ttfamily \label{main_8cpp_ab4a18560cce6ef1776dd7bf756c1bd4c} 
+double calculate\+Mean (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{sample}{}\end{DoxyParamCaption})}
 
 
 
-Строит красно-\/черное дерево по массиву товаров. 
+Вычисляет среднее значение выборки. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров. \\
+{\em sample} & Выборка чисел. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Корень построенного красно-\/черного дерева. 
+Среднее значение. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a344f9229e353ec41e435d3216945a193}\index{main.cpp@{main.cpp}!buildTree@{buildTree}}
-\index{buildTree@{buildTree}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{buildTree()}{buildTree()}}
-{\footnotesize\ttfamily \label{main_8cpp_a344f9229e353ec41e435d3216945a193} 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} build\+Tree (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_ae9238f3c28c1dfbc6ba12ce24897ca44}\index{main.cpp@{main.cpp}!calculateStats@{calculateStats}}
+\index{calculateStats@{calculateStats}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateStats()}{calculateStats()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae9238f3c28c1dfbc6ba12ce24897ca44} 
+\doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} calculate\+Stats (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{int}]{sample\+Number}{, }\item[{const std::\+vector$<$ int $>$ \&}]{sample}{}\end{DoxyParamCaption})}
 
 
 
-Строит бинарное дерево поиска по массиву товаров. 
+Собирает статистику по выборке. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров. \\
+{\em generator\+Name} & Название генератора. \\
+\hline
+{\em sample\+Number} & Номер выборки. \\
+\hline
+{\em sample} & Выборка чисел. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Корень построенного дерева. 
+Статистика выборки. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a4c213d26720e97287c08daf02d7575a0}\index{main.cpp@{main.cpp}!createRBNode@{createRBNode}}
-\index{createRBNode@{createRBNode}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{createRBNode()}{createRBNode()}}
-{\footnotesize\ttfamily \label{main_8cpp_a4c213d26720e97287c08daf02d7575a0} 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} create\+RBNode (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a247f8d2577ee2535eeeebda9d51ed798}\index{main.cpp@{main.cpp}!chiSquareRandomness@{chiSquareRandomness}}
+\index{chiSquareRandomness@{chiSquareRandomness}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{chiSquareRandomness()}{chiSquareRandomness()}}
+{\footnotesize\ttfamily \label{main_8cpp_a247f8d2577ee2535eeeebda9d51ed798} 
+double chi\+Square\+Randomness (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{sample}{, }\item[{int}]{bins}{}\end{DoxyParamCaption})}
 
 
 
-Создает узел красно-\/черного дерева. 
+Проверяет частоту пар соседних значений по критерию Хи-\/квадрат. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em product} & Товар, который будет сохранен в новом узле. \\
+{\em sample} & Выборка чисел. \\
+\hline
+{\em bins} & Количество интервалов по каждой оси. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Указатель на созданный узел. 
+Значение статистики Хи-\/квадрат. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b}\index{main.cpp@{main.cpp}!createTreeNode@{createTreeNode}}
-\index{createTreeNode@{createTreeNode}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{createTreeNode()}{createTreeNode()}}
-{\footnotesize\ttfamily \label{main_8cpp_a8d67f64154a9744d2fcdb8e784ae370b} 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} create\+Tree\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a047bbab6dc807157c68ae162f4e2ba8f}\index{main.cpp@{main.cpp}!chiSquareUniformity@{chiSquareUniformity}}
+\index{chiSquareUniformity@{chiSquareUniformity}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{chiSquareUniformity()}{chiSquareUniformity()}}
+{\footnotesize\ttfamily \label{main_8cpp_a047bbab6dc807157c68ae162f4e2ba8f} 
+double chi\+Square\+Uniformity (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ int $>$ \&}]{sample}{, }\item[{int}]{bins}{}\end{DoxyParamCaption})}
 
 
 
-Создает узел бинарного дерева поиска. 
+Проверяет равномерность распределения по критерию Хи-\/квадрат. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em product} & Товар, который будет сохранен в новом узле. \\
+{\em sample} & Выборка чисел. \\
+\hline
+{\em bins} & Количество интервалов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Указатель на созданный узел. 
+Значение статистики Хи-\/квадрат. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74}\index{main.cpp@{main.cpp}!fixRBInsert@{fixRBInsert}}
-\index{fixRBInsert@{fixRBInsert}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{fixRBInsert()}{fixRBInsert()}}
-{\footnotesize\ttfamily \label{main_8cpp_a5c47a7211ce7659460635e35ad4b8d74} 
-void fix\+RBInsert (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a071efc959d94a287ea949cf2959f2fe2}\index{main.cpp@{main.cpp}!generateBits@{generateBits}}
+\index{generateBits@{generateBits}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateBits()}{generateBits()}}
+{\footnotesize\ttfamily \label{main_8cpp_a071efc959d94a287ea949cf2959f2fe2} 
+template$<$typename Generator$>$ \\
+std::\+vector$<$ int $>$ generate\+Bits (\begin{DoxyParamCaption}\item[{Generator \&}]{generator}{, }\item[{int}]{bit\+Count}{}\end{DoxyParamCaption})}
 
 
 
-Восстанавливает свойства красно-\/черного дерева после вставки. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
-\hline
-{\em node} & Вставленный узел. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}\index{main.cpp@{main.cpp}!generateProductsToFile@{generateProductsToFile}}
-\index{generateProductsToFile@{generateProductsToFile}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{generateProductsToFile()}{generateProductsToFile()}}
-{\footnotesize\ttfamily \label{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8} 
-void generate\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
-
-
-
-Генерирует случайные товары и записывает их в файл. 
+Преобразует поток чисел генератора в поток битов. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em filename} & Имя файла для записи. \\
+{\em generator} & Генератор псевдослучайных чисел. \\
 \hline
-{\em count} & Количество генерируемых записей. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b}\index{main.cpp@{main.cpp}!hashFunction@{hashFunction}}
-\index{hashFunction@{hashFunction}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{hashFunction()}{hashFunction()}}
-{\footnotesize\ttfamily \label{main_8cpp_abfde166f01a4b7b8ad5e9fc1b268380b} 
-std::\+size\+\_\+t hash\+Function (\begin{DoxyParamCaption}\item[{std::\+string}]{key}{, }\item[{std::\+size\+\_\+t}]{table\+Size}{}\end{DoxyParamCaption})}
-
-
-
-Вычисляет хеш для строкового ключа. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em key} & Строковый ключ. \\
-\hline
-{\em table\+Size} & Размер хеш-\/таблицы. \\
+{\em bit\+Count} & Количество битов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Индекс корзины в хеш-\/таблице. 
+Массив битов. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_ae384fc86968907593480ae9a32d451b4}\index{main.cpp@{main.cpp}!insertHashTable@{insertHashTable}}
-\index{insertHashTable@{insertHashTable}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{insertHashTable()}{insertHashTable()}}
-{\footnotesize\ttfamily \label{main_8cpp_ae384fc86968907593480ae9a32d451b4} 
-bool insert\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&}]{table}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a1b9258707dc972418b68703ba3a974f6}\index{main.cpp@{main.cpp}!generateSample@{generateSample}}
+\index{generateSample@{generateSample}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateSample()}{generateSample()}}
+{\footnotesize\ttfamily \label{main_8cpp_a1b9258707dc972418b68703ba3a974f6} 
+template$<$typename Generator$>$ \\
+std::\+vector$<$ int $>$ generate\+Sample (\begin{DoxyParamCaption}\item[{Generator \&}]{generator}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
 
 
 
-Вставляет товар в хеш-\/таблицу с разрешением коллизий цепочками. 
+Формирует выборку заданного размера. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em table} & Хеш-\/таблица. \\
+{\em generator} & Генератор псевдослучайных чисел. \\
 \hline
-{\em product} & Вставляемый товар. \\
+{\em size} & Размер выборки. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-true, если вставка попала в уже занятую корзину. 
+Массив значений выборки. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e}\index{main.cpp@{main.cpp}!insertRBNode@{insertRBNode}}
-\index{insertRBNode@{insertRBNode}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{insertRBNode()}{insertRBNode()}}
-{\footnotesize\ttfamily \label{main_8cpp_a57cfcadba881e1b3a5bcf5a39d609c2e} 
-\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*} insert\+RBNode (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_ac35d5f881e0075061cb9897e0af23aa0}\index{main.cpp@{main.cpp}!longestRunOfOnesTest@{longestRunOfOnesTest}}
+\index{longestRunOfOnesTest@{longestRunOfOnesTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{longestRunOfOnesTest()}{longestRunOfOnesTest()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac35d5f881e0075061cb9897e0af23aa0} 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} longest\+Run\+Of\+Ones\+Test (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{const std::\+vector$<$ int $>$ \&}]{bits}{}\end{DoxyParamCaption})}
 
 
 
-Рекурсивно вставляет товар в обычное бинарное дерево на узлах \doxylink{struct_r_b_node}{RBNode}. 
+Выполняет NIST-\/тест максимальной длины серии единиц в блоке. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
+{\em generator\+Name} & Название генератора. \\
 \hline
-{\em product} & Вставляемый товар. \\
+{\em bits} & Массив битов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Корень дерева после вставки. 
-\end{DoxyReturn}
-\Hypertarget{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2}\index{main.cpp@{main.cpp}!insertRBTree@{insertRBTree}}
-\index{insertRBTree@{insertRBTree}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{insertRBTree()}{insertRBTree()}}
-{\footnotesize\ttfamily \label{main_8cpp_ac6971ef9e5aef9f475f46266508db7e2} 
-void insert\+RBTree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
-
-
-
-Вставляет товар в красно-\/черное дерево. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
-\hline
-{\em product} & Вставляемый товар. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3}\index{main.cpp@{main.cpp}!insertTreeNode@{insertTreeNode}}
-\index{insertTreeNode@{insertTreeNode}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{insertTreeNode()}{insertTreeNode()}}
-{\footnotesize\ttfamily \label{main_8cpp_abaa059bf8d8b3f4d1b9077763fab63d3} 
-\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} insert\+Tree\+Node (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
-
-
-
-Вставляет товар в бинарное дерево поиска. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
-\hline
-{\em product} & Вставляемый товар. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Возвращает}
-Корень дерева после вставки. 
-\end{DoxyReturn}
-\Hypertarget{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9}\index{main.cpp@{main.cpp}!linearSearch@{linearSearch}}
-\index{linearSearch@{linearSearch}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{linearSearch()}{linearSearch()}}
-{\footnotesize\ttfamily \label{main_8cpp_ae850e24b2ccd461c5edc4c7a60a4b1c9} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ linear\+Search (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
-
-
-
-Выполняет линейный поиск всех товаров по названию. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров. \\
-\hline
-{\em key} & Искомое наименование товара. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Возвращает}
-Массив найденных товаров. 
+Результат теста. 
 \end{DoxyReturn}
 \Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
 \index{main@{main}!main.cpp@{main.cpp}}
@@ -350,187 +290,254 @@ int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 Точка входа программы. 
 
-Генерирует входные данные разных размерностей, выполняет поиск заданного ключа всеми методами, записывает времена поиска и число коллизий хеш-\/функции в файл data/\+search\+\_\+times.\+txt.
+Генерирует по 20 выборок тремя методами ГПСЧ, считает статистики, проверяет равномерность и случайность критерием Хи-\/квадрат, выполняет пять тестов NIST/\+\+Diehard-\/like и замеряет скорость генерации.
 
 \begin{DoxyReturn}{Возвращает}
 Код завершения программы. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}\index{main.cpp@{main.cpp}!printProduct@{printProduct}}
-\index{printProduct@{printProduct}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{printProduct()}{printProduct()}}
-{\footnotesize\ttfamily \label{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78} 
-void print\+Product (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a8cd02c6ba4cda91e7d3e9b791ba2b2e7}\index{main.cpp@{main.cpp}!measureAllGenerators@{measureAllGenerators}}
+\index{measureAllGenerators@{measureAllGenerators}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{measureAllGenerators()}{measureAllGenerators()}}
+{\footnotesize\ttfamily \label{main_8cpp_a8cd02c6ba4cda91e7d3e9b791ba2b2e7} 
+void measure\+All\+Generators (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 
 
 
-Выводит один товар в консоль. 
+Выполняет замеры скорости генераторов. 
+
+\Hypertarget{main_8cpp_a17b8f38a1fa5aedc76f493220334af1d}\index{main.cpp@{main.cpp}!measureGenerationTime@{measureGenerationTime}}
+\index{measureGenerationTime@{measureGenerationTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{measureGenerationTime()}{measureGenerationTime()}}
+{\footnotesize\ttfamily \label{main_8cpp_a17b8f38a1fa5aedc76f493220334af1d} 
+template$<$typename Generator$>$ \\
+auto measure\+Generation\+Time (\begin{DoxyParamCaption}\item[{Generator \&}]{generator}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Измеряет время генерации чисел. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em product} & Товар для вывода. \\
+{\em generator} & Генератор псевдослучайных чисел. \\
 \hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}\index{main.cpp@{main.cpp}!printProducts@{printProducts}}
-\index{printProducts@{printProducts}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{printProducts()}{printProducts()}}
-{\footnotesize\ttfamily \label{main_8cpp_ac2f0a2a607564436f45c2179cef5604e} 
-void print\+Products (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
-
-
-
-Выводит список товаров в консоль. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em products} & Массив товаров для вывода. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_a9760d0da4c935c890724ae5441753350}\index{main.cpp@{main.cpp}!readProductsFromFile@{readProductsFromFile}}
-\index{readProductsFromFile@{readProductsFromFile}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{readProductsFromFile()}{readProductsFromFile()}}
-{\footnotesize\ttfamily \label{main_8cpp_a9760d0da4c935c890724ae5441753350} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ read\+Products\+From\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{}\end{DoxyParamCaption})}
-
-
-
-Читает товары из текстового файла. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em filename} & Имя файла для чтения. \\
+{\em size} & Количество чисел. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Массив товаров из файла. 
+Время генерации в наносекундах. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6}\index{main.cpp@{main.cpp}!rotateLeft@{rotateLeft}}
-\index{rotateLeft@{rotateLeft}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{rotateLeft()}{rotateLeft()}}
-{\footnotesize\ttfamily \label{main_8cpp_a2d537701e6c1a21412c0199a5f083dd6} 
-void rotate\+Left (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_ab9b4aca64e46574d74e138f2a0ea6e72}\index{main.cpp@{main.cpp}!monobitTest@{monobitTest}}
+\index{monobitTest@{monobitTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{monobitTest()}{monobitTest()}}
+{\footnotesize\ttfamily \label{main_8cpp_ab9b4aca64e46574d74e138f2a0ea6e72} 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} monobit\+Test (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{const std::\+vector$<$ int $>$ \&}]{bits}{}\end{DoxyParamCaption})}
 
 
 
-Выполняет левый поворот в красно-\/черном дереве. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
-\hline
-{\em x} & Узел, вокруг которого выполняется поворот. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908}\index{main.cpp@{main.cpp}!rotateRight@{rotateRight}}
-\index{rotateRight@{rotateRight}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{rotateRight()}{rotateRight()}}
-{\footnotesize\ttfamily \label{main_8cpp_a1dbf10ab3302818ac86c5935be3a2908} 
-void rotate\+Right (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}\&}]{root}{, }\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{x}{}\end{DoxyParamCaption})}
-
-
-
-Выполняет правый поворот в красно-\/черном дереве. 
+Выполняет частотный тест NIST. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
+{\em generator\+Name} & Название генератора. \\
 \hline
-{\em x} & Узел, вокруг которого выполняется поворот. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6}\index{main.cpp@{main.cpp}!searchHashTable@{searchHashTable}}
-\index{searchHashTable@{searchHashTable}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{searchHashTable()}{searchHashTable()}}
-{\footnotesize\ttfamily \label{main_8cpp_a9b69eeb383d994fa7f83cc3224b22ce6} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Hash\+Table (\begin{DoxyParamCaption}\item[{std::\+vector$<$ std::\+vector$<$ \doxymbox{\hyperlink{struct_hash_entry}{Hash\+Entry}} $>$ $>$ \&}]{table}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
-
-
-
-Ищет все товары с заданным ключом в хеш-\/таблице. 
-
-
-\begin{DoxyParams}{Аргументы}
-{\em table} & Хеш-\/таблица. \\
-\hline
-{\em key} & Искомое наименование товара. \\
+{\em bits} & Массив битов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Массив найденных товаров. 
+Результат теста. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063}\index{main.cpp@{main.cpp}!searchMap@{searchMap}}
-\index{searchMap@{searchMap}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{searchMap()}{searchMap()}}
-{\footnotesize\ttfamily \label{main_8cpp_a41bbf7029c45b17e0a2575f3e6850063} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Map (\begin{DoxyParamCaption}\item[{std::\+multimap$<$ std::\+string, \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{map}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a82c1f5767622649da551d68b6b95875d}\index{main.cpp@{main.cpp}!printGeneratorSummary@{printGeneratorSummary}}
+\index{printGeneratorSummary@{printGeneratorSummary}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printGeneratorSummary()}{printGeneratorSummary()}}
+{\footnotesize\ttfamily \label{main_8cpp_a82c1f5767622649da551d68b6b95875d} 
+void print\+Generator\+Summary (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} $>$ \&}]{stats}{, }\item[{std::\+string}]{generator\+Name}{}\end{DoxyParamCaption})}
 
 
 
-Ищет все товары с заданным ключом в multimap. 
+Выводит краткий итог по выборкам одного генератора. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em map} & Ассоциативный массив товаров. \\
+{\em stats} & Статистика всех выборок. \\
 \hline
-{\em key} & Искомое наименование товара. \\
+{\em generator\+Name} & Название генератора. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a741286ccfc1ad9ab856e75e6a567662b}\index{main.cpp@{main.cpp}!runRandomTests@{runRandomTests}}
+\index{runRandomTests@{runRandomTests}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{runRandomTests()}{runRandomTests()}}
+{\footnotesize\ttfamily \label{main_8cpp_a741286ccfc1ad9ab856e75e6a567662b} 
+template$<$typename Generator$>$ \\
+std::\+vector$<$ \doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} $>$ run\+Random\+Tests (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{Generator \&}]{generator}{}\end{DoxyParamCaption})}
+
+
+
+Выполняет набор тестов NIST/\+\+Diehard-\/like для генератора. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em generator\+Name} & Название генератора. \\
+\hline
+{\em generator} & Генератор псевдослучайных чисел. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Массив найденных товаров. 
+Массив результатов тестов. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb}\index{main.cpp@{main.cpp}!searchRBTree@{searchRBTree}}
-\index{searchRBTree@{searchRBTree}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{searchRBTree()}{searchRBTree()}}
-{\footnotesize\ttfamily \label{main_8cpp_ad090c4e664da045dbae6f31aa85ffbdb} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+RBTree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_r_b_node}{RBNode}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a6a225b16217da70acd1c32ed0bcd01e3}\index{main.cpp@{main.cpp}!runsTest@{runsTest}}
+\index{runsTest@{runsTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{runsTest()}{runsTest()}}
+{\footnotesize\ttfamily \label{main_8cpp_a6a225b16217da70acd1c32ed0bcd01e3} 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} runs\+Test (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{const std::\+vector$<$ int $>$ \&}]{bits}{}\end{DoxyParamCaption})}
 
 
 
-Ищет все товары с заданным ключом в красно-\/черном дереве. 
+Выполняет тест серий NIST. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em root} & Корень красно-\/черного дерева. \\
+{\em generator\+Name} & Название генератора. \\
 \hline
-{\em key} & Искомое наименование товара. \\
+{\em bits} & Массив битов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Массив найденных товаров. 
+Результат теста. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be}\index{main.cpp@{main.cpp}!searchTree@{searchTree}}
-\index{searchTree@{searchTree}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{searchTree()}{searchTree()}}
-{\footnotesize\ttfamily \label{main_8cpp_ae9cb62d75e3aec39641ca19cf6a391be} 
-std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ search\+Tree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{std::\+string}]{key}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_adb50595071d7d54937a96bf61b6e737c}\index{main.cpp@{main.cpp}!serialTest@{serialTest}}
+\index{serialTest@{serialTest}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{serialTest()}{serialTest()}}
+{\footnotesize\ttfamily \label{main_8cpp_adb50595071d7d54937a96bf61b6e737c} 
+\doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} serial\+Test (\begin{DoxyParamCaption}\item[{std::\+string}]{generator\+Name}{, }\item[{const std::\+vector$<$ int $>$ \&}]{bits}{}\end{DoxyParamCaption})}
 
 
 
-Ищет все товары с заданным ключом в бинарном дереве поиска. 
+Выполняет serial test для пар битов. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em root} & Корень дерева. \\
+{\em generator\+Name} & Название генератора. \\
 \hline
-{\em key} & Искомое наименование товара. \\
+{\em bits} & Массив битов. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Возвращает}
-Массив найденных товаров. 
+Результат теста. 
 \end{DoxyReturn}
-\Hypertarget{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}\index{main.cpp@{main.cpp}!writeProductsToFile@{writeProductsToFile}}
-\index{writeProductsToFile@{writeProductsToFile}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{writeProductsToFile()}{writeProductsToFile()}}
-{\footnotesize\ttfamily \label{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb} 
-void write\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+\Hypertarget{main_8cpp_a26e286c80189e11d7571be5907e348dc}\index{main.cpp@{main.cpp}!toRange@{toRange}}
+\index{toRange@{toRange}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{toRange()}{toRange()}}
+{\footnotesize\ttfamily \label{main_8cpp_a26e286c80189e11d7571be5907e348dc} 
+int to\+Range (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{value}{, }\item[{int}]{min\+Value}{, }\item[{int}]{max\+Value}{}\end{DoxyParamCaption})}
 
 
 
-Записывает товары в текстовый файл. 
+Возвращает число из заданного диапазона. 
 
 
 \begin{DoxyParams}{Аргументы}
-{\em filename} & Имя файла для записи. \\
+{\em value} & Сырое значение генератора. \\
 \hline
-{\em products} & Массив товаров. \\
+{\em min\+Value} & Нижняя граница диапазона. \\
+\hline
+{\em max\+Value} & Верхняя граница диапазона. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+Число в диапазоне \+[min\+Value; max\+Value]\+. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_a13bf683da46123c2106d50e984fa165e}\index{main.cpp@{main.cpp}!writeRandomTests@{writeRandomTests}}
+\index{writeRandomTests@{writeRandomTests}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{writeRandomTests()}{writeRandomTests()}}
+{\footnotesize\ttfamily \label{main_8cpp_a13bf683da46123c2106d50e984fa165e} 
+void write\+Random\+Tests (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{struct_random_test_result}{Random\+Test\+Result}} $>$ \&}]{results}{}\end{DoxyParamCaption})}
+
+
+
+Записывает результаты тестов случайности в файл. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em results} & Массив результатов. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_aff5904236f0cf0c13b9ef1528f4372b4}\index{main.cpp@{main.cpp}!writeSampleStats@{writeSampleStats}}
+\index{writeSampleStats@{writeSampleStats}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{writeSampleStats()}{writeSampleStats()}}
+{\footnotesize\ttfamily \label{main_8cpp_aff5904236f0cf0c13b9ef1528f4372b4} 
+void write\+Sample\+Stats (\begin{DoxyParamCaption}\item[{const std::\+vector$<$ \doxymbox{\hyperlink{struct_sample_stats}{Sample\+Stats}} $>$ \&}]{stats}{}\end{DoxyParamCaption})}
+
+
+
+Записывает статистику выборок в файл. 
+
+
+\begin{DoxyParams}{Аргументы}
+{\em stats} & Массив статистик. \\
+\hline
+\end{DoxyParams}
+
+
+\label{main_8cpp_doc-var-members}
+\Hypertarget{main_8cpp_doc-var-members}
+\doxysubsection{Переменные}
+\Hypertarget{main_8cpp_a7db4efd9685444bcb5ba8acb69980541}\index{main.cpp@{main.cpp}!CHI\_SQUARE\_RANDOM\_CRITICAL@{CHI\_SQUARE\_RANDOM\_CRITICAL}}
+\index{CHI\_SQUARE\_RANDOM\_CRITICAL@{CHI\_SQUARE\_RANDOM\_CRITICAL}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{CHI\_SQUARE\_RANDOM\_CRITICAL}{CHI\_SQUARE\_RANDOM\_CRITICAL}}
+{\footnotesize\ttfamily \label{main_8cpp_a7db4efd9685444bcb5ba8acb69980541} 
+const double CHI\+\_\+\+SQUARE\+\_\+\+RANDOM\+\_\+\+CRITICAL = 123.\+225}
+
+\Hypertarget{main_8cpp_ab17efda59834d66be1c133f52dfb6b70}\index{main.cpp@{main.cpp}!CHI\_SQUARE\_UNIFORM\_CRITICAL@{CHI\_SQUARE\_UNIFORM\_CRITICAL}}
+\index{CHI\_SQUARE\_UNIFORM\_CRITICAL@{CHI\_SQUARE\_UNIFORM\_CRITICAL}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{CHI\_SQUARE\_UNIFORM\_CRITICAL}{CHI\_SQUARE\_UNIFORM\_CRITICAL}}
+{\footnotesize\ttfamily \label{main_8cpp_ab17efda59834d66be1c133f52dfb6b70} 
+const double CHI\+\_\+\+SQUARE\+\_\+\+UNIFORM\+\_\+\+CRITICAL = 30.\+144}
+
+\Hypertarget{main_8cpp_a2a3cab95a99130416b061a114b2dbc93}\index{main.cpp@{main.cpp}!INDEPENDENCE\_BINS@{INDEPENDENCE\_BINS}}
+\index{INDEPENDENCE\_BINS@{INDEPENDENCE\_BINS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{INDEPENDENCE\_BINS}{INDEPENDENCE\_BINS}}
+{\footnotesize\ttfamily \label{main_8cpp_a2a3cab95a99130416b061a114b2dbc93} 
+const int INDEPENDENCE\+\_\+\+BINS = 10}
+
+\Hypertarget{main_8cpp_ac7e2839c2be6cbf646ff5ede1d2ec5d3}\index{main.cpp@{main.cpp}!MAX\_VALUE@{MAX\_VALUE}}
+\index{MAX\_VALUE@{MAX\_VALUE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_VALUE}{MAX\_VALUE}}
+{\footnotesize\ttfamily \label{main_8cpp_ac7e2839c2be6cbf646ff5ede1d2ec5d3} 
+const int MAX\+\_\+\+VALUE = 9999}
+
+\Hypertarget{main_8cpp_af9a21ad1eb2b0ff8f4f307687ef650ce}\index{main.cpp@{main.cpp}!MIN\_VALUE@{MIN\_VALUE}}
+\index{MIN\_VALUE@{MIN\_VALUE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{MIN\_VALUE}{MIN\_VALUE}}
+{\footnotesize\ttfamily \label{main_8cpp_af9a21ad1eb2b0ff8f4f307687ef650ce} 
+const int MIN\+\_\+\+VALUE = 0}
+
+\Hypertarget{main_8cpp_a27e0bc979a59ba140864f0c98a5b65ae}\index{main.cpp@{main.cpp}!RANDOMNESS\_Z\_CRITICAL@{RANDOMNESS\_Z\_CRITICAL}}
+\index{RANDOMNESS\_Z\_CRITICAL@{RANDOMNESS\_Z\_CRITICAL}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{RANDOMNESS\_Z\_CRITICAL}{RANDOMNESS\_Z\_CRITICAL}}
+{\footnotesize\ttfamily \label{main_8cpp_a27e0bc979a59ba140864f0c98a5b65ae} 
+const double RANDOMNESS\+\_\+\+Z\+\_\+\+CRITICAL = 1.\+96}
+
+\Hypertarget{main_8cpp_a191736070a43725b355e77d1f5aca17c}\index{main.cpp@{main.cpp}!SAMPLE\_COUNT@{SAMPLE\_COUNT}}
+\index{SAMPLE\_COUNT@{SAMPLE\_COUNT}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SAMPLE\_COUNT}{SAMPLE\_COUNT}}
+{\footnotesize\ttfamily \label{main_8cpp_a191736070a43725b355e77d1f5aca17c} 
+const int SAMPLE\+\_\+\+COUNT = 20}
+
+\Hypertarget{main_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a}\index{main.cpp@{main.cpp}!SAMPLE\_SIZE@{SAMPLE\_SIZE}}
+\index{SAMPLE\_SIZE@{SAMPLE\_SIZE}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SAMPLE\_SIZE}{SAMPLE\_SIZE}}
+{\footnotesize\ttfamily \label{main_8cpp_abb438dd06eaa3add6a90ac8aae07eb3a} 
+const int SAMPLE\+\_\+\+SIZE = 1000}
+
+\Hypertarget{main_8cpp_a11c528a02a0df53162a3f00f96030289}\index{main.cpp@{main.cpp}!TIME\_REPEAT\_COUNT@{TIME\_REPEAT\_COUNT}}
+\index{TIME\_REPEAT\_COUNT@{TIME\_REPEAT\_COUNT}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{TIME\_REPEAT\_COUNT}{TIME\_REPEAT\_COUNT}}
+{\footnotesize\ttfamily \label{main_8cpp_a11c528a02a0df53162a3f00f96030289} 
+const int TIME\+\_\+\+REPEAT\+\_\+\+COUNT = 100}
+
+\Hypertarget{main_8cpp_ace228de3e37f3b55d995df8b07b72ed8}\index{main.cpp@{main.cpp}!UNIFORM\_BINS@{UNIFORM\_BINS}}
+\index{UNIFORM\_BINS@{UNIFORM\_BINS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{UNIFORM\_BINS}{UNIFORM\_BINS}}
+{\footnotesize\ttfamily \label{main_8cpp_ace228de3e37f3b55d995df8b07b72ed8} 
+const int UNIFORM\+\_\+\+BINS = 20}
+

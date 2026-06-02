@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writeproductstofile_0',['writeProductsToFile',['../main_8cpp.html#a18ae133f514e28744ac4f0dbeb049abb',1,'main.cpp']]]
+  ['xorshiftweyl_0',['XorshiftWeyl',['../struct_xorshift_weyl.html#ac6ed6bd86adb8c89f8c3cb44ea976455',1,'XorshiftWeyl']]]
 ];

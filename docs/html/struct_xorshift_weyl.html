@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Programming Methods Lab 1: Структура RBNode</title>
+<title>Programming Methods Lab 3: Структура XorshiftWeyl</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -30,7 +30,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Programming Methods Lab 1
+   <div id="projectname">Programming Methods Lab 3
    </div>
   </td>
  </tr>
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_r_b_node.html','','struct_r_b_node-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_xorshift_weyl.html','','struct_xorshift_weyl-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -115,124 +115,103 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_r_b_nod
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Структура RBNode</div></div>
+  <div class="headertitle"><div class="title">Структура XorshiftWeyl</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Узел красно-черного дерева.  
+<p>Генератор Xorshift с последовательностью Вейля.  
  <a href="#details">Подробнее...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ac6ed6bd86adb8c89f8c3cb44ea976455" id="r_ac6ed6bd86adb8c89f8c3cb44ea976455"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac6ed6bd86adb8c89f8c3cb44ea976455">XorshiftWeyl</a> (uint32_t seed)</td></tr>
+<tr class="memitem:af444ae4c4d1bea54290a6c97bba1d405" id="r_af444ae4c4d1bea54290a6c97bba1d405"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af444ae4c4d1bea54290a6c97bba1d405">next</a> ()</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Открытые атрибуты</h2></td></tr>
-<tr class="memitem:af017529faedece4e653a551db7be374b" id="r_af017529faedece4e653a551db7be374b"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af017529faedece4e653a551db7be374b">key</a></td></tr>
-<tr class="memdesc:af017529faedece4e653a551db7be374b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ключ узла.  <br /></td></tr>
-<tr class="memitem:a135eb5089beebc9ab5f5f868c73eb851" id="r_a135eb5089beebc9ab5f5f868c73eb851"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a135eb5089beebc9ab5f5f868c73eb851">products</a></td></tr>
-<tr class="memdesc:a135eb5089beebc9ab5f5f868c73eb851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Все товары с данным ключом.  <br /></td></tr>
-<tr class="memitem:a3345545f8a1678010bca11b5f7153a4a" id="r_a3345545f8a1678010bca11b5f7153a4a"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a3345545f8a1678010bca11b5f7153a4a">left</a></td></tr>
-<tr class="memdesc:a3345545f8a1678010bca11b5f7153a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Левый потомок.  <br /></td></tr>
-<tr class="memitem:af82826872827c548a5713eb84f264767" id="r_af82826872827c548a5713eb84f264767"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#af82826872827c548a5713eb84f264767">right</a></td></tr>
-<tr class="memdesc:af82826872827c548a5713eb84f264767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Правый потомок.  <br /></td></tr>
-<tr class="memitem:a131e0d1a4f73d55e6b5ad282c6846612" id="r_a131e0d1a4f73d55e6b5ad282c6846612"><td class="memItemLeft"><a class="el" href="struct_r_b_node.html">RBNode</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a131e0d1a4f73d55e6b5ad282c6846612">parent</a></td></tr>
-<tr class="memdesc:a131e0d1a4f73d55e6b5ad282c6846612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Родительский узел.  <br /></td></tr>
-<tr class="memitem:a3be39665b09695cd9cd58632b68d4762" id="r_a3be39665b09695cd9cd58632b68d4762"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3be39665b09695cd9cd58632b68d4762">red</a></td></tr>
-<tr class="memdesc:a3be39665b09695cd9cd58632b68d4762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Цвет узла: true - красный, false - черный.  <br /></td></tr>
+<tr class="memitem:af08878614d967fece93d1ecffc8e342f" id="r_af08878614d967fece93d1ecffc8e342f"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#af08878614d967fece93d1ecffc8e342f">state</a></td></tr>
+<tr class="memitem:a1a3e4504cf8f025920be0780315e429f" id="r_a1a3e4504cf8f025920be0780315e429f"><td class="memItemLeft">uint32_t&#160;</td><td class="memItemRight"><a class="el" href="#a1a3e4504cf8f025920be0780315e429f">weyl</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Подробное описание</h2>
-<div class="textblock"><p>Узел красно-черного дерева. </p>
-</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
-<a id="af017529faedece4e653a551db7be374b" name="af017529faedece4e653a551db7be374b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af017529faedece4e653a551db7be374b">&#9670;&#160;</a></span>key</h2>
+<div class="textblock"><p>Генератор Xorshift с последовательностью Вейля. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Конструктор(ы)</h2>
+<a id="ac6ed6bd86adb8c89f8c3cb44ea976455" name="ac6ed6bd86adb8c89f8c3cb44ea976455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6ed6bd86adb8c89f8c3cb44ea976455">&#9670;&#160;</a></span>XorshiftWeyl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">XorshiftWeyl::XorshiftWeyl </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>seed</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Методы</h2>
+<a id="af444ae4c4d1bea54290a6c97bba1d405" name="af444ae4c4d1bea54290a6c97bba1d405"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af444ae4c4d1bea54290a6c97bba1d405">&#9670;&#160;</a></span>next()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t XorshiftWeyl::next </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Данные класса</h2>
+<a id="af08878614d967fece93d1ecffc8e342f" name="af08878614d967fece93d1ecffc8e342f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af08878614d967fece93d1ecffc8e342f">&#9670;&#160;</a></span>state</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string RBNode::key</td>
+          <td class="memname">uint32_t XorshiftWeyl::state</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ключ узла. </p>
-
 </div>
 </div>
-<a id="a3345545f8a1678010bca11b5f7153a4a" name="a3345545f8a1678010bca11b5f7153a4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3345545f8a1678010bca11b5f7153a4a">&#9670;&#160;</a></span>left</h2>
+<a id="a1a3e4504cf8f025920be0780315e429f" name="a1a3e4504cf8f025920be0780315e429f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a3e4504cf8f025920be0780315e429f">&#9670;&#160;</a></span>weyl</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a>* RBNode::left</td>
+          <td class="memname">uint32_t XorshiftWeyl::weyl</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Левый потомок. </p>
-
-</div>
-</div>
-<a id="a131e0d1a4f73d55e6b5ad282c6846612" name="a131e0d1a4f73d55e6b5ad282c6846612"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a131e0d1a4f73d55e6b5ad282c6846612">&#9670;&#160;</a></span>parent</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a>* RBNode::parent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Родительский узел. </p>
-
-</div>
-</div>
-<a id="a135eb5089beebc9ab5f5f868c73eb851" name="a135eb5089beebc9ab5f5f868c73eb851"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a135eb5089beebc9ab5f5f868c73eb851">&#9670;&#160;</a></span>products</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="struct_product.html">Product</a>&gt; RBNode::products</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Все товары с данным ключом. </p>
-
-</div>
-</div>
-<a id="a3be39665b09695cd9cd58632b68d4762" name="a3be39665b09695cd9cd58632b68d4762"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3be39665b09695cd9cd58632b68d4762">&#9670;&#160;</a></span>red</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool RBNode::red</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Цвет узла: true - красный, false - черный. </p>
-
-</div>
-</div>
-<a id="af82826872827c548a5713eb84f264767" name="af82826872827c548a5713eb84f264767"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af82826872827c548a5713eb84f264767">&#9670;&#160;</a></span>right</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_r_b_node.html">RBNode</a>* RBNode::right</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Правый потомок. </p>
 
 </div>
 </div>
@@ -252,7 +231,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('struct_r_b_nod
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="struct_r_b_node.html">RBNode</a></li>
+    <li class="navelem"><a href="struct_xorshift_weyl.html">XorshiftWeyl</a></li>
     <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

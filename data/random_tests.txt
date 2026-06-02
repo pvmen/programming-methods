@@ -1,0 +1,16 @@
+generator test statistic limit passed
+mixed_lcg monobit_frequency 0.347851 1.960000 yes
+mixed_lcg runs 0.473962 1.960000 yes
+mixed_lcg block_frequency 0.168291 1.960000 yes
+mixed_lcg serial 0.474435 7.815000 yes
+mixed_lcg longest_run_of_ones 0.473109 11.070000 yes
+xorshift_weyl monobit_frequency 0.246658 1.960000 yes
+xorshift_weyl runs 0.385608 1.960000 yes
+xorshift_weyl block_frequency 0.815436 1.960000 yes
+xorshift_weyl serial 0.269873 7.815000 yes
+xorshift_weyl longest_run_of_ones 1.410847 11.070000 yes
+lagged_fibonacci monobit_frequency 0.841166 1.960000 yes
+lagged_fibonacci runs 0.952782 1.960000 yes
+lagged_fibonacci block_frequency 0.429072 1.960000 yes
+lagged_fibonacci serial 2.322613 7.815000 yes
+lagged_fibonacci longest_run_of_ones 1.783822 11.070000 yes

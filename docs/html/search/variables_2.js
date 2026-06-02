@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['left_0',['left',['../struct_tree_node.html#a5335e7d975822e87088ec2afdefb1736',1,'TreeNode::left'],['../struct_r_b_node.html#a3345545f8a1678010bca11b5f7153a4a',1,'RBNode::left']]]
+  ['generator_0',['generator',['../struct_standard_generator.html#ab4cbb7947e90553513eb7913e1292b1d',1,'StandardGenerator']]],
+  ['generatorname_1',['generatorName',['../struct_sample_stats.html#a5b56c84722d614dc405f019c68147818',1,'SampleStats::generatorName'],['../struct_random_test_result.html#aae0b6a2f0231c176ecea9294ec4f27a0',1,'RandomTestResult::generatorName']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['product_0',['Product',['../struct_product.html',1,'']]]
+  ['mixedlcg_0',['MixedLCG',['../struct_mixed_l_c_g.html',1,'']]]
 ];
