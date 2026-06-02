@@ -72,31 +72,6 @@ plt.savefig("generation_times.png")
 plt.figure(figsize=(11, 6))
 
 for generator, values in times_by_generator.items():
-    speeds = []
-
-    for size, time in zip(values["sizes"], values["times"]):
-        speeds.append(size / (time / 1_000_000_000) / 1_000_000)
-
-    plt.plot(
-        values["sizes"],
-        speeds,
-        marker="o",
-        label=generator_names[generator],
-    )
-
-plt.xlabel("Количество сгенерированных чисел")
-plt.ylabel("Скорость, млн чисел/с")
-plt.title("Скорость генерации псевдослучайных чисел")
-plt.xscale("log")
-plt.xticks(list(size_labels.keys()), list(size_labels.values()))
-plt.legend()
-plt.grid(True, which="both", linestyle="--", alpha=0.5)
-plt.tight_layout()
-plt.savefig("generation_speed.png")
-
-plt.figure(figsize=(11, 6))
-
-for generator, values in times_by_generator.items():
     plt.plot(
         values["sizes"],
         [time / 1000 for time in values["times"]],
