@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['country_0',['country',['../struct_product.html#a5ea601a1707f267bce4ff1547b26a7bf',1,'Product']]]
+  ['name_0',['name',['../struct_product.html#a6f88e6ff8cb26b1cce49a41e72e4fcb8',1,'Product']]]
 ];

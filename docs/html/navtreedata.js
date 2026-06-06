@@ -24,20 +24,13 @@
 */
 var NAVTREE =
 [
-  [ "Programming Methods Lab 1", "index.html", [
-    [ "Классы", "annotated.html", [
-      [ "Классы", "annotated.html", "annotated_dup" ],
-      [ "Алфавитный указатель классов", "classes.html", null ],
-      [ "Члены классов", "functions.html", [
-        [ "Указатель", "functions.html", null ],
-        [ "Переменные", "functions_vars.html", null ]
-      ] ]
-    ] ],
-    [ "Файлы", "files.html", [
-      [ "Файлы", "files.html", "files_dup" ],
-      [ "Список членов всех файлов", "globals.html", [
-        [ "Указатель", "globals.html", null ],
-        [ "Функции", "globals_func.html", null ]
+  [ "My Project", "index.html", [
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", null ],
+        [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ]
   ] ]
@@ -48,6 +41,6 @@ var NAVTREEINDEX =
 "annotated.html"
 ];
 
-const SYNCONMSG = 'нажмите на выключить для синхронизации панелей';
-const SYNCOFFMSG = 'нажмите на включить для синхронизации панелей';
-const LISTOFALLMEMBERS = 'Полный список членов класса';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

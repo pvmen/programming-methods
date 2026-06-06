@@ -10,9 +10,13 @@
  * Запись об экспортируемом товаре.
  */
 struct Product {
+  /// наименование товара
   std::string name;
+  /// страна, куда экспортируется товар
   std::string country; // куда экспорт
+  /// объем поставляемой продукции
   int volume; // объем поставляемой продукции 
+  /// сумма в рублях
   double rubles;
 };
 
@@ -20,7 +24,7 @@ struct Product {
  * Возвращает true, если левый товар должен стоять раньше правого.
  * Сравнение выполняется по name, затем по volume, затем по country, rubles не трогаем.
  */
-bool lessProduct(Product& left, Product& right) {
+bool lessProduct(const Product& left, const Product& right) {
   if (left.name < right.name) {
     return true;
   }
@@ -44,35 +48,35 @@ bool lessProduct(Product& left, Product& right) {
 /**  
  * Перегружает оператор < для сравнения двух товаров. 
  */
-bool operator<(Product& left, Product& right){
+bool operator<(const Product& left, const Product& right){
   return lessProduct(left, right);
 }
 
 /**  
  * Перегружает оператор > для сравнения двух товаров. 
  */
-bool operator>(Product& left, Product& right){
+bool operator>(const Product& left, const Product& right){
   return lessProduct(right,left);
 }
 
 /**  
  * Перегружает оператор >= для сравнения двух товаров. 
  */
-bool operator>=(Product& left, Product& right){
+bool operator>=(const Product& left, const Product& right){
   return !lessProduct(left, right);
 }
 
 /**  
  * Перегружает оператор <= для сравнения двух товаров. 
  */
-bool operator<=(Product& left, Product& right){
+bool operator<=(const Product& left, const Product& right){
   return !lessProduct(right, left);
 }
 
 /**
  * Выводит один товар в консоль.
  */
-void printProduct(Product& product) {
+void printProduct(const Product& product) {
   std::cout << product.name << " " << product.country << " " << product.volume << " " << product.rubles << "\n";
 }
 
@@ -80,7 +84,7 @@ void printProduct(Product& product) {
  * Записывает товары в текстовый файл.
  * Каждый товар записывается на отдельной строке.
  */
-void writeProductsToFile(std::string filename, std::vector<Product>& products){
+void writeProductsToFile(std::string filename, const std::vector<Product>& products){
   std::ofstream file(filename);
   for (std::size_t i = 0; i < products.size(); i++){
     file << products[i].name << " " << products[i].country << " " << products[i].volume << " " << products[i].rubles << "\n";
@@ -125,10 +129,22 @@ std::vector<Product> readProductsFromFile(std::string filename){
 /**
  * Выводит список товаров в консоль.
  */
-void printProducts(std::vector<Product>& products) {
+void printProducts(const std::vector<Product>& products) {
   for (std::size_t i = 0; i < products.size(); i++){
     printProduct(products[i]);
   }
+}
+
+/**
+ * Проверяет, что товары идут в правильном порядке.
+ */
+bool isSortedProducts(const std::vector<Product>& products) {
+  for (std::size_t i = 1; i < products.size(); i++){
+    if (products[i] < products[i - 1]){
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -236,6 +252,7 @@ int main() {
   // };
    // времена
    std::ofstream timeFile("data/times.txt");
+   std::ofstream skippedTimeFile("data/skipped_times.txt");
 
    
    std::srand(1);
@@ -244,7 +261,8 @@ int main() {
    // std::vector<Product> products = readProductsFromFile("data/input100.txt");
 
    // std::vector<int> sizes = {2000, 5000, 10000, 20000, 101000};
-   std::vector<int> sizes = {200, 500, 1000, 2000, 1010};
+   std::vector<int> sizes = {100, 500, 1000, 2500, 5000, 10000, 20000, 40000, 70000, 100000};
+   int slowSortLimit = 100000;
 
    for (std::size_t i = 0; i < sizes.size(); i++){
     int size = sizes[i]; 
@@ -253,29 +271,48 @@ int main() {
     generateProductsToFile(inputFileName, size);
     std::vector<Product> products = readProductsFromFile(inputFileName);
 
+    if (products.size() != static_cast<std::size_t>(size)){
+      std::cerr << "Read error in " << inputFileName << "\n";
+      return 1;
+    }
+
     std::vector<Product> bubbleProducts = products;
     std::vector<Product> shakerProducts = products;
     std::vector<Product> mergeProducts = products;
     std::vector<Product> stdSortProducts = products;
 
+    bool slowSortMeasured = size <= slowSortLimit;
+
+    if (slowSortMeasured){
+      auto start = std::chrono::high_resolution_clock::now();
+      bubbleSort(bubbleProducts);
+      auto end = std::chrono::high_resolution_clock::now();
+      auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+      std::cout << size << " Bubble sort time: " << duration.count() << "\n";
+      timeFile << size <<  " bubble " << duration.count() << "\n";
+
+      start = std::chrono::high_resolution_clock::now();
+      shekerSort(shakerProducts);
+      end = std::chrono::high_resolution_clock::now();
+      duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+      std::cout << size << " shekerSort sort time: " << duration.count() << "\n";
+      timeFile << size << " shaker " << duration.count() << "\n";
+
+      std::string bubbleOutputFileName = "data/bubbleOutput" + std::to_string(size) + ".txt";
+      std::string shakerOutputFileName = "data/shakerOutput" + std::to_string(size) + ".txt";
+
+      writeProductsToFile(bubbleOutputFileName, bubbleProducts);
+      writeProductsToFile(shakerOutputFileName, shakerProducts);
+    } else {
+      std::cout << size << " bubble and shaker skipped\n";
+      skippedTimeFile << size << " bubble skipped O(n^2)_too_slow_for_this_size\n";
+      skippedTimeFile << size << " shaker skipped O(n^2)_too_slow_for_this_size\n";
+    }
+
     auto start = std::chrono::high_resolution_clock::now();
-    bubbleSort(bubbleProducts);
+    mergeSort(mergeProducts);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    std::cout << size << " Bubble sort time: " << duration.count() << "\n";
-    timeFile << size <<  " bubble " << duration.count() << "\n";
-
-    start = std::chrono::high_resolution_clock::now();
-    shekerSort(shakerProducts);
-    end = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    std::cout << size << " shekerSort sort time: " << duration.count() << "\n";
-    timeFile << size << " shaker " << duration.count() << "\n";
-
-    start = std::chrono::high_resolution_clock::now();
-    mergeSort(mergeProducts);
-    end = std::chrono::high_resolution_clock::now();
-    duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
     std::cout << size << " mergeSort sort time: " << duration.count() << "\n";
     timeFile << size << " merge " << duration.count() << "\n";
 
@@ -286,15 +323,16 @@ int main() {
     std::cout << size << " std::sort sort time: " << duration.count() << "\n";
     timeFile << size << " std_sort " << duration.count() << "\n";
 
-    std::string bubbleOutputFileName = "data/bubbleOutput" + std::to_string(size) + ".txt";
-    std::string shakerOutputFileName = "data/shakerOutput" + std::to_string(size) + ".txt";
     std::string mergeOutputFileName = "data/mergeOutput" + std::to_string(size) + ".txt";
     std::string stdSortOutputFileName = "data/stdSortOutput" + std::to_string(size) + ".txt";
 
-    writeProductsToFile(bubbleOutputFileName, bubbleProducts);
-    writeProductsToFile(shakerOutputFileName, shakerProducts);
     writeProductsToFile(mergeOutputFileName, mergeProducts);
     writeProductsToFile(stdSortOutputFileName, stdSortProducts);
+
+    if ((slowSortMeasured && (!isSortedProducts(bubbleProducts) || !isSortedProducts(shakerProducts))) || !isSortedProducts(mergeProducts) || !isSortedProducts(stdSortProducts)){
+      std::cerr << "Sort check failed for size " << size << "\n";
+      return 1;
+    }
    }
 
 

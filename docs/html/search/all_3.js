@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lessproduct_0',['lessProduct',['../main_8cpp.html#ad9a92735a807a2994e99ce70d111b090',1,'main.cpp']]]
+  ['rubles_0',['rubles',['../struct_product.html#ad0f7c4589ed9a466b604d2be69e3962a',1,'Product']]]
 ];
