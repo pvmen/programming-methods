@@ -1,0 +1,151 @@
+\doxysection{Файл src/\+main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$string$>$}\newline
+{\ttfamily \+\#include $<$vector$>$}\newline
+{\ttfamily \+\#include $<$algorithm$>$}\newline
+{\ttfamily \+\#include $<$fstream$>$}\newline
+{\ttfamily \+\#include $<$chrono$>$}\newline
+{\ttfamily \+\#include $<$cstdlib$>$}\newline
+\doxysubsubsection*{Классы}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_product}{Product}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_ad9a92735a807a2994e99ce70d111b090}{less\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99}{operator$<$}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a40b98d1c1a2212ed262df4551b834587}{operator$>$}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a799a16e7b42a631b9becf8eb7394857f}{operator$>$=}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+bool \doxymbox{\hyperlink{main_8cpp_a02aaae75d676c85bf1186f941fe588cb}{operator$<$=}} (\doxymbox{\hyperlink{struct_product}{Product}} \&left, \doxymbox{\hyperlink{struct_product}{Product}} \&right)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}{print\+Product}} (\doxymbox{\hyperlink{struct_product}{Product}} \&product)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}{write\+Products\+To\+File}} (std::\+string filename, std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}{generate\+Products\+To\+File}} (std::\+string filename, int count)
+\item 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \doxymbox{\hyperlink{main_8cpp_a9760d0da4c935c890724ae5441753350}{read\+Products\+From\+File}} (std::\+string filename)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}{print\+Products}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_af4980bc2a326173255e6caf6cc41b964}{bubble\+Sort}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a0a8d7f469a335e0bea6143eca3e4e4c7}{sheker\+Sort}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a8ed1f88aec2e4a6d554b144fe97dd9f3}{merge}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, int left, int middle, int right)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a12c8c096b2e198398c82d63a1d114627}{merge\+Sort}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products, int left, int right)
+\item 
+void \doxymbox{\hyperlink{main_8cpp_a224c90db0fa178bd1bb59909261e7a2a}{merge\+Sort}} (std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&products)
+\item 
+int \doxymbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\label{main_8cpp_doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Функции}
+\Hypertarget{main_8cpp_af4980bc2a326173255e6caf6cc41b964}\index{main.cpp@{main.cpp}!bubbleSort@{bubbleSort}}
+\index{bubbleSort@{bubbleSort}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{bubbleSort()}{bubbleSort()}}
+{\footnotesize\ttfamily \label{main_8cpp_af4980bc2a326173255e6caf6cc41b964} 
+void bubble\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+Сортирует товары пузырьковой сортировкой. \Hypertarget{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8}\index{main.cpp@{main.cpp}!generateProductsToFile@{generateProductsToFile}}
+\index{generateProductsToFile@{generateProductsToFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{generateProductsToFile()}{generateProductsToFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a3219504ac87d8a4bb22fd41d3f8b85d8} 
+void generate\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+Генерирует случайные товары и записывает их в файл. \Hypertarget{main_8cpp_ad9a92735a807a2994e99ce70d111b090}\index{main.cpp@{main.cpp}!lessProduct@{lessProduct}}
+\index{lessProduct@{lessProduct}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lessProduct()}{lessProduct()}}
+{\footnotesize\ttfamily \label{main_8cpp_ad9a92735a807a2994e99ce70d111b090} 
+bool less\+Product (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Возвращает true, если левый товар должен стоять раньше правого. Сравнение выполняется по name, затем по volume, затем по country, rubles не трогаем. \Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Точка входа программы. \Hypertarget{main_8cpp_a8ed1f88aec2e4a6d554b144fe97dd9f3}\index{main.cpp@{main.cpp}!merge@{merge}}
+\index{merge@{merge}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \label{main_8cpp_a8ed1f88aec2e4a6d554b144fe97dd9f3} 
+void merge (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{int}]{left}{, }\item[{int}]{middle}{, }\item[{int}]{right}{}\end{DoxyParamCaption})}
+
+Сливает две отсортированные части вектора в одну отсортированную часть. \Hypertarget{main_8cpp_a224c90db0fa178bd1bb59909261e7a2a}\index{main.cpp@{main.cpp}!mergeSort@{mergeSort}}
+\index{mergeSort@{mergeSort}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{mergeSort()}{mergeSort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{main_8cpp_a224c90db0fa178bd1bb59909261e7a2a} 
+void merge\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+Сортирует весь вектор товаров сортировкой слиянием. \Hypertarget{main_8cpp_a12c8c096b2e198398c82d63a1d114627}\index{main.cpp@{main.cpp}!mergeSort@{mergeSort}}
+\index{mergeSort@{mergeSort}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{mergeSort()}{mergeSort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{main_8cpp_a12c8c096b2e198398c82d63a1d114627} 
+void merge\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{, }\item[{int}]{left}{, }\item[{int}]{right}{}\end{DoxyParamCaption})}
+
+Рекурсивно сортирует часть вектора сортировкой слиянием. \Hypertarget{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99}\index{main.cpp@{main.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{main_8cpp_a08b065c8eb4a7bc1f2a31296f226bc99} 
+bool operator$<$ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$<$}{<} для сравнения двух товаров. \Hypertarget{main_8cpp_a02aaae75d676c85bf1186f941fe588cb}\index{main.cpp@{main.cpp}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily \label{main_8cpp_a02aaae75d676c85bf1186f941fe588cb} 
+bool operator$<$= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$<$}{<}= для сравнения двух товаров. \Hypertarget{main_8cpp_a40b98d1c1a2212ed262df4551b834587}\index{main.cpp@{main.cpp}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily \label{main_8cpp_a40b98d1c1a2212ed262df4551b834587} 
+bool operator$>$ (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$>$}{>} для сравнения двух товаров. \Hypertarget{main_8cpp_a799a16e7b42a631b9becf8eb7394857f}\index{main.cpp@{main.cpp}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily \label{main_8cpp_a799a16e7b42a631b9becf8eb7394857f} 
+bool operator$>$= (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{left}{, }\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{right}{}\end{DoxyParamCaption})}
+
+Перегружает оператор \texorpdfstring{$>$}{>}= для сравнения двух товаров. \Hypertarget{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78}\index{main.cpp@{main.cpp}!printProduct@{printProduct}}
+\index{printProduct@{printProduct}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printProduct()}{printProduct()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9f46eed50bc0a58ceeee510ec79b3a78} 
+void print\+Product (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_product}{Product}} \&}]{product}{}\end{DoxyParamCaption})}
+
+Выводит один товар в консоль. \Hypertarget{main_8cpp_ac2f0a2a607564436f45c2179cef5604e}\index{main.cpp@{main.cpp}!printProducts@{printProducts}}
+\index{printProducts@{printProducts}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{printProducts()}{printProducts()}}
+{\footnotesize\ttfamily \label{main_8cpp_ac2f0a2a607564436f45c2179cef5604e} 
+void print\+Products (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+Выводит список товаров в консоль. \Hypertarget{main_8cpp_a9760d0da4c935c890724ae5441753350}\index{main.cpp@{main.cpp}!readProductsFromFile@{readProductsFromFile}}
+\index{readProductsFromFile@{readProductsFromFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{readProductsFromFile()}{readProductsFromFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a9760d0da4c935c890724ae5441753350} 
+std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ read\+Products\+From\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{}\end{DoxyParamCaption})}
+
+Читает товары из текстового файла. В каждой строке должны быть name, country, volume и rubles. \Hypertarget{main_8cpp_a0a8d7f469a335e0bea6143eca3e4e4c7}\index{main.cpp@{main.cpp}!shekerSort@{shekerSort}}
+\index{shekerSort@{shekerSort}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{shekerSort()}{shekerSort()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0a8d7f469a335e0bea6143eca3e4e4c7} 
+void sheker\+Sort (\begin{DoxyParamCaption}\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+Сортирует товары шейкер сортировкой. \Hypertarget{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb}\index{main.cpp@{main.cpp}!writeProductsToFile@{writeProductsToFile}}
+\index{writeProductsToFile@{writeProductsToFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{writeProductsToFile()}{writeProductsToFile()}}
+{\footnotesize\ttfamily \label{main_8cpp_a18ae133f514e28744ac4f0dbeb049abb} 
+void write\+Products\+To\+File (\begin{DoxyParamCaption}\item[{std::\+string}]{filename}{, }\item[{std::\+vector$<$ \doxymbox{\hyperlink{struct_product}{Product}} $>$ \&}]{products}{}\end{DoxyParamCaption})}
+
+Записывает товары в текстовый файл. Каждый товар записывается на отдельной строке. 

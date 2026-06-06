@@ -1,0 +1,510 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Programming Methods Lab 1: Файл src/main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Programming Methods Lab 1
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  initMenu('',true);
+  init_search();
+});
+</script>
+<div id="main-nav-mobile">
+<div class="sm sm-dox"><input id="main-menu-state" type="checkbox"/>
+<label class="main-menu-btn" for="main-menu-state">
+<span class="main-menu-btn-icon"></span> Toggle main menu visibility</label>
+<span id="searchBoxPos1" style="position:absolute;right:8px;top:8px;height:36px;"></span>
+</div>
+</div><!-- main-nav-mobile -->
+<div id="main-nav">
+  <ul class="sm sm-dox" id="main-menu">
+    <li id="searchBoxPos2" style="float:right">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    </li>
+  </ul>
+</div><!-- main-nav -->
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('main_8cpp.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Файл main.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:Product" id="r_Product"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_product.html">Product</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ad9a92735a807a2994e99ce70d111b090" id="r_ad9a92735a807a2994e99ce70d111b090"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad9a92735a807a2994e99ce70d111b090">lessProduct</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a08b065c8eb4a7bc1f2a31296f226bc99" id="r_a08b065c8eb4a7bc1f2a31296f226bc99"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a08b065c8eb4a7bc1f2a31296f226bc99">operator&lt;</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a40b98d1c1a2212ed262df4551b834587" id="r_a40b98d1c1a2212ed262df4551b834587"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a40b98d1c1a2212ed262df4551b834587">operator&gt;</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a799a16e7b42a631b9becf8eb7394857f" id="r_a799a16e7b42a631b9becf8eb7394857f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a799a16e7b42a631b9becf8eb7394857f">operator&gt;=</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a02aaae75d676c85bf1186f941fe588cb" id="r_a02aaae75d676c85bf1186f941fe588cb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a02aaae75d676c85bf1186f941fe588cb">operator&lt;=</a> (<a class="el" href="struct_product.html">Product</a> &amp;left, <a class="el" href="struct_product.html">Product</a> &amp;right)</td></tr>
+<tr class="memitem:a9f46eed50bc0a58ceeee510ec79b3a78" id="r_a9f46eed50bc0a58ceeee510ec79b3a78"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9f46eed50bc0a58ceeee510ec79b3a78">printProduct</a> (<a class="el" href="struct_product.html">Product</a> &amp;product)</td></tr>
+<tr class="memitem:a18ae133f514e28744ac4f0dbeb049abb" id="r_a18ae133f514e28744ac4f0dbeb049abb"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a18ae133f514e28744ac4f0dbeb049abb">writeProductsToFile</a> (std::string filename, std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
+<tr class="memitem:a3219504ac87d8a4bb22fd41d3f8b85d8" id="r_a3219504ac87d8a4bb22fd41d3f8b85d8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3219504ac87d8a4bb22fd41d3f8b85d8">generateProductsToFile</a> (std::string filename, int count)</td></tr>
+<tr class="memitem:a9760d0da4c935c890724ae5441753350" id="r_a9760d0da4c935c890724ae5441753350"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9760d0da4c935c890724ae5441753350">readProductsFromFile</a> (std::string filename)</td></tr>
+<tr class="memitem:ac2f0a2a607564436f45c2179cef5604e" id="r_ac2f0a2a607564436f45c2179cef5604e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac2f0a2a607564436f45c2179cef5604e">printProducts</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
+<tr class="memitem:af4980bc2a326173255e6caf6cc41b964" id="r_af4980bc2a326173255e6caf6cc41b964"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af4980bc2a326173255e6caf6cc41b964">bubbleSort</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
+<tr class="memitem:a0a8d7f469a335e0bea6143eca3e4e4c7" id="r_a0a8d7f469a335e0bea6143eca3e4e4c7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0a8d7f469a335e0bea6143eca3e4e4c7">shekerSort</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
+<tr class="memitem:a8ed1f88aec2e4a6d554b144fe97dd9f3" id="r_a8ed1f88aec2e4a6d554b144fe97dd9f3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8ed1f88aec2e4a6d554b144fe97dd9f3">merge</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products, int left, int middle, int right)</td></tr>
+<tr class="memitem:a12c8c096b2e198398c82d63a1d114627" id="r_a12c8c096b2e198398c82d63a1d114627"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a12c8c096b2e198398c82d63a1d114627">mergeSort</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products, int left, int right)</td></tr>
+<tr class="memitem:a224c90db0fa178bd1bb59909261e7a2a" id="r_a224c90db0fa178bd1bb59909261e7a2a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a224c90db0fa178bd1bb59909261e7a2a">mergeSort</a> (std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;products)</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Функции</h2>
+<a id="af4980bc2a326173255e6caf6cc41b964" name="af4980bc2a326173255e6caf6cc41b964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4980bc2a326173255e6caf6cc41b964">&#9670;&#160;</a></span>bubbleSort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bubbleSort </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Сортирует товары пузырьковой сортировкой. </p>
+
+</div>
+</div>
+<a id="a3219504ac87d8a4bb22fd41d3f8b85d8" name="a3219504ac87d8a4bb22fd41d3f8b85d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3219504ac87d8a4bb22fd41d3f8b85d8">&#9670;&#160;</a></span>generateProductsToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generateProductsToFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Генерирует случайные товары и записывает их в файл. </p>
+
+</div>
+</div>
+<a id="ad9a92735a807a2994e99ce70d111b090" name="ad9a92735a807a2994e99ce70d111b090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a92735a807a2994e99ce70d111b090">&#9670;&#160;</a></span>lessProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool lessProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Возвращает true, если левый товар должен стоять раньше правого. Сравнение выполняется по name, затем по volume, затем по country, rubles не трогаем. </p>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Точка входа программы. </p>
+
+</div>
+</div>
+<a id="a8ed1f88aec2e4a6d554b144fe97dd9f3" name="a8ed1f88aec2e4a6d554b144fe97dd9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ed1f88aec2e4a6d554b144fe97dd9f3">&#9670;&#160;</a></span>merge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void merge </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>middle</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Сливает две отсортированные части вектора в одну отсортированную часть. </p>
+
+</div>
+</div>
+<a id="a224c90db0fa178bd1bb59909261e7a2a" name="a224c90db0fa178bd1bb59909261e7a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a224c90db0fa178bd1bb59909261e7a2a">&#9670;&#160;</a></span>mergeSort() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mergeSort </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Сортирует весь вектор товаров сортировкой слиянием. </p>
+
+</div>
+</div>
+<a id="a12c8c096b2e198398c82d63a1d114627" name="a12c8c096b2e198398c82d63a1d114627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12c8c096b2e198398c82d63a1d114627">&#9670;&#160;</a></span>mergeSort() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mergeSort </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Рекурсивно сортирует часть вектора сортировкой слиянием. </p>
+
+</div>
+</div>
+<a id="a08b065c8eb4a7bc1f2a31296f226bc99" name="a08b065c8eb4a7bc1f2a31296f226bc99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b065c8eb4a7bc1f2a31296f226bc99">&#9670;&#160;</a></span>operator&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &lt; для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a02aaae75d676c85bf1186f941fe588cb" name="a02aaae75d676c85bf1186f941fe588cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02aaae75d676c85bf1186f941fe588cb">&#9670;&#160;</a></span>operator&lt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &lt;= для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a40b98d1c1a2212ed262df4551b834587" name="a40b98d1c1a2212ed262df4551b834587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40b98d1c1a2212ed262df4551b834587">&#9670;&#160;</a></span>operator&gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &gt; для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a799a16e7b42a631b9becf8eb7394857f" name="a799a16e7b42a631b9becf8eb7394857f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a799a16e7b42a631b9becf8eb7394857f">&#9670;&#160;</a></span>operator&gt;=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Перегружает оператор &gt;= для сравнения двух товаров. </p>
+
+</div>
+</div>
+<a id="a9f46eed50bc0a58ceeee510ec79b3a78" name="a9f46eed50bc0a58ceeee510ec79b3a78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f46eed50bc0a58ceeee510ec79b3a78">&#9670;&#160;</a></span>printProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_product.html">Product</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>product</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Выводит один товар в консоль. </p>
+
+</div>
+</div>
+<a id="ac2f0a2a607564436f45c2179cef5604e" name="ac2f0a2a607564436f45c2179cef5604e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2f0a2a607564436f45c2179cef5604e">&#9670;&#160;</a></span>printProducts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printProducts </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Выводит список товаров в консоль. </p>
+
+</div>
+</div>
+<a id="a9760d0da4c935c890724ae5441753350" name="a9760d0da4c935c890724ae5441753350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9760d0da4c935c890724ae5441753350">&#9670;&#160;</a></span>readProductsFromFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; readProductsFromFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Читает товары из текстового файла. В каждой строке должны быть name, country, volume и rubles. </p>
+
+</div>
+</div>
+<a id="a0a8d7f469a335e0bea6143eca3e4e4c7" name="a0a8d7f469a335e0bea6143eca3e4e4c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8d7f469a335e0bea6143eca3e4e4c7">&#9670;&#160;</a></span>shekerSort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void shekerSort </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Сортирует товары шейкер сортировкой. </p>
+
+</div>
+</div>
+<a id="a18ae133f514e28744ac4f0dbeb049abb" name="a18ae133f514e28744ac4f0dbeb049abb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ae133f514e28744ac4f0dbeb049abb">&#9670;&#160;</a></span>writeProductsToFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeProductsToFile </td>
+          <td>(</td>
+          <td class="paramtype">std::string</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="struct_product.html">Product</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>products</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Записывает товары в текстовый файл. Каждый товар записывается на отдельной строке. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a href="main_8cpp.html">main.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>
